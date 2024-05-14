@@ -6,9 +6,8 @@
 </head>
 <body>
 <h1>
-	서가영 바보
-	ddddddd
-</h1>
+	서가영 바보 입니다.
+	</h1>
 
 <P>  The time on the server is ${serverTime}. </P>
 </body>
