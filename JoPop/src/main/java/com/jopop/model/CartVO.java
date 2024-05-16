@@ -6,6 +6,10 @@ public class CartVO {
 	private int cartId;
 	private String mId;
 	private int pId;
+	
+	//pop
+	
+	
 	public int getCartId() {
 		return cartId;
 	}
