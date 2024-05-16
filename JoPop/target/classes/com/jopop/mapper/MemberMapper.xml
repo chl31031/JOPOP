@@ -7,7 +7,7 @@
   <!-- 회원가입 쿼리  -->
   <insert id="memberJoin">
    insert into JP_member(mEmail, mPw, mName, mNick, mAddr1, mAddr2, mAddr3, money)
- values(#{mEmail}, #{mPw}, #{mName}, #{mNick},#{mAddr1}, #{mAddr2}, #{mAddr3}, 50000);
+ values(#{mEmail}, #{mPw}, #{mName}, #{mNick}, #{mAddr1}, #{mAddr2}, #{mAddr3}, 50000)
   </insert>
 
   </mapper>
