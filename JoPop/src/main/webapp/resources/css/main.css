@@ -5,7 +5,20 @@
 }
 /* 화면 전체 렙 */
 .wrapper{
-	width: 1900px;
+	float: left;
+	width: 100%;
+}
+/* 중간 화면: 너비가 1024px */
+@media screen and (max-width:1024px){
+	.column{
+		width: 50%
+	}
+}
+/* 작은 화면: 너비가 768px */
+@media screen and (max-width:768px){
+	.column{
+		width: 40%;
+	}
 }
 /* content 랩 */
 .wrap{
@@ -84,3 +97,5 @@
 .clearfix{
 	clear: both;
 }
+
+/* footer */

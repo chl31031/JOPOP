@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="resources/css/main.css">
 </head>
 <body>
-
+<%@include file="includes/header.jsp" %>
 <div class="wrapper">
 	<div class="wrap">
 		<div class="top_gnb_area">
@@ -35,6 +35,6 @@
 		</div>
 	</div>
 </div>
-
+<%@include file="includes/footer.jsp" %>
 </body>
 </html>
