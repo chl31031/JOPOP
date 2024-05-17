@@ -4,7 +4,7 @@ package com.jopop.model;
 public class CartVO {
    
    private int cartId;
-   private String mId;
+   private int mId;
    private int pId;
    
    //pop
@@ -17,10 +17,10 @@ public class CartVO {
 	public void setCartId(int cartId) {
 		this.cartId = cartId;
 	}
-	public String getmId() {
+	public int getmId() {
 		return mId;
 	}
-	public void setmId(String mId) {
+	public void setmId(int mId) {
 		this.mId = mId;
 	}
 	public int getpId() {
@@ -46,6 +46,5 @@ public class CartVO {
 		return "CartVO [cartId=" + cartId + ", mId=" + mId + ", pId=" + pId + ", pName=" + pName + ", pPrice=" + pPrice
 				+ "]";
 	}
-   
    
 }

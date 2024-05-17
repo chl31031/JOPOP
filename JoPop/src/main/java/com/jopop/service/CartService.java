@@ -7,7 +7,7 @@ import com.jopop.model.CartVO;
 public interface CartService {
 	
 	//찜 추가
-	public int addCart(CartVO cart);
+	public int addCart(CartVO cart) throws Exception;
 	
 	//찜 삭제
 	public int deleteCart(int cartId);

@@ -4,6 +4,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.jopop.mapper.CartMapper">
 
+	<!-- 찜 추가 -->
+	<insert id="addCart">
+		insert into JP_cart(mId, pId) values(#{mId}, #{pId})
+	</insert>
 	
+	<!-- 찜 삭제 -->
+	<delete id="deleteCart">
+		delete from JP_cart where cartId = #{cartId}
+	</delete>
+	
+	<!-- 찜 목록 -->
+	<select id="getCart" resultType="com.jopop.model.CartVO">
+		SELECT a.cartId, a.mId, a.pId, p.pName, p.pPrice
+		FROM jp_cart a left outer join jp_pop p on a.pId = p.pId
+		WHERE mId = #{mId}
+	</select>
+	
+	<!-- 찜 확인 -->
+	<select id="checkCart" resultType="com.jopop.model.CartVO">
+		SELECT * from jp_cart
+		WHERE mId = #{mId} and pId = #{pId}
+	</select>
 	
   </mapper>

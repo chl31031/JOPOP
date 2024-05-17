@@ -12,13 +12,26 @@ import com.jopop.model.CartVO;
 public class CartServiceImpl implements CartService{
 	
 	@Autowired
-	CartMapper cartmapper;
+	CartMapper cartMapper;
 	
 	//찜 추가
 	@Override
-	public int addCart(CartVO cart) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int addCart(CartVO cart) throws Exception {
+		//0:등록 실패, 1: 등록 성공, 2: 등록된 데이터 존재, 5: 로그인 필요
+		
+		//찜 데이터 체크
+		CartVO checkCart = cartMapper.checkCart(cart);
+		
+		if(checkCart != null) {
+			return 2;
+		}
+		
+		//찜 등록 & 에러 시 0 반환
+		try {
+			return cartMapper.addCart(cart);
+		}catch(Exception e) {
+			return 0;
+		}
 	}
 
 	//찜 삭제

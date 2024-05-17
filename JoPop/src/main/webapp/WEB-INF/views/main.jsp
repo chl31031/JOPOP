@@ -25,8 +25,8 @@
 
 		<nav>
 			<ul class="nav">
-				<li><a href="/views/main">홈</a></li>
-				<li><a href="#">관심 팝업</a></li>
+				<li><a href="/main">홈</a></li>
+				<li><a href="/cart/cart">관심 팝업</a></li>
 				<li><a href="#">내 주변</a></li>
 				<li><a href="#">검색</a></li>
 				<li><a href="/nav/prelogin">마이페이지</a></li>
