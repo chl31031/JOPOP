@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jopop.mapper.PopMapper">
+  
+  <resultMap id="jpPop" type="com.jopop.model.PopVO">
+    <id column="pid" property="pId"/>
+    <result column="pname" property="pName"/>
+    <result column="startdate" property="startDate"/>
+    <result column="enddate" property="endDate"/>
+    <result column="paddr1" property="pAddr1"/>
+    <result column="paddr2" property="pAddr2"/>
+    <result column="paddr3" property="pAddr3"/>
+    <result column="pprice" property="pPrice"/>
+    <result column="pintro" property="pIntro"/>
+    <result column="pcontents" property="pContents"/>
+     
+    <association javaType="com.jopop.model.MapVO" property="mapVO">
+      <id column="pId" property="pId"/>
+      <result column="catecode" property="cateCode"/>
+      <result column="catename" property="cateName"/>
+      <result column="lat" property="lat"/>
+      <result column="lng" property="lng"/>  
+    </association>
+  </resultMap>
+
+  <!-- 상품 상세 정보 쿼리 -->
+  <select id="PopGoodsInfo" resultMap="jpPop">
+    SELECT 
+      a.PID, a.CATECODE, a.PNAME, a.CATENAME, a.LAT, a.LNG,
+      b.STARTDATE, b.ENDDATE, b.PADDR1, b.PADDR2, b.PADDR3,
+      b.PPRICE, b.PINTRO, b.PCONTENTS
+    FROM 
+      jp_map a
+    INNER JOIN 
+      jp_pop b ON a.PID = b.PID
+    WHERE 
+      a.PID = #{pid}
+  </select>
+</mapper>
