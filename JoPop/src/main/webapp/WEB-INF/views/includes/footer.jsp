@@ -3,11 +3,14 @@
     .footer {
         background-color: #343a40;
         color: #fff;
-        padding: 40px 0;
+        padding-top: 30px;
+        padding-left: 100px;
+        height: 250px;
     }
 
     .footer_container {
         width: 80%;
+        max-width: 1080px;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
