@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,33 +8,31 @@
 <link rel="stylesheet" href="resources/css/main.css">
 </head>
 <body>
-<%@include file="includes/header.jsp" %>
-<div class="wrapper">
-	<div class="wrap">
-		<div class="top_gnb_area">
-			<h1>gnb area</h1>
-		</div>
-		<div class="top_area">
-			<div class="logo_area">
-				<h1>logo area</h1>
+	<%@include file="includes/header.jsp"%>
+	<div class="wrapper">
+		<div class="wrap">
+			<div class="main_img_area">
+				<h1>img area</h1>
 			</div>
-			<div class="search_area">
-				<h1>Search area</h1>
+
+			<div class="navi_bar_area">
+				<h1>navi area</h1>
 			</div>
-			<div class="login_area">
-				<div class="login_button"><a href="/member/login">로그인</a></div>
-				<span><a href="/member/join">회원가입</a></span>
+			<div class="content_area">
+				<h1>content area</h1>
 			</div>
-			<div class="clearfix"></div>			
 		</div>
-		<div class="navi_bar_area">
-			<h1>navi area</h1>
-		</div>
-		<div class="content_area">
-			<h1>content area</h1>
-		</div>
+
+		<nav>
+			<ul class="nav">
+				<li><a href="/views/main">홈</a></li>
+				<li><a href="#">관심 팝업</a></li>
+				<li><a href="#">내 주변</a></li>
+				<li><a href="#">검색</a></li>
+				<li><a href="/nav/prelogin">마이페이지</a></li>
+			</ul>
+		</nav>
 	</div>
-</div>
-<%@include file="includes/footer.jsp" %>
+	<%@include file="includes/footer.jsp"%>
 </body>
 </html>
