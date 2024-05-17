@@ -116,43 +116,43 @@
 }
 
 /* 메일 영역 */
-.mail_wrap{
+.email_wrap{
 	width: 100%;
     margin-top: 20px;
 }
-.mail_name{
+.email_name{
 	font-size: 25px;
     font-weight: bold;
 }
-.mail_input_box{
+.email_input_box{
 	border: 1px solid black;
 	height:31px;
 	padding: 10px 14px;	
 	
 }
-.mail_input{
+.email_input{
 	width:100%;
 	height:100%;
 	border:none;
 	font-size:28px;
 }
-.mail_check_wrap{
+.email_check_wrap{
 	margin-top: 20px;	
 }
-.mail_check_input_box{
+.email_check_input_box{
 	border: 1px solid black;
     height: 31px;
     padding: 10px 14px;
     width: 61%;
     float: left;
 }
-.mail_check_input{
+.email_check_input{
 	width:100%;
 	height:100%;
 	border:none;
 	font-size:28px;
 }
-.mail_check_button{
+.email_check_button{
     border: 1px solid black;
     height: 51px;
     width: 30%;
@@ -249,3 +249,22 @@
 .clearfix{
 	clear: both;
 }
+
+/* 중복아이디 존재하지 않는경우 */
+.email_input_re_1{
+		color : green;
+		display : none;
+	}
+	/* 중복아이디 존재하는 경우 */
+.email_input_re_2{
+		color : red;
+		display : none;
+	}
+
+.correct{
+    color : green;
+}
+.incorrect{
+    color : red;
+}	
+	

@@ -19,6 +19,12 @@ public class MemberServiceImpl implements MemberService {
 			membermapper.memberJoin(member);
 		}
 		
+		//아이디 중복체크
+		@Override
+		public int idCheck(String mEmail) throws Exception{
+			return membermapper.idCheck(mEmail);
+		}
+		
 	
 		
 }

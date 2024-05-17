@@ -9,5 +9,12 @@
    insert into JP_member(mEmail, mPw, mName, mNick, mAddr1, mAddr2, mAddr3, money)
  values(#{mEmail}, #{mPw}, #{mName}, #{mNick}, #{mAddr1}, #{mAddr2}, #{mAddr3}, 50000)
   </insert>
+  
+  <!-- 아이디 중복검사 -->
+  	<select id="idCheck" resultType="int">
+  	
+  	select count(*) from JP_member where mEmail = #{mEmail}
+  	
+  	</select>
 
   </mapper>
