@@ -7,12 +7,15 @@ import org.springframework.stereotype.Service;
 
 import com.jopop.mapper.CartMapper;
 import com.jopop.model.CartVO;
+import com.jopop.model.ImageVO;
 
 @Service
 public class CartServiceImpl implements CartService{
 	
 	@Autowired
 	CartMapper cartMapper;
+	
+	
 	
 	//찜 추가
 	@Override
@@ -37,8 +40,7 @@ public class CartServiceImpl implements CartService{
 	//찜 삭제
 	@Override
 	public int deleteCart(int cartId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cartMapper.deleteCart(cartId);
 	}
 
 	//찜 목록
