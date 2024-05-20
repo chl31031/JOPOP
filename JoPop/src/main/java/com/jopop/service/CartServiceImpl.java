@@ -44,8 +44,10 @@ public class CartServiceImpl implements CartService{
 	//찜 목록
 	@Override
 	public List<CartVO> getCart(int mId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<CartVO> cart = cartMapper.getCart(mId);
+		
+		return cart;
 	}
 
 	//찜 확인
