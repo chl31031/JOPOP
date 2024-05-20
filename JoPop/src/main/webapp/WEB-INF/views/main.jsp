@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome BookMall</title>
+<title>Welcome JoPoP</title>
 <link rel="stylesheet" href="resources/css/main.css">
 </head>
 <body>
@@ -24,6 +24,7 @@
 			</div>
 		</div>
 
+<<<<<<< HEAD
 		<nav>
 			<ul class="nav">
 				<li><a href="/main">홈</a></li>
@@ -43,6 +44,10 @@
 				
 			</ul>
 		</nav>
+=======
+		
+	<%@include file="nav/nav.jsp"%>
+>>>>>>> branch 'main' of https://github.com/rkawk775/JOPOP-Web.git
 	</div>
 	<%@include file="includes/footer.jsp"%>
 </body>
