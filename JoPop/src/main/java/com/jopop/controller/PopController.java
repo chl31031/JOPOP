@@ -64,7 +64,7 @@ private static final Logger logger = LoggerFactory.getLogger(PopController.class
         }
 
         model.addAttribute("popsInfo", popsInfo);
-        return "pop/popDetail"; 
+        return "pop/popsDetail"; 
     }
 
     /* 첨부 파일 업로드 */
