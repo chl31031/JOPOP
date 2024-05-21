@@ -47,28 +47,36 @@ h1 {
 	width: 100%;
 	height: 130px;
 	/* background-color: #4682b4; */
-	padding: 60px 0;
+	padding: 70px 0;
 }
 
 .login {
 	width: 100%;
 	height: 130px;
 	/* background-color: #e6e6fa; */
-	padding: 60px 0;
+	padding: 70px 0;
 }
 .jBtn{
 	width: 300px;
 	height: 50px;
+	border-radius: 15px;
+	border-width: thin; 
+	cursor: pointer;
+	background-color: #1ed760;
+	text: ;
 }
 .lBtn{
 	width: 300px;
 	height: 50px;
+	border-radius: 15px;
+	border-width: thin;
+	cursor: pointer;
 }
 </style>
 </head>
 <body>
 	<%@include file="../includes/header.jsp"%>
-	<h1>Prelogin Page</h1>
+	<%--<h1>Prelogin Page</h1> --%>
 
 	<div class="wrap">
 

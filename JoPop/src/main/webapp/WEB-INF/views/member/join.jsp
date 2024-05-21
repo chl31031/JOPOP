@@ -16,9 +16,7 @@
 <div class="wrapper">
     <form id="join_form" method="post">
     <div class="wrap">
-            <div class="subject">
-                <span>회원가입</span>
-            </div>
+    	<img src="/resources/img/logo.png" alt="Logo" class="logo">
             <div class="email_wrap">
                 <div class="email_name">이메일</div> 
                 <div class="email_input_box">
