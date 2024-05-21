@@ -48,8 +48,13 @@ private static final Logger logger = LoggerFactory.getLogger(CartController.clas
 		public String addCartPOST(CartVO cart, HttpServletRequest request) throws Exception {
 			//0:등록 실패, 1: 등록 성공, 2: 등록된 데이터 존재 로 result값 반환
 			//로그인 체크
+			logger.info("addCartPOST 동작");
+			
 			HttpSession session = request.getSession();
+			
+			//mId 세션 가져오기
 			MemberVO mvo = (MemberVO)session.getAttribute("member");
+			System.out.println(mvo);
 			
 			if(mvo == null) {
 				return "5";

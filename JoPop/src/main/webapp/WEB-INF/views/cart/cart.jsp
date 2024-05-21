@@ -35,6 +35,7 @@
 			<tbody>
 				<c:forEach items="${cartInfo}" var="ci">
 					<tr>
+						<td><input type="hidden" value="${ci.pId}"></td>
 						<td class="td_width_1">이미지</td>
 						<td class="td_width_2">${ci.pName}</td>
 						<td class="td_width_3">${ci.pAddr1} ${ci.pAddr2}</td>
@@ -61,32 +62,33 @@
 <script>
 	//서버로 전송할 데이터
 	const form={
-			mId : "${member.mId}",
-			popId : "${pop.pId}"
+			mId : "${mId}",
+			popId : "${pId}"
 	}
 	
 	//찜 버튼 구현
 	$(".btn_cart").on("click", function(e){
 		$.ajax({
-			url: '/cart/add/{mId}',
+			url: '/cart/add',
 			type: 'POST',
 			data: form,
 			success: function(result){
-				cartAlert(result);
+				//cartAlert(result);
+				if(result == 0){
+					alert("장바구니에 추가를 하지 못하였습니다.");
+				} else if(result == 1){
+					alert("장바구니에 추가되었습니다.");
+				} else if(result == 2){
+					alert("장바구니에 이미 추가되어져 있습니다.");
+				} else if(result == 5){
+					alert("로그인이 필요합니다.");	
+				}
 			}
 		})
 	});
 	
 	function cartAlert(result){
-		if(result == 0){
-			alert("장바구니에 추가를 하지 못하였습니다.");
-		} else if(result == 1){
-			alert("장바구니에 추가되었습니다.");
-		} else if(result == 2){
-			alert("장바구니에 이미 추가되어져 있습니다.");
-		} else if(result == 5){
-			alert("로그인이 필요합니다.");	
-		}
+
 	}
 	
 </script>

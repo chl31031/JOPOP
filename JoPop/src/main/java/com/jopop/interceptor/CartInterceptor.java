@@ -10,7 +10,7 @@ import com.jopop.model.MemberVO;
 
 public class CartInterceptor implements HandlerInterceptor{
 	
-	/*
+
 	//로그인 여부에 따라 페이지 이동하게 함
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -19,11 +19,11 @@ public class CartInterceptor implements HandlerInterceptor{
 		MemberVO mvo = (MemberVO)session.getAttribute("member");
 		
 		if(mvo == null) {   //로그인 되어있지 않다면 "/prelogin"으로
-			response.sendRedirect("/member/prelogin");   
+			response.sendRedirect("/nav/prelogin");   
 			return false;
 		}else {             //로그인 되어있다면 true
 			return true;
 		}
 	}
-	*/
+
 }

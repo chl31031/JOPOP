@@ -24,6 +24,7 @@ public class CartServiceImpl implements CartService{
 		
 		//찜 데이터 체크
 		CartVO checkCart = cartMapper.checkCart(cart);
+		System.out.println(checkCart);
 		
 		if(checkCart != null) {
 			return 2;

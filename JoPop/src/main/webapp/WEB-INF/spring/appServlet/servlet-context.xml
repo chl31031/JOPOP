@@ -23,15 +23,15 @@
 	
 	<context:component-scan base-package="com.jopop.controller" />
 	
-	<!-- 인터셉터 적용 
+	<!-- 인터셉터 적용 	-->
 	<interceptors>
 		<interceptor>
 			<mapping path="/cart/**"/>
-			<exclude-mapping path="/cart/add"/>
+			<!--  <exclude-mapping path="/cart/add"/>-->
 			<beans:bean id="CartIntreceptor" class="com.jopop.interceptor.CartInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>
-	-->
+
 	
 	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>	
