@@ -57,7 +57,7 @@ public class CartMapperTests {
 	
 	//찜 확인
 	@Test
-	public void getCartTest() {
+	public void checkCartTest() {
 		int mId = 2;
 		int pId = 2;
 		
@@ -69,7 +69,5 @@ public class CartMapperTests {
 		System.out.println("결과 : "+resultCart);
 	}
 	*/
-	
-
 	
 }

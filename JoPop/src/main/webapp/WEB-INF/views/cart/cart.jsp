@@ -62,7 +62,7 @@
 <script>
 	//서버로 전송할 데이터
 	const form={
-			mId : "${mId}",
+			mId : "${member.mId}",
 			popId : "${pId}"
 	}
 	

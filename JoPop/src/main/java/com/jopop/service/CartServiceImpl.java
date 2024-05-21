@@ -19,8 +19,9 @@ public class CartServiceImpl implements CartService{
 	
 	//찜 추가
 	@Override
-	public int addCart(CartVO cart) throws Exception {
+	public int addCart(CartVO cart) throws Exception{
 		//0:등록 실패, 1: 등록 성공, 2: 등록된 데이터 존재, 5: 로그인 필요
+		System.out.println("CartServiceImpl 까지는 왔음");
 		
 		//찜 데이터 체크
 		CartVO checkCart = cartMapper.checkCart(cart);
