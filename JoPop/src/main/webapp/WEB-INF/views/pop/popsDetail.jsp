@@ -4,227 +4,292 @@
 <html>
 <head>
     <link rel="stylesheet" href="/resources/css/nav/nav.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
     <meta charset="UTF-8">
     <title>상세 페이지</title>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=8miqdnp9yh"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <style>
-	   body {
-	    background-color: #f0f0f0; /* 밝은 배경색 */
-	    color: #1e1e1e; /* 텍스트 색상 */
-	    font-family: Arial, sans-serif;
-	    margin: 0;
-	    padding: 0;
-	}
-	
-	.container {
-	    max-width: 1200px; /* 최대 너비 설정 */
-	    margin: 0 auto; /* 중앙 정렬 */
-	    background-color: #ffffff; /* 내부 컨텐츠 배경색 */
-	    padding: 20px; /* 내부 여백 */
-	    border-radius: 8px; /* 모서리 둥글게 */
-	    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-	}
-	
-	header {
-	    background-color: #004225;
-	    color: #ffffff;
-	    padding: 20px;
-	    text-align: center;
-	    border-radius: 8px; /* 모서리 둥글게 */
-	}
-
-  .banner {
-            text-align: center;
-            padding: 10px;
+			body {
+		    background-color: #f0f0f0; /* 밝은 배경색 */
+		    color: #1e1e1e; /* 텍스트 색상 */
+		    font-family: Arial, sans-serif;
+		    margin: 0;
+		    padding: 0;
+		}
+			.container {
+		    width: 1060px; /* header와 동일한 너비 설정 */
+		    margin: auto; /* 중앙 정렬 및 위아래 여백 */
+		    background-color: #ffffff; /* 내부 컨텐츠 배경색 */
+		    padding: 20px; /* 내부 여백 */
+		}
+		
+		
+        .banner {
+            margin: 20px 0;
+            position: relative; /* 슬라이드 내 버튼을 배치하기 위해 position을 relative로 설정 */
         }
 
         .slider {
-            width: 80%;
+            display: flex;
+        }
+
+        .slider .slick-slide {
+            margin: 0; /* 슬라이드 이미지 사이에 여백 제거 */
+        }
+
+        .slider img {
+            width: 100%; /* 이미지를 슬라이더 내에서 가득 채우기 */
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .slick-prev, .slick-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5); /* 반투명 검은색 배경 */
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 2;
+            border-radius: 50%;
+        }
+
+        .slick-prev {
+            left: 10px;
+        }
+
+        .slick-next {
+            right: 10px;
+        }
+
+        .slick-prev:hover, .slick-next:hover {
+            background-color: rgba(0, 0, 0, 0.8); /* Hover 시 배경 색상 변경 */
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #00c73c; /* Jopop 색상 */
+        }
+
+        #map {
+            margin-top: 20px;
+            border: 1px solid #004225;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            padding: 10px;
+            background-color: #004225;
+            color: #ffffff;
+            border-radius: 8px; /* 모서리 둥글게 */
+        }
+
+        .review-section {
+            background-color: #ffffff;
+            color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-section h2 {
+            color: #00c73c; /* Jopop 색상 */
+        }
+
+        .rating {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+            flex-direction: row-reverse;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 2rem;
+            color: #ccc; /* 기본 상태 빈 별 색상 */
+            cursor: pointer;
+        }
+
+        .rating label:hover,
+        .rating label:hover ~ label,
+        .rating input:checked ~ label {
+            color: #ffcc00; /* hover 및 체크된 상태의 별 색상 */
+        }
+
+        .rating input:checked ~ label ~ label {
+            color: #ccc; /* 선택된 별보다 오른쪽 별들은 다시 기본 색상으로 */
+        }
+
+        .review-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .review-form textarea {
+            width: 100%;
+            height: 100px;
+            background-color: #f0f0f0;
+            color: #1e1e1e;
+            border: 1px solid #004225;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
+            resize: none; /* textarea 크기 고정 */
+        }
+
+        .review-form .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .review-form .button-group button {
+            background-color: #00c73c; /* Jopop 색상 */
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .review-form .button-group button:hover {
+            background-color: #008f28; /* Hover 색상 */
+        }
+
+        .review-section p {
+            color: #1e1e1e;
+        }
+
+        /* 이미지 주석 */
+        #result_card img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            padding: 5px;
+            margin-top: 10px;
             margin: auto;
         }
 
-        .slick-slide img {
-            width: 100%;
-            border-radius: 8px; /* 모서리 둥글게 */
+        #result_card {
+            position: relative;
         }
-	.content {
-	    padding: 20px;
-	}
-	
-	.section {
-	    margin-bottom: 20px;
-	    padding: 20px;
-	    background-color: #ffffff;
-	    border-radius: 8px;
-	    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	}
-	
-	.section h2 {
-	    color: #00c73c; /* Jopop 색상 */
-	}
-	
-	#map {
-	    margin-top: 20px;
-	    border: 1px solid #004225;
-	}
-	
-	.footer {
-	    margin-top: 20px;
-	    text-align: center;
-	    padding: 10px;
-	    background-color: #004225;
-	    color: #ffffff;
-	    border-radius: 8px; /* 모서리 둥글게 */
-	}
-	
-	.review-section {
-	    background-color: #ffffff;
-	    color: #1e1e1e;
-	    padding: 20px;
-	    border-radius: 8px;
-	    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	}
-	
-	.review-section h2 {
-	    color: #00c73c; /* Jopop 색상 */
-	}
-	
-	.rating {
-	    display: flex;
-	    justify-content: center;
-	    margin: 10px 0;
-	    flex-direction: row-reverse;
-	}
-	
-	.rating input {
-	    display: none;
-	}
-	
-	.rating label {
-	    font-size: 2rem;
-	    color: #ccc; /* 기본 상태 빈 별 색상 */
-	    cursor: pointer;
-	}
-	
-	.rating label:hover,
-	.rating label:hover ~ label,
-	.rating input:checked ~ label {
-	    color: #ffcc00; /* hover 및 체크된 상태의 별 색상 */
-	}
-	
-	.rating input:checked ~ label ~ label {
-	    color: #ccc; /* 선택된 별보다 오른쪽 별들은 다시 기본 색상으로 */
-	}
-	
-	.review-form {
-	    display: flex;
-	    flex-direction: column;
-	}
-	
-	.review-form textarea {
-	    width: 100%;
-	    height: 100px;
-	    background-color: #f0f0f0;
-	    color: #1e1e1e;
-	    border: 1px solid #004225;
-	    border-radius: 4px;
-	    padding: 10px;
-	    margin-bottom: 10px;
-	    resize: none; /* textarea 크기 고정 */
-	}
-	
-	.review-form .button-group {
-	    display: flex;
-	    justify-content: space-between;
-	}
-	
-	.review-form .button-group button {
-	    background-color: #00c73c; /* Jopop 색상 */
-	    color: #ffffff;
-	    border: none;
-	    padding: 10px 20px;
-	    cursor: pointer;
-	    border-radius: 4px;
-	}
-	
-	.review-form .button-group button:hover {
-	    background-color: #008f28; /* Hover 색상 */
-	}
-	
-	.review-section p {
-	    color: #1e1e1e;
-	}
-	
-	/* 이미지 주석 */
-	#result_card img {
-	    max-width: 100%;
-	    height: auto;
-	    display: block;
-	    padding: 5px;
-	    margin-top: 10px;
-	    margin: auto;
-	}
-	
-	#result_card {
-	    position: relative;
-	}
-	
-	.imgDeleteBtn {
-	    position: absolute;
-	    top: 5px;
-	    right: 5px;
-	    background-color: #ef7d7d;
-	    color: #ffffff;
-	    font-weight: bold;
-	    width: 50px;
-	    height: 30px;
-	    border-radius: 4px;
-	    line-height: 30px;
-	    text-align: center;
-	    border: none;
-	    display: block;
-	    cursor: pointer;
-	    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-	    transition: background-color 0.3s ease, transform 0.3s ease;
-	}
-	
-	.imgDeleteBtn:hover {
-	    background-color: #d9534f;
-	    transform: scale(1.1);
-	}
-	
-	/* 이미지 크기 */
-	#uploadResult img {
-	    width: 100px; /* 원하는 너비 값 */
-	    height: auto; /* 비율을 유지하면서 높이를 자동으로 조정 */
-	}
-	
-	/* 스타일을 적용한 제목 */
-	.styled-heading {
-	    font-family: 'Arial', sans-serif; /* 원하는 글꼴 */
-	    font-size: 2rem; /* 글자 크기 */
-	    color: #00c73c; /* Jopop 색상 */
-	    border-bottom: 2px solid #00c73c; /* 아래 테두리 */
-	    padding-bottom: 10px; /* 아래 패딩 */
-	    margin-bottom: 20px; /* 아래 마진 */
-	}
 
+        .imgDeleteBtn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #ef7d7d;
+            color: #ffffff;
+            font-weight: bold;
+            width: 50px;
+            height: 30px;
+            border-radius: 4px;
+            line-height: 30px;
+            text-align: center;
+            border: none;
+            display: block;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .imgDeleteBtn:hover {
+            background-color: #d9534f;
+            transform: scale(1.1);
+        }
+
+        /* 이미지 크기 */
+        #uploadResult img {
+            width: 100px; /* 원하는 너비 값 */
+            height: auto; /* 비율을 유지하면서 높이를 자동으로 조정 */
+        }
+
+        /* 스타일을 적용한 제목 */
+        .styled-heading {
+            font-family: 'Arial', sans-serif; /* 원하는 글꼴 */
+            font-size: 2rem; /* 글자 크기 */
+            color: #00c73c; /* Jopop 색상 */
+            border-bottom: 2px solid #00c73c; /* 아래 테두리 */
+            padding-bottom: 10px; /* 아래 패딩 */
+            margin-bottom: 20px; /* 아래 마진 */
+        }
+
+        /* 추가된 CSS 코드 */
+        .popupdetail-banner .slide-img-wrap::after,
+        .slide-content .slide-img-wrap::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        .slide-img-wrap {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide-content .slide-img-wrap {
+            position: relative;
+            left: 0;
+            bottom: 0;
+            cursor: pointer;
+        }
+
+        .slick-slider {
+            position: relative;
+            display: block;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: pan-y;
+            -webkit-tap-highlight-color: transparent;
+        }
     </style>
 </head>
 <body>
     <%@ include file="../includes/header.jsp" %> <!-- 헤더 -->
-    
+
     <div class="container">
-        <div class="content">
-              <div class="section banner">
-                <div class="slider">
-                    <div><img src="C:\image\1.png" alt="배너 이미지 1" class="banner-image"></div>
-                    <div><img src="C:\image\2.png" alt="배너 이미지 2" class="banner-image"></div>
-                    <div><img src="C:\image\3.png" alt="배너 이미지 3" class="banner-image"></div>
-                </div>
+        <!-- 배너 섹션 -->
+        <div class="banner">
+            <div class="slider">
+                <div><img src="<%=request.getContextPath()%>/resources/eximg/hell.png" alt="배너 이미지"></div>
+                <div><img src="<%=request.getContextPath()%>/resources/eximg/hello.png" alt="배너 이미지1"></div>
+                <div><img src="<%=request.getContextPath()%>/resources/eximg/mokk.png" alt="배너 이미지2"></div>
+                <div><img src="<%=request.getContextPath()%>/resources/eximg/mok.png" alt="배너 이미지3"></div>
+                <div><img src="<%=request.getContextPath()%>/resources/eximg/mok1.png" alt="배너 이미지4"></div>
+                <div><img src="<%=request.getContextPath()%>/resources/eximg/hello1.png" alt="배너 이미지4"></div>
             </div>
+        </div>
+
+        <div class="content">
             <div class="section">
                 <h2 class="styled-heading">운영 시간</h2>
                 <p>${popsInfo.pIntro}</p> <!-- pIntro 데이터를 여기에 출력 -->
@@ -362,6 +427,18 @@
                     }
                 });
             });
+
+            // Slick Carousel 초기화
+            $('.slider').slick({
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 1500, // 재생 시간 단축
+                dots: true,
+                arrows: true,
+                prevArrow: '<button type="button" class="slick-prev">&#10094;</button>',
+                nextArrow: '<button type="button" class="slick-next">&#10095;</button>'
+            });
         });
 
         // 파일 체크 함수
@@ -438,18 +515,6 @@
                 }
             });
         }
-        
-        $(document).ready(function(){
-            $('.slider').slick({
-                dots: true,
-                infinite: true,
-                speed: 500,
-                fade: true,
-                cssEase: 'linear',
-                autoplay: true,
-                autoplaySpeed: 2000
-            });
-        });
     </script>
   <%@include file="../nav/nav.jsp"%>
 </body>
