@@ -65,4 +65,9 @@ private static final Logger logger = LoggerFactory.getLogger(CartController.clas
 			return result + "";
 		}
 		
+		//주문 페이지
+		@GetMapping(value = "/orderItem")
+		public void orderGET(){
+			logger.info("주문 페이지로 이동");
+		}
 }

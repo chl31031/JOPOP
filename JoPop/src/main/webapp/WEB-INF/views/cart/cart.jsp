@@ -27,30 +27,27 @@
 	
 		<div class="wrap">
 		
+		<a href="/"><h2>내 정보</h2></a>
+		<a href="/cart/cart/{mId}"><h2>관심 팝업</h2></a>
+		<a href="/cart/orderItem"><h2>내 예약</h2></a>
+		
 		<!-- 장바구니 리스트 -->
 		<div class="content_middle_section"></div>
 		
-		<!-- 표 내용 부분 -->
-		<table class="cart_table">
-			<tbody>
-				<c:forEach items="${cartInfo}" var="ci">
-					<tr>
-						<td><input type="hidden" value="${ci.pId}"></td>
-						<td class="td_width_1">이미지</td>
-						<td class="td_width_2">${ci.pName}</td>
-						<td class="td_width_3">${ci.pAddr1} ${ci.pAddr2}</td>
-						<td class="td_width_4">
+		<c:forEach items="${cartInfo}" var="ci">
+					<ul>
+						<li>이미지</li>
+						<li class="popup-name">${ci.pName}</li>
+						<li class="popup-addr">${ci.pAddr1} ${ci.pAddr2}</li>
+						<li class="popup-date">
 							<fmt:formatDate pattern="yyyy.MM.dd" value="${ci.startDate}"/> ~
 							<fmt:formatDate pattern="yyyy.MM.dd" value="${ci.endDate}"/>
-						</td>
-						<td class="td_width_5">
+						</li>
+						<li class="popup-cart">
 							<button class="btn_cart">장바구니 버튼</button>
-						</td>
-
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+						</li>
+					</ul>
+		</c:forEach>
 		
 		
 		</div>
