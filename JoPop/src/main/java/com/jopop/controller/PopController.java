@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jopop.model.Criteria;
+import com.jopop.model.PageDTO;
 import com.jopop.model.PopVO;
 import com.jopop.model.RimageVO;
 import com.jopop.service.PopService;
@@ -42,17 +43,13 @@ private static final Logger logger = LoggerFactory.getLogger(PopController.class
 
 		@Autowired
 		PopService popService;
+		
 
 
-	/*검색 페이지로 이동 */
-	@GetMapping("/search")
-	public void searchGET() {
-		logger.info("검색 페이지로 이동");
-	}
 	
 	//상품 조회 
     @GetMapping("/popsDetail")
-    public String popsDetailGET(@RequestParam(value = "pid", required = true) int pid, Criteria cri, Model model) {
+    public String popsDetailGET(@RequestParam(value = "pid", required = true) int pid, Criteria cri, Model model) throws Exception {
         logger.info("popsDetailGetInfo().... PID: " + pid);
 
         model.addAttribute("cri", cri);
@@ -239,6 +236,35 @@ private static final Logger logger = LoggerFactory.getLogger(PopController.class
 		return new ResponseEntity<String>("success", HttpStatus.OK);
 		
 	}
+	
+	/* 상품 검색 */
+	@GetMapping("/search")
+	public String searchGoodsGET(Criteria cri, Model model)throws Exception {
+		
+		logger.info("cri : " + cri);
+		
+		List<PopVO> list = popService.getGoodsList(cri);
+		logger.info("pre list : " + list);
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+			logger.info("list : " + list);
+		} else {
+			model.addAttribute("listcheck", "empty");
+			
+			return "/search";
+		}
+		
+		model.addAttribute("pageMaker", new PageDTO(cri, popService.goodsGetTotal(cri)));
+		
+		
+		return "/search";
+		
+	}
+	
+	
+	
+	
+	
 	
 	
 	

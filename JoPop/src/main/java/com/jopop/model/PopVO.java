@@ -14,8 +14,19 @@ public class PopVO {
     private String pIntro; // 이용안내
     private String pContents; // 팝업 소개
     private MapVO mapVO; // 수정된 부분: mapVO 속성 추가
+    private String cateCode;
+    
+    
 
-    public int getpId() {
+    public String getCateCode() {
+		return cateCode;
+	}
+
+	public void setCateCode(String cateCode) {
+		this.cateCode = cateCode;
+	}
+
+	public int getpId() {
         return pId;
     }
 
@@ -106,9 +117,10 @@ public class PopVO {
     }
 
     @Override
-    public String toString() {
-        return "PopVO [pId=" + pId + ", pName=" + pName + ", startDate=" + startDate + ", endDate=" + endDate
-                + ", pAddr1=" + pAddr1 + ", pAddr2=" + pAddr2 + ", pAddr3=" + pAddr3 + ", pPrice=" + pPrice
-                + ", pIntro=" + pIntro + ", pContents=" + pContents + "]";
-    }
+	public String toString() {
+		return "PopVO [pId=" + pId + ", pName=" + pName + ", startDate=" + startDate + ", endDate=" + endDate
+				+ ", pAddr1=" + pAddr1 + ", pAddr2=" + pAddr2 + ", pAddr3=" + pAddr3 + ", pPrice=" + pPrice
+				+ ", pIntro=" + pIntro + ", pContents=" + pContents + ", mapVO=" + mapVO + ", cateCode=" + cateCode
+				+ "]";
+	}
 }
