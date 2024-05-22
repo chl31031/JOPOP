@@ -22,10 +22,10 @@
 <nav>
 			<ul class="nav">
 				<li><a href="/main">홈</a></li>
-				<li><a href="/cart/cart/${member.mId}">관심 팝업</a></li>
+				<li><a href="/cart/cart/{mId}">관심 팝업</a></li>
 				<li><a href="#">내 주변</a></li>
 				
-				<li><a href="/nav/popsearch">검색</a></li>
+				<li><a href="pop/search">검색</a></li>
 				
 				<!-- 로그인 하지 않은 상태 -->
 				<c:if test="${member == null}">
