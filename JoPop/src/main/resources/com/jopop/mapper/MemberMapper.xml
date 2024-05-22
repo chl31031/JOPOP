@@ -20,7 +20,7 @@
   <!-- 로그인 -->
   <select id="memberLogin" resultType="com.jopop.model.MemberVO">
   
-  select mEmail, mPw, mName, mNick, adminCk, membership, money from JP_member where mEmail = #{mEmail}
+  select mId, mEmail, mPw, mName, mNick, adminCk, membership, money from JP_member where mEmail = #{mEmail}
   </select>
 
   </mapper>
