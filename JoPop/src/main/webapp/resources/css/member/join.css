@@ -17,7 +17,7 @@
 
 .logo{
 	width: 200px;
-	padding: 40px;
+	margin: 0 auto;
 }
 
 /* 메일 영역 */
@@ -72,6 +72,7 @@
     background-color: #1ed760;
     cursor: pointer;
     border-radius: 30px;
+    color: white;
 }
 
 /* 비밀번호 영역 */
@@ -80,14 +81,16 @@
     margin-top: 20px;
 }
 .pw_name{
-	font-size: 25px;
+	font-size: 20px;
     font-weight: bold;
+    margin-bottom: 10px;
+    font-color: #999;
 }
 .pw_input_box{
-	border: 1px solid black;
+	border: 1px solid #888;
 	height:31px;
 	padding: 10px 14px;	
-	
+	border-radius: 10px;
 }
 .pw_input{
 	width:100%;
@@ -102,13 +105,16 @@
     margin-top: 20px;
 }
 .pwck_name{
-	font-size: 25px;
+	font-size: 20px;
     font-weight: bold;
+    margin-bottom: 10px;
+    font-color: #999;
 }
 .pwck_input_box{
-	border: 1px solid black;
+	border: 1px solid #888;
 	height:31px;
 	padding: 10px 14px;	
+	border-radius: 10px;
 }
 .pwck_input{
 	width:100%;
@@ -123,13 +129,16 @@
     margin-top: 20px;
 }
 .id_name{
-	font-size: 25px;
+	font-size: 20px;
     font-weight: bold;
+    margin-bottom: 10px;
+    font-color: #999;
 }
 .id_input_box{
-	border: 1px solid black;
+	border: 1px solid #888;
 	height:31px;
 	padding: 10px 14px;	
+	border-radius: 10px;
 	
 }
 .id_input{
@@ -146,13 +155,16 @@
     margin-top: 20px;
 }
 .user_name{
-	font-size: 25px;
+	font-size: 20px;
     font-weight: bold;
+    margin-bottom: 10px;
+    font-color: #999;
 }
 .user_input_box{
-	border: 1px solid black;
+	border: 1px solid #888;
 	height:31px;
 	padding: 10px 14px;	
+	border-radius: 10px;
 	
 }
 .user_input{
@@ -170,42 +182,48 @@
     margin-top: 20px;
 }
 .address_name{
-	font-size: 25px;
+	font-size: 20px;
     font-weight: bold;
+    margin-bottom: 10px;
+    font-color: #999;
 }
 .address_input_1_box{
-	border: 1px solid black;
+	border: 1px solid #888;
     height: 31px;
     padding: 10px 14px;
     width: 61%;
-    float: left;	
+    float: left;
+    border-radius: 10px;	
 }
 .address_input_1{
 	width:100%;
 	height:100%;
 	border:none;
 	font-size:28px;	
+	border-radius: 10px;
 }
 .address_button{
-    border: 1px solid black;
+    border: 1px solid #888;
     height: 51px;
     width: 30%;
     float: right;
     line-height: 50px;
     text-align: center;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 900;
     background-color: #1ed760;
     cursor: pointer;	
+    color: white;
     border-radius: 30px;
 }
 .address_input_2_wrap{
 	margin-top: 20px;
 }
 .address_input_2_box{
-	border: 1px solid black;
+	border: 1px solid #888;
 	height:31px;
 	padding: 10px 14px;	
+	border-radius: 10px;
 	
 }
 .address_input_2{
@@ -219,9 +237,10 @@
 	margin-top: 20px;
 }
 .address_input_3_box{
-	border: 1px solid black;
+	border: 1px solid #888;
 	height:31px;
 	padding: 10px 14px;	
+	border-radius: 10px;
 	
 }
 .address_input_3{
@@ -238,14 +257,15 @@
 }
 .join_button{
 	width: 100%;
-    height: 80px;
+    height: 50px;
     background-color: #1ed760;
-    font-size: 40px;
-    font-weight: 900;
+    font-size: 30px;
+    font-weight: 700;
     color: white;
     border: 2px solid #888;
     border-radius: 60px;
     cursor: pointer;
+    margin-bottom: 100px;
 }
 
 /* float 속성 해제 */

@@ -18,17 +18,17 @@
 	<div class="wrap">
 	<form id="login_form" method="post">
 		<div class="logo_wrap">
-			<span>JoPop</span>
+			<img src="/resources/img/logo.png" alt="Logo" class="logo">
 		</div>
 		<div class="login_wrap"> 
 			<div class="email_wrap">
 					<div class="email_input_box">
-					<input class="email_input" name="mEmail">이메일
+					<input class="email_input" name="mEmail" placeholder="이메일">
 				</div>
 			</div>
 			<div class="pw_wrap">
 				<div class="pw_input_box">
-					<input class="pw_iput" name ="mPw">비밀번호
+					<input class="pw_iput" name ="mPw" placeholder="비밀번호">
 				</div>
 			</div>
 			<c:if test="${result == 0 }">
