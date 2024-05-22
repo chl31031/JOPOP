@@ -90,7 +90,7 @@
 
     <!-- 검색창 -->
     <div class="search">
-        <form action="/search" method="get" id="searchForm">
+        <form action="/nav/popsearch" method="get" id="searchForm">
             <input type="text" name="keyword" placeholder="검색어를 입력하세요">
             <button class='btn search_btn'>
                 <img src="/resources/img/search.png" alt="Search">

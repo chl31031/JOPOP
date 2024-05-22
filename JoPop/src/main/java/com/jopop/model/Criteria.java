@@ -1,5 +1,7 @@
 package com.jopop.model;
 
+import java.util.Arrays;
+
 public class Criteria {
 	/* 현재 페이지 번호 */
     private int pageNum;
@@ -13,7 +15,29 @@ public class Criteria {
     /* 검색 키워드 */
     private String keyword;
     
-    /* Criteria 생성자 */
+    /* 날짜 리스트 */
+    private String[] dateArr;
+    
+    /* 카테고리 코드 */
+    private String cateCode;
+    
+    public String[] getDateArr() {
+		return dateArr;
+	}
+
+	public void setDateArr(String[] dateArr) {
+		this.dateArr = dateArr;
+	}
+
+	public String getCateCode() {
+		return cateCode;
+	}
+
+	public void setCateCode(String cateCode) {
+		this.cateCode = cateCode;
+	}
+
+	/* Criteria 생성자 */
     public Criteria(int pageNum, int amount) {
         this.pageNum = pageNum;
         this.amount = amount;
@@ -63,7 +87,8 @@ public class Criteria {
 
 	@Override
 	public String toString() {
-		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", type=" + type + ", keyword=" + keyword + "]";
+		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", type=" + type + ", keyword=" + keyword
+				+ ", dateArr=" + Arrays.toString(dateArr) + ", cateCode=" + cateCode + "]";
 	}
     
 }

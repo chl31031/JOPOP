@@ -3,9 +3,12 @@
 	margin: 0;
 	padding:0;
 }
-
+tr{
+	width: 420px;
+	height: 300px;
+}
 .wrap{
-	width : 1080px;
+	width : 900px;
 	margin: auto;
 }
 .main_img_area{
@@ -53,3 +56,45 @@
 .clearfix{
 	clear: both;
 }
+/* 상품 표 */
+.list_search_result{
+		width: 90%;
+	    margin: auto;	
+	}
+.type_list{
+	    width: 100%;
+	    border-bottom: 1px solid #e7e7e7;
+	    border-collapse: collapse;	
+	}
+.type_list tr{
+		height:200px;
+		border-bottom: 1px solid #e7e7e7;
+	}
+.detail div{
+		margin-bottom: 5px;
+	}
+.category{
+		font-size: 12px;
+    	font-weight: 600;
+	}
+.title{
+	    font-size: 20px;
+	    color: #3a60df;
+	    font-weight: 700;
+	}
+.author{
+		font-size: 14px;
+	}
+.info{
+		text-align: center;
+	}
+.price{
+		text-align: center;
+	}
+.org_price del{
+		font-size: 13px;
+	}
+.sell_price strong{
+		color: #da6262;
+    	font-size: 18px;
+	}

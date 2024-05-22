@@ -15,4 +15,6 @@ public interface PopService {
 		
 		/* 상품 총 갯수 */
 		public int goodsGetTotal(Criteria cri) throws Exception;
+		
+	
 }

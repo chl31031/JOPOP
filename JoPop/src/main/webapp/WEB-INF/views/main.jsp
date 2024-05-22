@@ -21,6 +21,7 @@
 			</div>
 			<div class="content_area">
 				<h1>content area</h1>
+				
 			</div>
 		</div>
 
