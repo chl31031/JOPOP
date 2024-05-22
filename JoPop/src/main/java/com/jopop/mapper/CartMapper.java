@@ -17,4 +17,7 @@ public interface CartMapper {
 	
 	//찜 확인
 	public CartVO checkCart(CartVO cart);
+	
+	//찜 검색
+	public List<CartVO> searchCart(int mId);
 }
