@@ -25,7 +25,7 @@
 								<tr>
 									<td class="detail">
 										<div class="title">
-											<a href="/goodsDetail/${list.pId}">
+											<a href="/pop/popsDetail/?pid=${list.pId}">
 												${list.pName}
 											</a>
 										</div>
