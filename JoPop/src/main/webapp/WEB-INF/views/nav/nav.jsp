@@ -34,7 +34,7 @@
 				
 				<!-- 로그인 한 상태  -->
 				<c:if test="${member != null}">
-				<li><a href="/nav/mypage">마이페이지</a></li>
+				<li><a href="/member/mypage">마이페이지</a></li>
 				</c:if>
 				
 			</ul>
