@@ -31,7 +31,17 @@
 		<a href="/cart/cart/${member.mId}"><h2>관심 팝업</h2></a>
 		<a href="/cart/orderItem"><h2>내 예약</h2></a>
 		
-		<!-- 장바구니 리스트 -->
+		<!-- 찜 내의 검색창 기능 -->
+	    <div class="search">
+	        <form action="/cart/search" method="get" id="searchForm">
+	            <input type="text" name="keyword" placeholder="지역, 팝업스토어명 키워드 검색">
+	            <button class='btn search_btn'>
+	                <img src="/resources/img/search.png" alt="Search">
+	            </button>
+	        </form>
+	    </div>
+		
+		<!-- 찜 리스트 -->
 		<div class="content_middle_section"></div>
 		
 		<c:forEach items="${cartInfo}" var="ci">
@@ -115,8 +125,8 @@
 					console.log("삭제 동작 로그");
 				},
 			})
-		}*/
-	}
+		}
+	}*/
 	
 </script>
 </body>

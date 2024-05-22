@@ -63,11 +63,11 @@ public class CartServiceImpl implements CartService{
 
 	//찜 키워드 검색 (지역명, 팝업명)
 	@Override
-	public List<CartVO> searchCart(int mId) {
+	public List<CartVO> searchCart(CartVO cart) {
 		
-		List<CartVO> cart = cartMapper.getCart(mId);
+		List<CartVO> scart = cartMapper.searchCart(cart);
 		
-		return cart;
+		return scart;
 	}
 
 }

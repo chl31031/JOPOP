@@ -70,4 +70,18 @@ public class CartMapperTests {
 	}
 	*/
 	
+	//찜 검색 테스트
+	@Test
+	public void getCartTest() {
+		int mId = 22;
+		String pName = '아무거나';
+		String pAddr2 = '영등포구';
+		
+		List<CartVO> list = mapper.searchCart(mId, pName, pAddr2);
+		for(CartVO cart : list) {
+			System.out.println(cart);
+			System.out.println("init cart : "+ cart);
+		}
+	}
+	
 }

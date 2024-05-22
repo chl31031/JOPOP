@@ -20,6 +20,9 @@ public class CartVO {
    
    //상품 이미지
    private List<ImageVO> imageList;
+   
+   //검색을 위한 키워드
+   private String keyword;
 
 	public int getCartId() {
 		return cartId;

@@ -19,6 +19,6 @@ public interface CartService {
 	public CartVO checkCart(CartVO cart);
 	
 	//찜 검색
-	public List<CartVO> searchCart(int mId);
+	public List<CartVO> searchCart(CartVO cart);
 
 }

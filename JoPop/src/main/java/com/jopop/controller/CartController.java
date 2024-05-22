@@ -1,5 +1,7 @@
 package com.jopop.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -69,5 +71,28 @@ private static final Logger logger = LoggerFactory.getLogger(CartController.clas
 		@GetMapping(value = "/orderItem")
 		public void orderGET(){
 			logger.info("주문 페이지로 이동");
+		}
+		
+		//찜 검색 기능
+		@GetMapping(value="/search")
+		public String searchCartGET(CartVO cart, String keyword, HttpServletRequest request) {
+			logger.info("searchCartGET 동작");
+			
+			HttpSession session = request.getSession();
+			
+			//mId 세션 가져오기
+			MemberVO mvo = (MemberVO)session.getAttribute("member");
+			
+			//keyword는 CartVO 에 넣어야함 직접
+			
+			System.out.println(keyword + "=======================");
+			System.out.println(mvo);
+			
+			//검색 기능 
+			List<CartVO> result = cartService.searchCart(cart);
+			
+			System.out.println(result);
+			
+			return "/cart/cart";
 		}
 }

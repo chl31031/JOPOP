@@ -31,7 +31,7 @@
 	<select id="searchCart" resultType="com.jopop.model.CartVO">
 		SELECT a.cartId, a.mId, a.pId, p.pName, p.pPrice, p.pAddr1, p.pAddr2, p.startDate, p.endDate
 		FROM jp_cart a left outer join jp_pop p on a.pId = p.pId
-		WHERE mId = #{mId} AND (p.pName Like '%#{pPrice}%' OR p.pAddr2 Like '%#{pAddr1}%') ;
+		WHERE mId = #{mId} AND (p.pName Like '%#{keyword}%' OR p.pAddr2 Like '%#{keyword}%') ;
 	</select>
 	
   </mapper>
