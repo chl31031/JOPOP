@@ -237,29 +237,7 @@ private static final Logger logger = LoggerFactory.getLogger(PopController.class
 		
 	}
 	
-	/* 상품 검색 */
-	@GetMapping("/search")
-	public String searchGoodsGET(Criteria cri, Model model)throws Exception {
-		
-		logger.info("cri : " + cri);
-		
-		List<PopVO> list = popService.getGoodsList(cri);
-		logger.info("pre list : " + list);
-		if(!list.isEmpty()) {
-			model.addAttribute("list", list);
-			logger.info("list : " + list);
-		} else {
-			model.addAttribute("listcheck", "empty");
-			
-			return "/search";
-		}
-		
-		model.addAttribute("pageMaker", new PageDTO(cri, popService.goodsGetTotal(cri)));
-		
-		
-		return "/search";
-		
-	}
+
 	
 	
 	

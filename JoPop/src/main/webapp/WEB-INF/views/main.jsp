@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Welcome JoPoP</title>
-<link rel="stylesheet" href="resources/css/main.css">
+<link rel="stylesheet" href="../resources/css/main.css">
 </head>
 <body>
 	<%@include file="includes/header.jsp"%>

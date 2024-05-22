@@ -28,7 +28,7 @@
 		<interceptor>
 			<mapping path="/cart/**"/>
 			<!--  <exclude-mapping path="/cart/add"/>-->
-			<beans:bean id="CartIntreceptor" class="com.jopop.interceptor.CartInterceptor"></beans:bean>
+			<beans:bean id="CartInterceptor" class="com.jopop.interceptor.CartInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>
 

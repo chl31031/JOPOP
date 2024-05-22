@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Welcome JoPoP</title>
-<link rel="stylesheet" href="resources/css/search.css">
+<link rel="stylesheet" href="../resources/css/nav/search.css">
 </head>
 <body>
-	<%@include file="includes/header.jsp"%>
+	<%@include file="../includes/header.jsp"%>
 	<div class="wrapper">
 		<div class="wrap">
 
@@ -27,8 +27,8 @@
 		</div>
 
 		
-	<%@include file="nav/nav.jsp"%>
+	<%@include file="../nav/nav.jsp"%>
 
-	<%@include file="includes/footer.jsp"%>
+	<%@include file="../includes/footer.jsp"%>
 </body>
 </html>
