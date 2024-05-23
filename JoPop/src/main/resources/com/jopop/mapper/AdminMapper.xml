@@ -1,0 +1,112 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.jopop.mapper.AdminMapper">
+ 
+  
+  
+<!-- 팝업 정보 등록 -->
+  	<insert id="popsEnroll">
+  	
+  		<selectKey resultType="int" keyProperty="pId" order="AFTER">
+  		
+  			SELECT ISEQ$$_79852.currval from dual
+  		
+  		</selectKey>  	
+  	
+  		insert into jp_pop(pName, startDate, endDate, paddr1, paddr2, paddr3, cateCode, pPrice, pIntro, pContents)
+		values(#{pName}, #{startDate},#{endDate}, #{paddr1}, #{paddr2}, #{paddr3}, #{cateCode}, #{pPrice}, #{pIntro}, #{pContents})
+	<!-- cateCode랑 paddr의 중복 문제 체크 필요 -->
+  	</insert>
+
+	<!-- 카테고리 리스트  -->
+	<select id="cateList" resultType="com.jopop.model.CateVO">
+   		select * from jp_cate order by catecode
+	</select>
+
+	<!-- 팝업 정보 리스트 (수정 필요)-->
+  	<select id="popsGetList" resultType="com.jopop.model.PopVO">
+  	
+	  	<![CDATA[
+		select * from(
+		    select /*+INDEX_DESC(jp_pop SYS_C008486)*/ rownum as rn, pId, pName,
+		        (select catecode from jp_cate where jp_pop.cateCode = jp_cate.cateCode) catecode, startDate, endDate, paddr1, paddr2, paddr3, pPrice
+		    from jp_pop 
+		    where 
+		]]>    
+		
+		    <if test="keyword != null">
+		    
+			    pName like '%' || #{keyword} || '%' and
+			    
+		    </if>
+		     
+		<![CDATA[    
+		    rownum <= #{pageNum} * #{amount} 
+		    )
+		where rn > (#{pageNum} -1) * #{amount}		  	
+  		]]>
+  	
+  	</select>
+  	
+  	<!-- 등록된 팝업 총 개수 -->
+  	<select id="popsGetTotal" resultType="int">
+  	
+  		select count(*) from jp_pop
+  		
+  		<if test="keyword != null">
+  		
+  			where pName like '%' || #{keyword} || '%'
+  		</if>
+  		
+  	</select> 
+  	
+  	<!-- 팝업 상세정보 조회 페이지 -->
+	<select id="popsGetDetail" resultType="com.jopop.model.popVO">
+	
+		select pId, pName,  
+			 startDate, endDate, cateCode, paddr1, paddr2, paddr3, pPrice, pIntro, pContents,  
+		from jp_pop where pId = #{pId}
+	
+	</select>
+	
+	<!-- 팝업 정보 수정 -->
+	<update id="popsModify">
+		
+		update jp_pop set pName = #{pName}, startDate = #{startDate}, endDate = #{endDate}, cateCode = ${cateCode}, paddr1 = ${paddr1}, paddr2 = ${paddr2}, paddr3 = ${paddr3},
+		pPrice = #{pPrice}, pIntro = #{pIntro}, pContents = #{pContents}, updateDate = sysdate
+		where pId = ${pId}
+		
+	</update>
+	
+	<!-- 팝업 정보 삭제--> 	
+	<delete id="popsDelete">
+	   delete from jp_pop where pId = #{pId}
+	</delete>
+		
+	<!-- 팝업 이미지 등록 -->
+	<insert id="imageEnroll">
+	
+		insert into jp_image(pId, fileName, uploadPath, uuid) values (#{pId}, #{fileName}, #{uploadPath}, #{uuid})
+	
+	</insert>
+	
+	<!-- 지정 상품 이미지 전체 삭제 --> 
+	<delete id="deleteImageAll">
+	
+		delete FROM jp_image where pId = #{pId}
+	
+	</delete>	
+	
+	<!-- 어제자 날짜 이미지 리스트 
+	<select id="checkFileList" resultType="com.jopop.model.ImageVO">
+	
+		select * from jp_image where uploadpath = to_char(sysdate -1, 'yyyy\mm\dd')	
+	
+	</select>-->		
+	
+	<!-- 지정 상품 이미지 정보 얻기  -->
+     <select id="getimageInfo" resultType="com.jopop.model.ImageVO">
+        select * from jp_image where pId = #{pId}
+     </select>
+  </mapper>

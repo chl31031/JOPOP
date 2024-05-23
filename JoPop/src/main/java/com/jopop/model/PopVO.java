@@ -1,6 +1,7 @@
 package com.jopop.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class PopVO {
     private int pId;   //상품 번호
@@ -15,10 +16,18 @@ public class PopVO {
     private String pContents; // 팝업 소개
     private MapVO mapVO; // 수정된 부분: mapVO 속성 추가
     private String cateCode;
-    
+    private List<ImageVO> imageList; //이미지 정보
     
 
-    public String getCateCode() {
+    public List<ImageVO> getImageList() {
+		return imageList;
+	}
+
+	public void setImageList(List<ImageVO> imageList) {
+		this.imageList = imageList;
+	}
+
+	public String getCateCode() {
 		return cateCode;
 	}
 
@@ -121,6 +130,6 @@ public class PopVO {
 		return "PopVO [pId=" + pId + ", pName=" + pName + ", startDate=" + startDate + ", endDate=" + endDate
 				+ ", pAddr1=" + pAddr1 + ", pAddr2=" + pAddr2 + ", pAddr3=" + pAddr3 + ", pPrice=" + pPrice
 				+ ", pIntro=" + pIntro + ", pContents=" + pContents + ", mapVO=" + mapVO + ", cateCode=" + cateCode
-				+ "]";
+				+ ", imageList=" + imageList + "]";
 	}
 }
