@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
-
-	body {
+body {
     background-color: #f0f0f0; /* 밝은 배경색 */
     color: #1e1e1e; /* 텍스트 색상 */
     font-family: Arial, sans-serif;
@@ -181,6 +180,12 @@
 
 #result_card {
     position: relative;
+}
+
+/* 리뷰 구분선 스타일 */
+.review-divider {
+    border-top: 1px solid #00c73c; /* 구분선 색을 녹색으로 변경 */
+    margin: 20px 0; /* 구분선 위아래 여백 */
 }
 
 .imgDeleteBtn {
