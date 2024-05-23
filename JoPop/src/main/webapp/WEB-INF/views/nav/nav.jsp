@@ -34,8 +34,11 @@
 				
 				<!-- 로그인 한 상태  -->
 				<c:if test="${member != null}">
-				<li><a href="/member/mypage">마이페이지</a></li>
-				</c:if>
-				
+				<li><a href="/member/mypage">마이페이지</a></li>				
+				<!-- 관리자 계정 -->
+				<c:if test="${member.adminCk == 0 }"> 
+                  <li><a href="/admin/main">관리자 페이지</a></li>
+               </c:if>
+			</c:if>	
 			</ul>
 		</nav>
