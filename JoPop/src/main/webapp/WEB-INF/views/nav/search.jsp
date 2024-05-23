@@ -41,7 +41,10 @@
                            <!-- 찜 (하트) -->
                            <td class="cart">
                               <div class="cart_button">
-                            	<a class="btn_cart">하트 이미지</a>
+                            	<form action="/nav/like.do" method="post">
+                            	<input type="hidden" name="pId" value="${list.pId}">
+                            	<input class="btn_cart" type="submit" value="찜하기">
+                            	</form>
                               </div>
                            </td>
                            <td class="price">
@@ -61,19 +64,7 @@
       </div>
       
    <%@include file="../nav/nav.jsp"%>
-   <script>
-   //서버로 전송할 데이터
-   const = form = {
-		   mId : '${member.mId}',
-		   pId : '${pop.pId}',
-		   
-   }
-   </script>
+
       
-   <%@include file="../nav/nav.jsp"%>
-      
-   <%@include file="../nav/nav.jsp"%>
-      
-   <%@include file="../nav/nav.jsp"%>
 </body>
 </html>

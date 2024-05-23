@@ -21,4 +21,8 @@ public interface CartService {
 	//찜 검색
 	public List<CartVO> searchCart(CartVO cart);
 
-}
+	
+		
+	}
+
+
