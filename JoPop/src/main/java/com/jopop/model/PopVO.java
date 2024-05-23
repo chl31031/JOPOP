@@ -67,27 +67,27 @@ public class PopVO {
         this.endDate = endDate;
     }
 
-    public String getpAddr1() {
+    public String getPAddr1() {
         return pAddr1;
     }
 
-    public void setpAddr1(String pAddr1) {
+    public void setPAddr1(String pAddr1) {
         this.pAddr1 = pAddr1;
     }
 
-    public String getpAddr2() {
+    public String getPAddr2() {
         return pAddr2;
     }
 
-    public void setpAddr2(String pAddr2) {
+    public void setPAddr2(String pAddr2) {
         this.pAddr2 = pAddr2;
     }
 
-    public String getpAddr3() {
+    public String getPAddr3() {
         return pAddr3;
     }
 
-    public void setpAddr3(String pAddr3) {
+    public void setPAddr3(String pAddr3) {
         this.pAddr3 = pAddr3;
     }
 
@@ -132,4 +132,5 @@ public class PopVO {
 				+ ", pIntro=" + pIntro + ", pContents=" + pContents + ", mapVO=" + mapVO + ", cateCode=" + cateCode
 				+ ", imageList=" + imageList + "]";
 	}
+
 }

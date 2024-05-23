@@ -24,13 +24,10 @@
 	                      <a class="admin_list_01" href="/admin/popsEnroll">팝업/전시 정보 등록</a>
 	                  </li>
 	                  <li>
-	                      <a class="admin_list_02" href="/admin/popsManage">상품 관리</a>
+	                      <a class="admin_list_02" href="/admin/popsManage">팝업/전시 정보 관리</a>
 	                  </li>	                  
-	                  <lI>
-	                      <a class="admin_list_05">회원 관리</a>                            
-	                  </lI>                
 	                  <li>
-	                      <a class="admin_list_06" href="/admin/orderList">결제/예약 현황</a>                            
-	                  </li>	                                                                                               
+	                      <a class="admin_list_05" href="/admin/memberManage">회원 관리</a>                            
+	                  </li>                	                                                                                                                 
 	              </ul>
                 </div>

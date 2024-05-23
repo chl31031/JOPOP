@@ -76,41 +76,19 @@
                           
                           <div class="form_section">
                              <div class="form_section_title">
-                                <label for="fromDate">시작일</label>
-                                <input type="text" name="fromDate" id="fromDate">
+                                <label for="startDate">시작일</label>
+                                <input type="text" name="startDate" id="startDate">
                                 ~
-                                <label for="toDate">종료일</label>
-                                <input type="text" name="toDate" id="toDate">
+                                <label for="endDate">종료일</label>
+                                <input type="text" name="endDate" id="endDate">
                              </div>
                              <div class="form_section_content">
                                 <input name="stratDate" autocomplete="off" readonly="readonly">
-                                <span class="ck_warn stratDate_warn">시작일을 선택해주세요.</span>
+                                <span class="ck_warn stratDate_warn">날짜를 선택해주세요.</span>
                              </div>
-                          </div>                          
-                          
-                          <!--  
-                          <div class="form_section">
-                             <div class="form_section_title">
-                                <label >시작일</label>
-                             </div>
-                             <div class="form_section_content">
-                                <input name="stratDate" autocomplete="off" readonly="readonly">
-                                <span class="ck_warn stratDate_warn">시작일을 선택해주세요.</span>
-                             </div>
-                          </div>
-                          <div class="form_section">
-                             <div class="form_section_title">
-                                <label>종료일</label>
-                             </div>
-                             <div class="form_section_content">
-                                <input name="endDate" autocomplete="off" readonly="readonly">
-                                <span class="ck_warn endDate_warn">종료일을 선택해주세요.</span>
-                             </div>
-                          </div>
-                            -->  
-                            
+                          </div>                                                                                                        
                                                                      
-                          <div class="form_section">
+                          <!--  <div class="form_section">
                              <div class="form_section_title">
                                 <label>팝업/전시 지역</label>
                              </div>
@@ -122,14 +100,31 @@
                                    </select>
                                 </div>
                                 <div class="cate_wrap">
-                                   <span>구</span>
+                                   <span>시/군/구</span>
                                    <select class="cate2">
                                       <option selected value="none">선택</option>
                                    </select>
                                 </div>                               
                                 <span class="ck_warn cateCode_warn">지역을 선택해주세요.</span>
                              </div>
-                          </div>   
+                          </div> -->  
+                          
+                          <div id="container_box">
+                          	<h2>팝업/전시 지역</h2>
+                          	<form role="form" method="post" autocomplete="off">
+                          	
+                          		<label>시/도</label>
+                          		<select class="cate1">
+                          			<option value="">선택</option>
+                          		</select>
+                          		
+                          		<label>시/군/구</label>
+                          		<select class="cate2">
+                          			<option value="">선택</option>
+                          		</select>                          		
+                          		
+                          	</form>
+                          	
                                  
                           <div class="form_section">
                              <div class="form_section_title">
@@ -139,19 +134,7 @@
                                 <input name="pPrice" value="0">
                                 <span class="ck_warn pPrice_warn">팝업/전시 가격을 입력해주세요.</span>
                              </div>
-                          </div> 
-                                                                          
-                         <!--   <div class="form_section">
-                             <div class="form_section_title">
-                                <label>상품 할인율</label>
-                             </div>
-                             <div class="form_section_content">
-                                <input id="discount_interface" maxlength="2" value="0">
-                                <input name="bookDiscount" type="hidden" value="0">
-                                <span class="step_val">할인 가격: <span class="span_discount"></span></span>
-                                <span class="ck_warn bookDiscount_warn">1~99 숫자를 입력해주세요.</span>
-                             </div>
-                          </div> -->
+                          </div>                                                                           
                                          
                           <div class="form_section">
                              <div class="form_section_title">
@@ -246,13 +229,9 @@
              <%@include file="../includes/admin/footer.jsp" %>
  
 <script>
-<!--캘린더-->
+/* 캘린더 위젯 적용 */
 $(function() {
-    
-
-    //오늘 날짜를 출력
-    $("#today").text(new Date().toLocaleDateString());
-
+   
     //datepicker 한국어로 사용하기 위한 언어설정
     $.datepicker.setDefaults($.datepicker.regional['ko']); 
     
@@ -260,10 +239,8 @@ $(function() {
     // 종료일(toDate)은 시작일(fromDate) 이전 날짜 선택 불가
 
     //시작일.
-    $('#fromDate').datepicker({
-        showOn: "both",                     // 달력을 표시할 타이밍 (both: focus or button)
-        // 버튼 이미지
-        // 버튼 이미지만 표시할지 여부
+    $('#startDate').datepicker({
+        showOn: "both",                     // 달력을 표시할 타이밍 (both: focus or button)       
         buttonText: "날짜선택",             // 버튼의 대체 텍스트
         dateFormat: "yy-mm-dd",             // 날짜의 형식
         changeMonth: true,                  // 월을 이동하기 위한 선택상자 표시여부
@@ -271,12 +248,12 @@ $(function() {
         onClose: function( selectedDate ) {    
             // 시작일(fromDate) datepicker가 닫힐때
             // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-            $("#toDate").datepicker( "option", "minDate", selectedDate );
+            $("#endDate").datepicker( "option", "minDate", selectedDate );
         }                
     });
 
     //종료일
-    $('#toDate').datepicker({
+    $('#endDate').datepicker({
         showOn: "both",            
         buttonText: "날짜선택",
         dateFormat: "yy-mm-dd",
@@ -285,11 +262,12 @@ $(function() {
         onClose: function( selectedDate ) {
             // 종료일(toDate) datepicker가 닫힐때
             // 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
-            $("#fromDate").datepicker( "option", "maxDate", selectedDate );
+            $("#startDate").datepicker( "option", "maxDate", selectedDate );
         }                
     });
 });
 <!--캘린더 끝-->
+
    let enrollForm = $("#enrollForm")
    
    //취소 버튼
@@ -358,15 +336,7 @@ $(function() {
       } else {
          $(".pPrice_warn").css('display','block');
          priceCk = false;
-      }                   
-      
-      /*if(!isNaN(bookDiscount)){
-         $(".bookDiscount_warn").css('display','none');
-         discountCk = true;
-      } else {
-         $(".bookDiscount_warn").css('display','block');
-         discountCk = false;
-      }   */
+      }                          
       
       if(pIntro != '<br data-cke-filler="true">'){
          $(".pIntro_warn").css('display','none');
@@ -384,7 +354,7 @@ $(function() {
          contentsCk = false;
       }      
       
-      if(pNameCk  && startDate && endDate && cateCodeCk && priceCk && introCk && contentsCk){
+      if(pNameCk && startDate && endDate && cateCodeCk && priceCk && introCk && contentsCk){
          enrollForm.submit();
       }else{
          return false;
@@ -402,55 +372,14 @@ $(function() {
          console.error(error);
       });
       
-   // 팝업/전시  
+   // 팝업/전시 이용안내
    ClassicEditor
    .create(document.querySelector('#pContents_textarea'))
    .catch(error=>{
       console.error(error);
    });
    
-/* 캘린더 위젯 적용 */
-
-   /*캘린더 방법 1 설정
-   const sconfig = {
-      dateFormat: 'yy-mm-dd',
-      showOn : "button",
-      buttonText: "날짜 선택",
-      prevText: '이전 달',
-      nextText: '다음 달',
-      monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-      monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-      dayNames: ['일','월','화','수','목','금','토'],
-      dayNamesShort: ['일','월','화','수','목','금','토'],
-      dayNamesMin: ['일','월','화','수','목','금','토'],
-      yearSuffix: '년',
-      changeMonth: true,
-      changeYear: true
-   }
-   const econfig = {
-		      dateFormat: 'yy-mm-dd',
-		      showOn : "button",
-		      buttonText: "날짜 선택",
-		      prevText: '이전 달',
-		      nextText: '다음 달',
-		      monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		      monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		      dayNames: ['일','월','화','수','목','금','토'],
-		      dayNamesShort: ['일','월','화','수','목','금','토'],
-		      dayNamesMin: ['일','월','화','수','목','금','토'],
-		      yearSuffix: '년',
-		      changeMonth: true,
-		      changeYear: true
-		   }
-    // 캘린더
-   $(function(){
-      $("input[name='startDate']").datepicker(sconfig);
-   });
-   $(function(){
-	      $("input[name='endDate']").datepicker(econfig);
-	   });*/
-   
-//카테고리(지역)
+/*카테고리(지역)
    let cateList = JSON.parse('${cateList}');
    
    let cate1Array = new Array();
@@ -458,13 +387,13 @@ $(function() {
 
    let cate1Obj = new Object();
    let cate2Obj = new Object();
-   let cate3Obj = new Object();
+
    
    let cateSelect1 = $(".cate1");      
    let cateSelect2 = $(".cate2");
-   let cateSelect3 = $(".cate3");
+
    
-   //카테고리 배열 초기화 메서드
+   //카테고리(지역) 배열 초기화 메서드
    function makeCateArray(obj, array, cateList, tier){
       for(let i=0; i<cateList.length; i++){
          if(cateList[i].tier === tier){
@@ -482,15 +411,14 @@ $(function() {
    //배열 초기화
    makeCateArray(cate1Obj, cate1Array, cateList, 1);
    makeCateArray(cate2Obj, cate2Array, cateList, 2);
-   makeCateArray(cate3Obj, cate3Array, cateList, 3);
    
-   /*
+   //
    $(document).ready(function(){
       console.log(cate1Array);
       console.log(cate2Array);
       console.log(cate3Array);
    });
-   */
+   
    
    // 시/도(대분류) <option> 태그
    for(let i = 0; i < cate1Array.length; i++){
@@ -498,22 +426,20 @@ $(function() {
    }
 
    
-   //구(중분류) <option> 태그
+   // 구(중분류) <option> 태그
    $(cateSelect1).on("change",function(){
       let selectVal1 = $(this).find("option:selected").val();
       
-      cateSelect2.children().remove();
-      cateSelect3.children().remove();
+      cateSelect2.children().remove();      
       
-      cateSelect2.append("<option value='none'>선택</option>");
-      cateSelect3.append("<option value='none'>선택</option>");
+      cateSelect2.append("<option value='none'>선택</option>");     
       
       for(let i=0; i<cate2Array.length; i++){
          if(selectVal1 === cate2Array[i].cateParent){
             cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>"+cate2Array[i].cateName+"</option>");
          }
       }  //for
-   });
+   });*/
      
    /*할인율 Input 설정
    $("#discount_interface").on("propertychange change keyup paste input", function(){
@@ -547,7 +473,76 @@ $(function() {
       }
    });*/
    
+//카테고리(지역)
+// 컨트롤러에서 데이터 받기
+var jsonData = JSON.parse('${category}');
+console.log(jsonData);
+
+var cate1Arr = new Array();
+var cate1Obj = new Object();
+
+// 1차 분류 셀렉트 박스에 삽입할 데이터 준비
+for(var i = 0; i < jsonData.length; i++) {
    
+   if(jsonData[i].level == "1") {
+    cate1Obj = new Object();  //초기화
+    cate1Obj.cateCode = jsonData[i].cateCode;
+    cate1Obj.cateName = jsonData[i].cateName;
+    cate1Arr.push(cate1Obj);
+   }
+}
+
+// 1차 분류 셀렉트 박스에 데이터 삽입
+var cate1Select = $("select.cate1")
+
+for(var i = 0; i < cate1Arr.length; i++) {
+   cate1Select.append("<option value='" + cate1Arr[i].cateCode + "'>"
+        + cate1Arr[i].cateName + "</option>");   
+}
+
+$(document).on("change", "select.cate1", function(){
+
+	   var cate2Arr = new Array();
+	   var cate2Obj = new Object();
+	   
+	   // 2차 분류 셀렉트 박스에 삽입할 데이터 준비
+	   for(var i = 0; i < jsonData.length; i++) {
+	    
+	    if(jsonData[i].level == "2") {
+	     cate2Obj = new Object();  //초기화
+	     cate2Obj.cateCode = jsonData[i].cateCode;
+	     cate2Obj.cateName = jsonData[i].cateName;
+	     cate2Obj.cateParent = jsonData[i].cateParent;
+	     
+	     cate2Arr.push(cate2Obj);
+	    }
+	   }
+	   
+	   var cate2Select = $("select.cate2");
+
+	 /*  for(var i = 0; i < cate2Arr.length; i++) {
+	     cate2Select.append("<option value='" + cate2Arr[i].cateCode + "'>"
+	          + cate2Arr[i].cateName + "</option>");
+	   }*/   
+	   
+	   cate2Select.children().remove();
+
+	   $("option:selected", this).each(function(){
+	    
+	    var selectVal = $(this).val();  
+	    cate2Select.append("<option value=''>선택</option>");
+	    
+	    for(var i = 0; i < cate2Arr.length; i++) {
+	     if(selectVal == cate2Arr[i].cateCodeRef) {
+	      cate2Select.append("<option value='" + cate2Arr[i].cateCode + "'>"
+	           + cate2Arr[i].cateName + "</option>");
+	     }
+	    }
+	    
+	   });
+	   
+	});//카테고리 끝
+       
    //이미지 업로드
    $("input[type='file']").on("change",function(e){
       

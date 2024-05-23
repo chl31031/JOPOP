@@ -97,7 +97,7 @@ public class AdminController {
       
   }
   
-  /* 팝업 등록 post */
+  /* 팝업 등록 post */ 
   @PostMapping("/popsEnroll")
   public String popsEnrollPOST(PopVO pop, RedirectAttributes rttr) {
 	  
@@ -108,7 +108,7 @@ public class AdminController {
 	  rttr.addFlashAttribute("enroll_result", pop.getpName());
 	  
 	  return "redirect:/admin/popsManage";
-  }
+  } 
 
   /* 팝업 상세내역 조회 페이지? */
   @GetMapping({"/popsDetail","/popsModify"})

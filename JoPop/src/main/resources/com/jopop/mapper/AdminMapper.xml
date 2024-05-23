@@ -14,8 +14,8 @@
   		
   		</selectKey>  	
   	
-  		insert into jp_pop(pName, startDate, endDate, paddr1, paddr2, paddr3, cateCode, pPrice, pIntro, pContents)
-		values(#{pName}, #{startDate},#{endDate}, #{paddr1}, #{paddr2}, #{paddr3}, #{cateCode}, #{pPrice}, #{pIntro}, #{pContents})
+  		insert into jp_pop(pName, startDate, endDate, pAddr1, pAddr2, pAddr3, cateCode, pPrice, pIntro, pContents)
+		values(#{pName},  #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{paddr1}, #{paddr2}, #{paddr3}, #{cateCode}, #{pPrice}, #{pIntro}, #{pContents})
 	<!-- cateCode랑 paddr의 중복 문제 체크 필요 -->
   	</insert>
 
