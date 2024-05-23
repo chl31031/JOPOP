@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jopop.model.CartVO;
 import com.jopop.model.MemberVO;
@@ -47,6 +48,7 @@ private static final Logger logger = LoggerFactory.getLogger(CartController.clas
 		
 		//상세페이지에서 찜 누르기 기능
 		@PostMapping(value="/add")
+		@ResponseBody
 		public String addCartPOST(CartVO cart, HttpServletRequest request) throws Exception {
 			//0:등록 실패, 1: 등록 성공, 2: 등록된 데이터 존재 로 result값 반환
 			//로그인 체크
