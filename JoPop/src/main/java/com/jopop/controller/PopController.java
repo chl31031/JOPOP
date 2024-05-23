@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,24 +31,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jopop.model.Criteria;
+import com.jopop.model.MemberVO;
 import com.jopop.model.PageDTO;
 import com.jopop.model.PopVO;
+import com.jopop.model.ReviewVO;
 import com.jopop.model.RimageVO;
-import com.jopop.service.PopService;
+import com.jopop.service.PopServiceimpl;
 
 import net.coobird.thumbnailator.Thumbnails;
+
 @Controller
 @RequestMapping("/pop")
 public class PopController {
-private static final Logger logger = LoggerFactory.getLogger(PopController.class);
+    private static final Logger logger = LoggerFactory.getLogger(PopController.class);
 
-		@Autowired
-		PopService popService;
-		
+    @Autowired
+    PopServiceimpl popService;
 
-
-	
-	//상품 조회 
+    // 상품 조회 
     @GetMapping("/popsDetail")
     public String popsDetailGET(@RequestParam(value = "pid", required = true) int pid, Criteria cri, Model model) throws Exception {
         logger.info("popsDetailGetInfo().... PID: " + pid);
@@ -61,134 +62,102 @@ private static final Logger logger = LoggerFactory.getLogger(PopController.class
         }
 
         model.addAttribute("popsInfo", popsInfo);
+
+        // 리뷰 조회
+        List<ReviewVO> reviews = popService.getReviewsByPid(pid);
+        model.addAttribute("reviews", reviews);
+
         return "pop/popsDetail"; 
     }
 
-    /* 첨부 파일 업로드 */
+    // 첨부 파일 업로드
     @PostMapping(value="/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<RimageVO>>  uploadAjaxActionPOST(MultipartFile[] uploadFile) {
+    public ResponseEntity<List<RimageVO>> uploadAjaxActionPOST(MultipartFile[] uploadFile) {
         logger.info("uploadAjaxActionPOST..........");
-            
-        
-        /* 이미지 파일 체크 */
-		for(MultipartFile multipartFile: uploadFile) {
-			
-			File checkfile = new File(multipartFile.getOriginalFilename());
-			String type = null;
-			
-			try {
-				type = Files.probeContentType(checkfile.toPath());
-				logger.info("MIME TYPE : " + type);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			if(!type.startsWith("image")) {
-				
-				List<RimageVO> list = null;
-				return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
-				
-			}
-			
-		}// for
-        
+
+        // 이미지 파일 체크
+        for (MultipartFile multipartFile : uploadFile) {
+            File checkfile = new File(multipartFile.getOriginalFilename());
+            String type = null;
+            try {
+                type = Files.probeContentType(checkfile.toPath());
+                logger.info("MIME TYPE : " + type);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (!type.startsWith("image")) {
+                List<RimageVO> list = null;
+                return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
+            }
+        }
+
         String uploadFolder = "C:\\upload";
-        
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-		Date date = new Date();
-		
-		String str = sdf.format(date);
-		
-		String datePath = str.replace("-", File.separator);
-		
-		/* 폴더 생성 */
-		File uploadPath = new File(uploadFolder, datePath);
-		
-		if(uploadPath.exists() == false) {
-			uploadPath.mkdirs();
-		}
-		
-		/* 이미저 정보 담는 객체 */
-		List<RimageVO> list = new ArrayList();
-        
+        Date date = new Date();
+        String str = sdf.format(date);
+        String datePath = str.replace("-", File.separator);
+
+        // 폴더 생성
+        File uploadPath = new File(uploadFolder, datePath);
+        if (uploadPath.exists() == false) {
+            uploadPath.mkdirs();
+        }
+
+        // 이미지 정보 담는 객체
+        List<RimageVO> list = new ArrayList<>();
+
         // 향상된 for
         for (MultipartFile multipartFile : uploadFile) {
-        	
-        	//이미지 정보 객체 
-        	RimageVO vo = new RimageVO();
-        	
-        	
-        	/* 파일 이름 */
-			String uploadFileName = multipartFile.getOriginalFilename();	
-			vo.setFileName(uploadFileName);
-			vo.setUploadPath(datePath);
-			
-			
-			/* uuid 적용 파일 이름 */
-			String uuid = UUID.randomUUID().toString();
-			vo.setUuid(uuid);
-			
-			uploadFileName = uuid + "_" + uploadFileName;
-			
-			/* 파일 위치, 파일 이름을 합친 File 객체 */
-			File saveFile = new File(uploadPath, uploadFileName);
-			
-			/* 파일 저장 */
-			try {
-				multipartFile.transferTo(saveFile);
-				
-				/*
-				File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);
-				
-				BufferedImage bo_image = ImageIO.read(saveFile);
-				BufferedImage bt_image = new BufferedImage(300, 500, BufferedImage.TYPE_3BYTE_BGR);
-								
-				Graphics2D graphic = bt_image.createGraphics();
-				
-				graphic.drawImage(bo_image, 0, 0,300,500, null);
-					
-				ImageIO.write(bt_image, "jpg", thumbnailFile);  방법 1 주석*/
-				
-				
-				/* 방법 2 */
-				File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);	
-				
-				BufferedImage bo_image = ImageIO.read(saveFile);
+            // 이미지 정보 객체
+            RimageVO vo = new RimageVO();
 
-					//비율 
-					double ratio = 3;
-					//넓이 높이
-					int width = (int) (bo_image.getWidth() / ratio);
-					int height = (int) (bo_image.getHeight() / ratio);					
-				
-				
-				Thumbnails.of(saveFile)
-		        .size(width, height)
-		        .toFile(thumbnailFile);
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			} 
-			
-			list.add(vo);
-        } //for
+            // 파일 이름
+            String uploadFileName = multipartFile.getOriginalFilename();
+            vo.setFileName(uploadFileName);
+            vo.setUploadPath(datePath);
 
-        ResponseEntity<List<RimageVO>> result = new ResponseEntity<List<RimageVO>>(list, HttpStatus.OK);
-        
-        return result;
+            // uuid 적용 파일 이름
+            String uuid = UUID.randomUUID().toString();
+            vo.setUuid(uuid);
+
+            uploadFileName = uuid + "_" + uploadFileName;
+
+            // 파일 위치, 파일 이름을 합친 File 객체
+            File saveFile = new File(uploadPath, uploadFileName);
+
+            // 파일 저장
+            try {
+                multipartFile.transferTo(saveFile);
+
+                // 썸네일 생성
+                File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);
+                BufferedImage bo_image = ImageIO.read(saveFile);
+
+                // 비율
+                double ratio = 3;
+                // 넓이 높이
+                int width = (int) (bo_image.getWidth() / ratio);
+                int height = (int) (bo_image.getHeight() / ratio);
+
+                Thumbnails.of(saveFile).size(width, height).toFile(thumbnailFile);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            list.add(vo);
         }
-    
-    
- // 이미지 출력
+
+        ResponseEntity<List<RimageVO>> result = new ResponseEntity<>(list, HttpStatus.OK);
+        return result;
+    }
+
+    // 이미지 출력
     @GetMapping("/display")
-    public ResponseEntity<byte[]> getImage(String fileName){
+    public ResponseEntity<byte[]> getImage(String fileName) {
         File file = new File("c:\\upload\\" + fileName);
-        
         logger.info("Requested file: " + fileName); // 경로 확인용 로그 출력
 
         ResponseEntity<byte[]> result = null;
-
         try {
             HttpHeaders header = new HttpHeaders();
             header.add("Content-Type", Files.probeContentType(file.toPath()));
@@ -196,56 +165,52 @@ private static final Logger logger = LoggerFactory.getLogger(PopController.class
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return result;
     }
-     
-    
-    
-    /* 이미지 파일 삭제 */
-	@PostMapping("/deleteFile")
-	public ResponseEntity<String> deleteFile(String fileName){
-		
-		logger.info("deleteFile........" + fileName);
-		
-		File file =null; 
-		
-		try {
-			/* 썸네일 파일 삭제 */
-			file = new File("c:\\upload\\" + URLDecoder.decode(fileName, "UTF-8"));
-			
-			file.delete();
-			
-			/* 원본 파일 삭제 */
-			String originFileName = file.getAbsolutePath().replace("s_", "");
-			
-			logger.info("originFileName : " + originFileName);
-			
-			file = new File(originFileName);
-			
-			file.delete();
-			
-			
-		} catch(Exception e) {
-			
-			e.printStackTrace();
-			
-			return new ResponseEntity<String>("fail", HttpStatus.NOT_IMPLEMENTED);
-			
-		} //catch
-		return new ResponseEntity<String>("success", HttpStatus.OK);
-		
-	}
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
+    // 이미지 파일 삭제
+    @PostMapping("/deleteFile")
+    public ResponseEntity<String> deleteFile(String fileName) {
+        logger.info("deleteFile........" + fileName);
 
- 
+        File file = null;
+        try {
+            // 썸네일 파일 삭제
+            file = new File("c:\\upload\\" + URLDecoder.decode(fileName, "UTF-8"));
+            file.delete();
+
+            // 원본 파일 삭제
+            String originFileName = file.getAbsolutePath().replace("s_", "");
+            logger.info("originFileName : " + originFileName);
+            file = new File(originFileName);
+            file.delete();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<String>("fail", HttpStatus.NOT_IMPLEMENTED);
+        }
+        return new ResponseEntity<String>("success", HttpStatus.OK);
+    }
+   // 리뷰 추가 
+    @PostMapping("/addReview")
+    public String addReview(@RequestParam("pId") int pId, @RequestParam("contents") String contents, @RequestParam("score") int score, HttpSession session, Model model) throws Exception {
+        // 세션에서 member 객체 가져오기
+        MemberVO member = (MemberVO) session.getAttribute("member");
+        
+        if (member == null) {
+            // 로그인이 되어 있지 않은 경우 로그인 페이지로 리다이렉트
+            return "redirect:/login"; // 로그인 페이지 경로로 수정 필요
+        }
+
+        int mId = member.getmId();
+
+        ReviewVO review = new ReviewVO();
+        review.setpId(pId);
+        review.setmId(mId);
+        review.setContents(contents);
+        review.setScore(score);
+
+        popService.addReview(review);
+
+        return "redirect:/pop/popsDetail?pid=" + pId;
+    }
 }

@@ -40,52 +40,51 @@
   </select>
   
   <!-- criteria(검색조건) -->
-	<sql id="criteria">
-		    <if test="keyword != null">
-			    pName like '%' || #{keyword} || '%' and
-			</if>
-	</sql>
+  <sql id="criteria">
+    <if test="keyword != null">
+        pName like '%' || #{keyword} || '%' and
+    </if>
+  </sql>
 
-	
-	<!-- 상품 검색 -->
-	<select id="getGoodsList" resultType="com.jopop.model.PopVO">
-	
-		<![CDATA[
-		    select * from(
-		        select /*+INDEX_DESC(JP_POP SYS_C008444)*/ rownum as rn, pId, pName,
-		            (select cateName from JP_CATE where JP_POP.cateCode = JP_CATE.cateCode)
-		            cateName, cateCode, startDate, endDate, pAddr1, pAddr2, pPrice
-		        from JP_POP
-		        where 
-	    ]]>
-	    
-	    <include refid="criteria"></include>
-	    
-	    <![CDATA[
-	    		        
-		        rownum <= #{pageNum} * #{amount} 
-	        	)
-	        where rn > (#{pageNum} -1) * #{amount}
-		]]>	  		
-	
-	</select>
-	
-	<!-- 상품 총 개수 -->
-	<select id="goodsGetTotal" resultType="int">
-	
-		select count(*) from JP_POP
-		where
-		<include refid="criteria"></include> 
-		pId >0
-		
-	</select>
-	
-	<!-- 날짜 리스트 요청 -->
-	<select id="getDateIdList" resultType="String">
-	
-		select startDate from JP_POP where pName like '%' || #{keyword} || '%'
-	
-	</select>
+  <!-- 상품 검색 -->
+  <select id="getGoodsList" resultType="com.jopop.model.PopVO">
+    <![CDATA[
+        select * from(
+            select /*+INDEX_DESC(JP_POP SYS_C008444)*/ rownum as rn, pId, pName,
+                (select cateName from JP_CATE where JP_POP.cateCode = JP_CATE.cateCode)
+                cateName, cateCode, startDate, endDate, pAddr1, pAddr2, pPrice
+            from JP_POP
+            where 
+        ]]>
+        <include refid="criteria"></include>
+        <![CDATA[
+            rownum <= #{pageNum} * #{amount} 
+        )
+        where rn > (#{pageNum} -1) * #{amount}
+    ]]>
+  </select>
   
+  <!-- 상품 총 개수 -->
+  <select id="goodsGetTotal" resultType="int">
+    select count(*) from JP_POP
+    where
+    <include refid="criteria"></include> 
+    pId >0
+  </select>
   
+  <!-- 날짜 리스트 요청 -->
+  <select id="getDateIdList" resultType="String">
+    select startDate from JP_POP where pName like '%' || #{keyword} || '%'
+  </select>
+  
+  <!-- 리뷰 삽입 구문 추가 -->
+  <insert id="addReview" parameterType="com.jopop.model.ReviewVO">
+    INSERT INTO jp_Review (mId, pId, contents, score, rDate)
+    VALUES (#{mId}, #{pId}, #{contents}, #{score}, SYSDATE)
+  </insert>
+  
+  <!-- 리뷰 조회 구문 -->
+  <select id="getReviewsByPid" parameterType="int" resultType="com.jopop.model.ReviewVO">
+    SELECT * FROM jp_Review WHERE pId = #{pid}
+  </select>
 </mapper>
