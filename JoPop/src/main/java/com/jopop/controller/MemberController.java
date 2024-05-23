@@ -43,11 +43,12 @@ public class MemberController {
 		logger.info("회원가입 페이지 진입");
 	}
 
-	// 마이페이지 이동
+	/* 마이페이지 이동 */
 	@GetMapping("/mypage")
 	public void mypageGET() {
 		logger.info("마이페이지로 이동");
 	}
+	
 
 	// 회원 가입
 	@PostMapping("/join")
