@@ -20,6 +20,13 @@
 			<div class="content_area">
 			<div class="list_search_result">
 					<table class="type_list">
+						<colgroup>
+							<col width="110">
+							<col width="*">
+							<col width="120">
+							<col width="120">
+							<col width="120">
+						</colgroup>
 						<tbody id="searchList>">
 							<c:forEach items="${list}" var="list">
 								<tr>
@@ -33,9 +40,9 @@
 										${list.pAddr1}  ${list.pAddr2}
 										</div>
 										<div class="date">
-											 <fmt:formatDate value="${startDate}" pattern="yyyy.MM.dd"/>
+											 <fmt:formatDate value="${list.startDate}" pattern="yyyy.MM.dd"/>
 											 -
-											 <fmt:formatDate value="${endDate}" pattern="yyyy.MM.dd"/>
+											 <fmt:formatDate value="${list.endDate}" pattern="yyyy.MM.dd"/>
 										</div>
 									</td>
 									<td class="info">
@@ -59,9 +66,10 @@
 		</div>
 		</div>
 
-		
+	
 	<%@include file="../nav/nav.jsp"%>
-
+	
 	<%@include file="../includes/footer.jsp"%>
+	
 </body>
 </html>
