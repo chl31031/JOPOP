@@ -14,7 +14,8 @@ public class MemberVO {
 	private int memberShip; // 멤버십
 	private int money;   //돈
 	
-	
+	//검색을 위한 키워드
+	private String keyword;
 	
 	public int getmId() {
 		return mId;
@@ -82,14 +83,17 @@ public class MemberVO {
 	public void setMoney(int money) {
 		this.money = money;
 	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 	@Override
 	public String toString() {
 		return "MemberVO [mId=" + mId + ", mEmail=" + mEmail + ", mPw=" + mPw + ", mName=" + mName + ", mNick=" + mNick
 				+ ", mAddr1=" + mAddr1 + ", mAddr2=" + mAddr2 + ", mAddr3=" + mAddr3 + ", adminCk=" + adminCk
-				+ ", memberShip=" + memberShip + ", money=" + money + "]";
+				+ ", memberShip=" + memberShip + ", money=" + money + ", keyword=" + keyword + "]";
 	}
-	
-	
-	
-	
+
 }

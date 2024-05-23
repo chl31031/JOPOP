@@ -3,6 +3,7 @@ package com.jopop.service;
 import java.util.List;
 
 import com.jopop.model.CartVO;
+import com.jopop.model.MemberVO;
 
 public interface CartService {
 	
@@ -19,6 +20,6 @@ public interface CartService {
 	public CartVO checkCart(CartVO cart);
 	
 	//찜 검색
-	public List<CartVO> searchCart(CartVO cart);
+	public List<CartVO> searchCart(MemberVO cart);
 
 }

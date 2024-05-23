@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jopop.model.CartVO;
 import com.jopop.model.MemberVO;
@@ -48,7 +47,6 @@ private static final Logger logger = LoggerFactory.getLogger(CartController.clas
 		
 		//상세페이지에서 찜 누르기 기능
 		@PostMapping(value="/add")
-		@ResponseBody
 		public String addCartPOST(CartVO cart, HttpServletRequest request) throws Exception {
 			//0:등록 실패, 1: 등록 성공, 2: 등록된 데이터 존재 로 result값 반환
 			//로그인 체크
@@ -77,7 +75,7 @@ private static final Logger logger = LoggerFactory.getLogger(CartController.clas
 		
 		//찜 검색 기능
 		@GetMapping(value="/search")
-		public String searchCartGET(CartVO cart, String keyword, HttpServletRequest request) {
+		public String searchCartGET(CartVO cart, String keyword, HttpServletRequest request, Model model) {
 			logger.info("searchCartGET 동작");
 			
 			HttpSession session = request.getSession();
@@ -85,15 +83,19 @@ private static final Logger logger = LoggerFactory.getLogger(CartController.clas
 			//mId 세션 가져오기
 			MemberVO mvo = (MemberVO)session.getAttribute("member");
 			
-			//keyword는 CartVO 에 넣어야함 직접
+			//keyword는 MemberVO 에 넣어야함
+			// MemberVO가 null이 아니라면 keyword 설정
+			if(mvo != null) {
+				mvo.setKeyword(keyword);
+			}
 			
 			System.out.println(keyword + "=======================");
 			System.out.println(mvo);
 			
 			//검색 기능 
-			List<CartVO> result = cartService.searchCart(cart);
+			model.addAttribute("cartInfo", cartService.searchCart(mvo));
 			
-			System.out.println(result);
+       //    System.out.println(cartInfo);
 			
 			return "/cart/cart";
 		}

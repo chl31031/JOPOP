@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.jopop.mapper.CartMapper;
 import com.jopop.model.CartVO;
 import com.jopop.model.ImageVO;
+import com.jopop.model.MemberVO;
 
 @Service
 public class CartServiceImpl implements CartService{
@@ -63,7 +64,7 @@ public class CartServiceImpl implements CartService{
 
 	//찜 키워드 검색 (지역명, 팝업명)
 	@Override
-	public List<CartVO> searchCart(CartVO cart) {
+	public List<CartVO> searchCart(MemberVO cart) {
 		
 		List<CartVO> scart = cartMapper.searchCart(cart);
 		
