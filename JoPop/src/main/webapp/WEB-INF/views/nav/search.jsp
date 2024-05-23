@@ -59,7 +59,6 @@
       </div>
       </div>
       </div>
-
       
    <%@include file="../nav/nav.jsp"%>
    <script>
@@ -70,5 +69,11 @@
 		   
    }
    </script>
+      
+   <%@include file="../nav/nav.jsp"%>
+      
+   <%@include file="../nav/nav.jsp"%>
+      
+   <%@include file="../nav/nav.jsp"%>
 </body>
 </html>
