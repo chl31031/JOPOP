@@ -11,7 +11,7 @@ public interface CartMapper {
 	public int addCart(CartVO cart) throws Exception;
 	
 	//찜 삭제
-	public int deleteCart(int cartId);
+	public int deleteCart(int pId);
 	
 	//찜 목록
 	public List<CartVO> getCart(int mId);
@@ -21,4 +21,5 @@ public interface CartMapper {
 	
 	//찜 검색
 	public List<CartVO> searchCart(MemberVO cart);
+	
 }

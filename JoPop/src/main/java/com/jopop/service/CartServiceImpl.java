@@ -42,8 +42,8 @@ public class CartServiceImpl implements CartService{
 
 	//찜 삭제
 	@Override
-	public int deleteCart(int cartId) {
-		return cartMapper.deleteCart(cartId);
+	public int deleteCart(int pId) {
+		return cartMapper.deleteCart(pId);
 	}
 
 	//찜 목록
