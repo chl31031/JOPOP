@@ -27,7 +27,7 @@
 	
 		<div class="wrap">
 		
-		<a href="/"><h2>내 정보</h2></a>
+		<a href="/member/mypage"><h2>내 정보</h2></a>
 		<a href="/cart/cart/${member.mId}"><h2>관심 팝업</h2></a>
 		<a href="/cart/orderItem"><h2>내 예약</h2></a>
 		
@@ -55,7 +55,7 @@
 							<fmt:formatDate pattern="yyyy.MM.dd" value="${ci.endDate}"/>
 						</li>
 						<li class="popup-cart">
-							<button class="btn_cart">장바구니 버튼</button>
+							<button class="btn_cart" value="${ci.pId}}">장바구니 버튼</button>
 						</li>
 					</ul>
 		</c:forEach>
@@ -71,12 +71,12 @@
 	//서버로 전송할 데이터
 	const form={
 			mId : '${member.mId}',
-			popId : 37      //pop세션 가져올 수 있게되면 '${pop.pId}' 로 변경하기
+			pId : '${ci.pId}'      //pop세션 가져올 수 있게되면 '${pop.pId}' 로 변경하기
 	}
 	
 	//찜 버튼 구현
 	$(".btn_cart").on("click", function(e){
-		alert("=======================");
+		alert("======================="+'${ci.pId}');
 		$.ajax({
 			url: '/cart/add',
 			type: 'POST',
