@@ -76,7 +76,7 @@
 	
 	//찜 버튼 구현
 	$(".btn_cart").on("click", function(e){
-		alert("======================="+"${ci.pId}");
+		alert("======================="+'${ci.pId}');
 		$.ajax({
 			url: '/cart/add',
 			type: 'POST',
