@@ -65,7 +65,7 @@
 	<select id="popsGetDetail" resultType="com.jopop.model.PopVO">
 	
 		select pId, pName,  
-			 startDate, endDate, cateCode, paddr1, paddr2, paddr3, pPrice, pIntro, pContents,  
+			 startDate, endDate, cateCode, paddr1, paddr2, paddr3, pPrice, pIntro, pContents  
 		from jp_pop where pId = #{pId}
 	
 	</select>

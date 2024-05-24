@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>팝업/전시 등록 페이지</title>
+<title>팝업/전시 정보 등록 페이지</title>
 <link rel="stylesheet" href="../resources/css/admin/popsEnroll.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 <!-- 캘린더 -->
@@ -131,14 +131,14 @@
                                 <label>팝업/전시 가격</label>
                              </div>
                              <div class="form_section_content">
-                                <input name="pPrice" value="0">
+                                <input name="pPrice">원
                                 <span class="ck_warn pPrice_warn">팝업/전시 가격을 입력해주세요.</span>
                              </div>
                           </div>                                                                           
                                          
                           <div class="form_section">
                              <div class="form_section_title">
-                                <label>팝업/전시 소개(상세 정보)</label>
+                                <label>팝업/전시 이용 시설 안내</label>
                              </div>
                              <div class="form_section_content">
                                 <textarea name="pIntro" id="pIntro_textarea"></textarea>
@@ -148,7 +148,7 @@
                           
                           <div class="form_section">
                              <div class="form_section_title">
-                                <label>팝업/전시 이용 정보</label>
+                                <label>팝업/전시 소개(상세 내용)</label>
                              </div>
                              <div class="form_section_content">
                                 <textarea name="pContents" id="pContents_textarea"></textarea>
@@ -156,21 +156,23 @@
                              </div>
                           </div>                       
                                          
-                                                <!-- 주소 -->   
-											  <div class="form_section">
+                          <!-- 주소 -->   
+							<div class="form_section">
 							    <div class="form_section_title">
-							        <h4>주소</h4>
+							        <h4>주소(지역)</h4>
 							    </div>
 							    <div class="form_section_content">
 							        <div class="container">
 							            <div class="row">
 							                <div class="col">						                
 							 <div class="input-group mb-2">
+							 
 							    <!-- 검색 버튼을 입력창 오른쪽에 위치시킵니다. -->
 							    <div class="search" style="display: flex; align-items: center;">
 							        <input id="address" type="text" placeholder="검색할 주소" style="flex: 1; margin-right: 5px;">
 							        <input id="submit" type="button" value="주소 검색" class="btn btn-primary" style="width: 150px; height: 40px;">
 							    </div>
+							    
 							</div>
 				                </div>
 				            </div>
@@ -180,6 +182,7 @@
 				                    <div id="map" style="height: 400px;"></div>
 				                </div>
 				            </div>
+				            
 				            <div class="row mt-2">
 				                <div class="col">
 				                    <table class="table">
@@ -266,6 +269,8 @@ $(function() {
         }                
     });
 });
+
+
 <!--캘린더 끝-->
 
    let enrollForm = $("#enrollForm")
@@ -365,14 +370,14 @@ $(function() {
    
 /* 위지윅 적용 */
     
-   // 팝업/전시 상세 정보  
+   // 팝업/전시 이용 시설 안내
    ClassicEditor
       .create(document.querySelector('#pIntro_textarea'))
       .catch(error=>{
          console.error(error);
       });
       
-   // 팝업/전시 이용안내
+   // 팝업/전시 소개(상세 내용)
    ClassicEditor
    .create(document.querySelector('#pContents_textarea'))
    .catch(error=>{
