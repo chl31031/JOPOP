@@ -12,4 +12,9 @@ public interface MemberMapper {
 	
 	/* 로그인 */
 	public MemberVO memberLogin(MemberVO member) throws Exception;
+	
+	/* 유저 삭제 */
+	public int memberDrop(int mid);
+
+	
 }

@@ -126,7 +126,7 @@
                    <input type="hidden" name="pageNum" value="${cri.pageNum}">
                   <input type="hidden" name="amount" value="${cri.amount}">
                   <input type="hidden" name="keyword" value="${cri.keyword}">
-                  <input type="hidden" name='bookId' value="${popsInfo.pId}">
+                  <input type="hidden" name='pId' value="${popsInfo.pId}">
                    </form>                                
                 </div>
  

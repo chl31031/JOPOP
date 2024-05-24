@@ -106,7 +106,7 @@
 	</select>-->		
 	
 	<!-- 지정 상품 이미지 정보 얻기  -->
-     <select id="getimageInfo" resultType="com.jopop.model.ImageVO">
+     <select id="getImageInfo" resultType="com.jopop.model.ImageVO">
         select * from jp_image where pId = #{pId}
      </select>
   </mapper>

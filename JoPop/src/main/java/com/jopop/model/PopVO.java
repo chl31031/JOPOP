@@ -19,13 +19,15 @@ public class PopVO {
     private String cateCode;
     private String cateName;
     
+    private List<ImageVO> imageList; //이미지 정보
+    
     public String getCateName() {
 		return cateName;
 	}
 	public void setCateName(String cateName) {
 		this.cateName = cateName;
 	}
-	private List<ImageVO> imageList; //이미지 정보
+	
 	public int getpId() {
 		return pId;
 	}
