@@ -125,7 +125,8 @@ private static final Logger logger = LoggerFactory.getLogger(CartController.clas
 					System.out.println("삭제 실패했습니다.");
 				}
 				
-				return "redirect:/cart/cart/"+mId;
+				//return "redirect:/cart/cart/"+mId;
+				return null;
 				
 			}else{  //찜 추가 
 				

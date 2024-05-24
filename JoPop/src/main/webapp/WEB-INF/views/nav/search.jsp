@@ -41,10 +41,10 @@
                            <!-- 찜 (하트) -->
                            <td class="cart">
                               <div class="cart_button">
-                            	<form action="/nav/like.do" method="post">
-                            	<input type="hidden" name="pId" value="${list.pId}">
-                            	<input class="btn_cart" type="submit" value="찜하기">
-                            	</form>
+                               <form action="/nav/like.do" method="post">
+                               <input type="hidden" name="pId" value="${list.pId}">
+                               <input class="btn_cart" type="submit" value="찜하기">
+                               </form>
                               </div>
                            </td>
                            <td class="price">

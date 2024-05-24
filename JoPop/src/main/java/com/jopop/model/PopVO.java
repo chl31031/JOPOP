@@ -20,22 +20,22 @@ public class PopVO {
     
 
     public List<ImageVO> getImageList() {
-		return imageList;
-	}
+      return imageList;
+   }
 
-	public void setImageList(List<ImageVO> imageList) {
-		this.imageList = imageList;
-	}
+   public void setImageList(List<ImageVO> imageList) {
+      this.imageList = imageList;
+   }
 
-	public String getCateCode() {
-		return cateCode;
-	}
+   public String getCateCode() {
+      return cateCode;
+   }
 
-	public void setCateCode(String cateCode) {
-		this.cateCode = cateCode;
-	}
+   public void setCateCode(String cateCode) {
+      this.cateCode = cateCode;
+   }
 
-	public int getpId() {
+   public int getpId() {
         return pId;
     }
 
@@ -67,27 +67,27 @@ public class PopVO {
         this.endDate = endDate;
     }
 
-    public String getPAddr1() {
+    public String getpAddr1() {
         return pAddr1;
     }
 
-    public void setPAddr1(String pAddr1) {
+    public void setpAddr1(String pAddr1) {
         this.pAddr1 = pAddr1;
     }
 
-    public String getPAddr2() {
+    public String getpAddr2() {
         return pAddr2;
     }
 
-    public void setPAddr2(String pAddr2) {
+    public void setpAddr2(String pAddr2) {
         this.pAddr2 = pAddr2;
     }
 
-    public String getPAddr3() {
+    public String getpAddr3() {
         return pAddr3;
     }
 
-    public void setPAddr3(String pAddr3) {
+    public void setpAddr3(String pAddr3) {
         this.pAddr3 = pAddr3;
     }
 
@@ -126,11 +126,10 @@ public class PopVO {
     }
 
     @Override
-	public String toString() {
-		return "PopVO [pId=" + pId + ", pName=" + pName + ", startDate=" + startDate + ", endDate=" + endDate
-				+ ", pAddr1=" + pAddr1 + ", pAddr2=" + pAddr2 + ", pAddr3=" + pAddr3 + ", pPrice=" + pPrice
-				+ ", pIntro=" + pIntro + ", pContents=" + pContents + ", mapVO=" + mapVO + ", cateCode=" + cateCode
-				+ ", imageList=" + imageList + "]";
-	}
-
+   public String toString() {
+      return "PopVO [pId=" + pId + ", pName=" + pName + ", startDate=" + startDate + ", endDate=" + endDate
+            + ", pAddr1=" + pAddr1 + ", pAddr2=" + pAddr2 + ", pAddr3=" + pAddr3 + ", pPrice=" + pPrice
+            + ", pIntro=" + pIntro + ", pContents=" + pContents + ", mapVO=" + mapVO + ", cateCode=" + cateCode
+            + ", imageList=" + imageList + "]";
+   }
 }
