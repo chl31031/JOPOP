@@ -49,7 +49,7 @@
 /* 홈페이지 메인 제품 목록  */
 .content_area{
    width: 100%;
-    background-color: #97ef97;
+    /* background-color: #97ef97; */
     height: 1000px;
 }
 
@@ -99,3 +99,10 @@
       color: #da6262;
        font-size: 18px;
    }
+   
+.btn_cart {
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+}
