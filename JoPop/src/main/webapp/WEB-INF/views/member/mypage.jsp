@@ -19,19 +19,19 @@
       </div>
       <div class="myinfo">
          <ul class="info_list">
-            <li>이름</li>
+            <li class="a">이름</li>
             <li class="b">${member.mName }</li>
-            <li>닉네임</li>
+            <li class="a">닉네임</li>
             <li class="b">${member.mNick }</li>
-            <li>이메일</li>
+            <li class="a">이메일</li>
             <li class="b">${member.mEmail }</li>
-            <li>주소</li>
+            <li class="a">주소</li>
             <li class="b">${member.mAddr1 }</li>
-            <li>멤버십</li>
+            <li class="a">멤버십</li>
             <li class="b">${member.memberShip }</li>
-            <li>머니</li>
+            <li class="a">머니</li>
             <li class="b">${member.money }</li>
-            <li>내 작성 후기</li>
+            <li class="a">내 작성 후기</li>
             <li class="b">${review.contents }</li>
          </ul>
       </div>
