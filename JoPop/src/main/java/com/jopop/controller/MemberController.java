@@ -37,6 +37,7 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
 
+	
 	// 회원가입 페이지 이동
 	@GetMapping("/join")
 	public void loginGET() {

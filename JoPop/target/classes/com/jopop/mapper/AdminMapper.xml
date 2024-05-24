@@ -14,8 +14,8 @@
   		
   		</selectKey>  	
   	
-  		insert into jp_pop(pName, startDate, endDate, paddr1, paddr2, paddr3, cateCode, pPrice, pIntro, pContents)
-		values(#{pName}, #{startDate},#{endDate}, #{paddr1}, #{paddr2}, #{paddr3}, #{cateCode}, #{pPrice}, #{pIntro}, #{pContents})
+  		insert into jp_pop(pName, startDate, endDate, pAddr1, pAddr2, pAddr3, cateCode, pPrice, pIntro, pContents)
+		values(#{pName},  #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{paddr1}, #{paddr2}, #{paddr3}, #{cateCode}, #{pPrice}, #{pIntro}, #{pContents})
 	<!-- cateCode랑 paddr의 중복 문제 체크 필요 -->
   	</insert>
 
@@ -65,7 +65,7 @@
 	<select id="popsGetDetail" resultType="com.jopop.model.PopVO">
 	
 		select pId, pName,  
-			 startDate, endDate, cateCode, paddr1, paddr2, paddr3, pPrice, pIntro, pContents,  
+			 startDate, endDate, cateCode, paddr1, paddr2, paddr3, pPrice, pIntro, pContents  
 		from jp_pop where pId = #{pId}
 	
 	</select>
@@ -106,7 +106,7 @@
 	</select>-->		
 	
 	<!-- 지정 상품 이미지 정보 얻기  -->
-     <select id="getimageInfo" resultType="com.jopop.model.ImageVO">
+     <select id="getImageInfo" resultType="com.jopop.model.ImageVO">
         select * from jp_image where pId = #{pId}
      </select>
   </mapper>

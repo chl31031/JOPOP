@@ -89,10 +89,17 @@ $(document).ready(function() {
                            </td>
                            <td class="cart">
                               <div class="cart_button">
+<<<<<<< HEAD
                                 <form method="post">
                                 <input type="hidden" name="pId" value="${list.pId}">
                                 <input class="btn_cart" type="button" data-pid="${list.pId}">
                                 </form>
+=======
+                               <form action="/nav/like.do" method="post">
+                               <input type="hidden" name="pId" value="${list.pId}">
+                               <input class="btn_cart" type="submit" value="찜하기">
+                               </form>
+>>>>>>> branch 'main' of https://github.com/rkawk775/JOPOP-Web.git
                               </div>
                            </td>
                            <td class="price">

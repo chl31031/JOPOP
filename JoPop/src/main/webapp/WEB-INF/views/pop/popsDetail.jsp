@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,26 +51,41 @@
                 <h2 class="styled-heading">찾아오시는 길</h2>
                 <div id="map" style="width: 100%; height: 400px;"></div>
             </div>
-            <div class="section review-section">
-                <h2>후기</h2>
-                <p>등록된 후기가 없습니다. 첫 번째 후기를 작성해 보세요!</p>
-                <div class="rating">
-                    <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
-                    <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
-                    <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
-                    <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-                    <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
-                </div>
-                <div id="uploadResult"></div>
-                <form class="review-form" method="post" action="${pageContext.request.contextPath}/pop/uploadAjaxAction" enctype="multipart/form-data">
-                    <textarea placeholder="리뷰를 입력하세요"></textarea>
-                    <input type="file" id="fileInput" name="uploadFile" style="display: none;" />
-                    <div class="button-group">
-                        <button type="button" onclick="document.getElementById('fileInput').click();">사진 첨부하기</button>
-                        <button type="submit">후기 등록</button>
-                    </div>
-                </form>
+          <div class="section review-section">
+    <h2>후기</h2>
+    <c:if test="${not empty reviews}">
+        <c:forEach var="review" items="${reviews}">
+            <div class="review">
+                <p>작성자: ${review.mId}</p>
+                <p>내용: ${review.contents}</p>
+                <p>평점: ${review.score}</p>
+               <p>작성일: <fmt:formatDate value="${review.rDate}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" /></p>
             </div>
+            <div class="review-divider"></div> <!-- 구분선 추가 -->
+        </c:forEach>
+    </c:if>
+    <c:if test="${empty reviews}">
+        <p>등록된 후기가 없습니다. 첫 번째 후기를 작성해 보세요!</p>
+    </c:if>
+    <div class="rating">
+        <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+        <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+        <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+        <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+        <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+    </div>
+    <div id="uploadResult"></div>
+    <form class="review-form" method="post" action="${pageContext.request.contextPath}/pop/addReview" enctype="multipart/form-data">
+        <input type="hidden" name="pId" value="${popsInfo.pId}">
+        <textarea name="contents" placeholder="리뷰를 입력하세요"></textarea>
+        <input type="hidden" name="score" value="">
+        <input type="file" id="fileInput" name="uploadFile" style="display: none;" />
+        <div class="button-group">
+            <button type="button" onclick="document.getElementById('fileInput').click();">사진 첨부하기</button>
+            <button type="submit">후기 등록</button>
+        </div>
+    </form>
+</div>
             <div class="footer">
                 ---
             </div>
@@ -112,6 +128,7 @@
         document.querySelectorAll('.rating label').forEach(label => {
             label.addEventListener('click', function() {
                 let value = this.previousElementSibling.value;
+                document.querySelector('input[name="score"]').value = value;
                 highlightStars(value);
             });
         });
@@ -217,6 +234,9 @@
             str += "<div id='result_card'>";
             str += "<img src='/pop/display?fileName=" + fileCallPath + "' style='width: 100px; height: auto;'>";
             str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>삭제</div>"
+            str += "<input type='hidden' name='imageList[0].fileName' value='"+ obj.fileName +"'>";
+            str += "<input type='hidden' name='imageList[0].uuid' value='"+ obj.uuid +"'>";
+            str += "<input type='hidden' name='imageList[0].uploadPath' value='"+ obj.uploadPath +"'>";		
             str += "</div>";
 
             uploadResult.empty();  // 기존 이미지 제거

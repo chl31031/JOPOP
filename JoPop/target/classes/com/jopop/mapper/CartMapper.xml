@@ -11,7 +11,7 @@
 	
 	<!-- 찜 삭제 -->
 	<delete id="deleteCart">
-		delete from JP_cart where cartId = #{cartId}
+		delete from JP_cart where pId = #{pId}
 	</delete>
 	
 	<!-- 찜 목록 -->

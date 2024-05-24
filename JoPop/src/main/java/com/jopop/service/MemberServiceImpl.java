@@ -1,15 +1,22 @@
 package com.jopop.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jopop.mapper.MemberMapper;
 import com.jopop.model.MemberVO;
 
+import lombok.extern.log4j.Log4j;
+
 @Service
+@Log4j
 public class MemberServiceImpl implements MemberService {
 
+	private static final Logger log = LoggerFactory.getLogger(MemberServiceImpl.class);
+	
 		@Autowired
 		MemberMapper membermapper;
 		
@@ -31,6 +38,8 @@ public class MemberServiceImpl implements MemberService {
 			
 			return membermapper.memberLogin(member);
 		}
+		
+				
 		
 	
 		

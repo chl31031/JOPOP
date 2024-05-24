@@ -39,65 +39,72 @@ public class NavController {
 	public void preloginGET() {
 
 		logger.info("로그인 or 회원가입 선택 페이지 진입");
+		
 	}
 
 	/* 검색 페이지로 이동 */
 	@GetMapping("/search")
-	public void searchPageGET(){
-		logger.info("검색페이지로 이동");
-	}
-
-	
-
-	/* 상품 검색 */
-	@GetMapping("/popsearch")
-	public String searchGoodsGET(Criteria cri, Model model) throws Exception {
-
-		logger.info("cri : " + cri);
-
-		List<PopVO> list = popService.getGoodsList(cri);
-		
-		if (!list.isEmpty()) {
-			model.addAttribute("list", list);
-			
-		} else {
-			model.addAttribute("listcheck", "empty");
-
-			return "/nav/search";
-		}
-
-		model.addAttribute("pageMaker", new PageDTO(cri, popService.goodsGetTotal(cri)));
-
-		return "/nav/search";
-	}
-	
-	/* 검색 페이지에서 찜 등록하기 */
-	
-	@PostMapping("/like.do")
-	public String addCart(@RequestParam("pId") String pId, HttpSession session) {
-	    // 세션에서 사용자 정보를 가져옵니다.
+	public String searchPageGET(Criteria cri, Model model, HttpSession session)throws Exception{
+	    
+	    logger.info("검색페이지로 이동");
+	   
+	    
 	    MemberVO member = (MemberVO) session.getAttribute("member");
-	    if (member == null) {
-	        // 사용자가 로그인하지 않은 경우 로그인 페이지로 리다이렉트합니다.
-	        return "redirect:/nav/prelogin";
+	    System.out.println("dddd : " + member);
+	    
+	    List<PopVO> list = popService.getGoodsList(cri);
+	    
+	    if (!list.isEmpty()) {
+	        model.addAttribute("list", list);
+	    } else {
+	        model.addAttribute("listcheck", "empty");
+	        return "/nav/search";
 	    }
 	    
-	    // CartVO 객체를 생성하고 사용자 ID와 상품 ID를 설정합니다.
+	    model.addAttribute("pageMaker", new PageDTO(cri, popService.goodsGetTotal(cri)));
+
+	    return "/nav/search";
+	}
+
+	/* 검색 페이지에서 찜 등록하기 */
+	@PostMapping("like.do")
+	public String addCart(@RequestParam("pId") String pId, HttpSession session) {
+	    MemberVO member = (MemberVO) session.getAttribute("member");
+	    if (member == null) {
+	        return "redirect:/nav/prelogin"; // 로그인 페이지로 리다이렉트
+	    }
+	    
 	    CartVO cart = new CartVO();
 	    cart.setmId(member.getmId());
 	    cart.setpId(Integer.parseInt(pId));
 	    
-	    
-	    // CartService를 통해 찜 정보를 추가합니다.
 	    try {
 	        cartService.addCart(cart);
 	        logger.info("상품 {}이(가) 찜되었습니다.", pId);
 	    } catch (Exception e) {
 	        logger.error("찜하기 중 오류 발생: {}", e.getMessage());
-	        // 오류 발생 시 처리할 내용을 추가할 수 있습니다.
+	        // 오류 처리
 	    }
 	    
-	    // 찜하기 후에는 검색 페이지로 리다이렉트합니다.
-	    return "redirect:/nav/popsearch";
+	    return "redirect:/nav/search"; // 검색 페이지로 리다이렉트
+	}
+
+	/* 검색 페이지에서 찜 삭제하기 */
+	@PostMapping("unlike.do")
+	public String deleteCart(@RequestParam("pId") int pId, HttpSession session) {
+	    MemberVO member = (MemberVO) session.getAttribute("member");
+	    if (member == null) {
+	        return "redirect:/nav/prelogin"; // 로그인 페이지로 리다이렉트
+	    }
+	    
+	    try {
+	        cartService.deleteCart(pId);
+	        logger.info("상품 {}이(가) 찜 목록에서 삭제되었습니다.", pId);
+	    } catch (Exception e) {
+	        logger.error("찜 삭제 중 오류 발생: {}", e.getMessage());
+	        // 오류 처리
+	    }
+	    
+	    return "redirect:/nav/search"; // 검색 페이지로 리다이렉트
 	}
 }
