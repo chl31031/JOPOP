@@ -41,11 +41,12 @@ public class Criteria {
     public Criteria(int pageNum, int amount) {
         this.pageNum = pageNum;
         this.amount = amount;
+ 
     }
     
     /* Criteria 기본 생성자 */
     public Criteria(){
-        this(1,10);
+        this(1,5);
     }
     
     /* 검색 타입 데이터 배열 변환 */

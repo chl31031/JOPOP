@@ -3,6 +3,10 @@
    margin: 0;
    padding:0;
 }
+
+.wrapper{
+	height:auto;
+}
 .wrap{
    width : 900px;
    margin: auto;
@@ -50,18 +54,14 @@
 .content_area{
    width: 100%;
     /* background-color: #97ef97; */
-    height: 1000px;
+   height: 2000px;
 }
 
 /* float 속성 해제 */
 .clearfix{
    clear: both;
 }
-/* 상품 표 */
-.list_search_result{
-      width: 90%;
-       margin: auto;   
-   }
+
 .type_list{
        width: 100%;
        border-bottom: 1px solid #e7e7e7;

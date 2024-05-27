@@ -50,7 +50,6 @@ public class NavController {
 	   
 	    
 	    MemberVO member = (MemberVO) session.getAttribute("member");
-	    System.out.println("dddd : " + member);
 	    
 	    List<PopVO> list = popService.getGoodsList(cri);
 	    
@@ -60,11 +59,14 @@ public class NavController {
 	        model.addAttribute("listcheck", "empty");
 	        return "/nav/search";
 	    }
-	    
+	    /* 페이지 이동 인터페이스 데이터 */
 	    model.addAttribute("pageMaker", new PageDTO(cri, popService.goodsGetTotal(cri)));
 
 	    return "/nav/search";
 	}
+	
+	
+	
 
 	/* 검색 페이지에서 찜 등록하기 */
 	@PostMapping("like.do")

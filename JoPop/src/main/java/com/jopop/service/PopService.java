@@ -11,7 +11,7 @@ public interface PopService {
     // 상품 상세 정보
     PopVO PopGoodsInfo(int pid) throws Exception;
 
-    // 상품 검색
+    // 상품 검색 및 조회
     List<PopVO> getGoodsList(Criteria cri) throws Exception;
 
     // 상품 총 갯수
