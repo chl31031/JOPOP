@@ -7,6 +7,6 @@
 <title>회원 정보 수정</title>
 </head>
 <body>
-
+<%@include file="../admin/nav.jsp"%>
 </body>
 </html>

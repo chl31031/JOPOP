@@ -1,94 +1,107 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>팝업/전시 정보 등록 페이지</title>
 <link rel="stylesheet" href="../resources/css/admin/popsEnroll.css">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 <!-- 캘린더 -->
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
 <style>
 /*datepicker에서 사용한 이미지 버튼 style적용*/
-            img.ui-datepicker-trigger {
-                margin-left:5px; vertical-align:middle; cursor:pointer;
+img.ui-datepicker-trigger {
+	margin-left: 5px;
+	vertical-align: middle;
+	cursor: pointer;
+}
 </style>
 
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-<script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=8miqdnp9yh&submodules=geocoder" type="text/javascript"></script>
+<script
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=8miqdnp9yh&submodules=geocoder"
+	type="text/javascript"></script>
 <!-- 캘린더 -->
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <!-- datepicker 한국어로 -->
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
 <style type="text/css">
-   #result_card img{
-      max-width: 100%;
-       height: auto;
-       display: block;
-       padding: 5px;
-       margin-top: 10px;
-       margin: auto;   
-   }
-   #result_card {
-      position: relative;
-   }
-   .imgDeleteBtn{
-       position: absolute;
-       top: 0;
-       right: 5%;
-       background-color: #ef7d7d;
-       color: wheat;
-       font-weight: 900;
-       width: 30px;
-       height: 30px;
-       border-radius: 50%;
-       line-height: 26px;
-       text-align: center;
-       border: none;
-       display: block;
-       cursor: pointer;   
-   }
+#result_card img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	padding: 5px;
+	margin-top: 10px;
+	margin: auto;
+}
+
+#result_card {
+	position: relative;
+}
+
+.imgDeleteBtn {
+	position: absolute;
+	top: 0;
+	right: 5%;
+	background-color: #ef7d7d;
+	color: wheat;
+	font-weight: 900;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	line-height: 26px;
+	text-align: center;
+	border: none;
+	display: block;
+	cursor: pointer;
+}
 </style>
 </head>
 </head>
 <body>
- 
-          <%@include file="../includes/admin/header.jsp" %>
-             
-                <div class="admin_content_wrap">
-                    <div class="admin_content_subject"><span>팝업/전시 정보 등록</span></div>
-                    <div class="admin_content_main">
-                       <form action="/admin/popsEnroll" method="post" id="enrollForm">
-                          <div class="form_section">
-                             <div class="form_section_title">
-                                <label>팝업/전시 이름</label>
-                             </div>
-                             <div class="form_section_content">
-                                <input name="pName">
-                                <span class="ck_warn pName_warn">팝업/전시 이름을 입력해주세요.</span>
-                             </div>
-                          </div>                            
-                          
-                          <div class="form_section">
-                             <div class="form_section_title">
-                                <label for="startDate">시작일</label>
-                                <input type="text" name="startDate" id="startDate">
-                                ~
-                                <label for="endDate">종료일</label>
-                                <input type="text" name="endDate" id="endDate">
-                             </div>
-                             <div class="form_section_content">
-                                <input name="stratDate" autocomplete="off" readonly="readonly">
-                                <span class="ck_warn stratDate_warn">날짜를 선택해주세요.</span>
-                             </div>
-                          </div>                                                                                                        
-                                                                     
-                          <!--  <div class="form_section">
+
+	<%@include file="../includes/admin/header.jsp"%>
+
+	<div class="admin_content_wrap">
+		<div class="admin_content_subject">
+			<span>팝업/전시 정보 등록</span>
+		</div>
+		<div class="admin_content_main">
+			<form action="/admin/popsEnroll" method="post" id="enrollForm">
+				<div class="form_section">
+					<div class="form_section_title">
+						<label>팝업/전시 이름</label>
+					</div>
+					<div class="form_section_content">
+						<input name="pName"> <span class="ck_warn pName_warn">팝업/전시
+							이름을 입력해주세요.</span>
+					</div>
+				</div>
+
+				<div class="form_section">
+					<div class="form_section_title">
+						<label for="startDate">시작일</label> <input type="text"
+							name="startDate" id="startDate"> ~ <label for="endDate">종료일</label>
+						<input type="text" name="endDate" id="endDate">
+					</div>
+					<div class="form_section_content">
+						<input name="stratDate" autocomplete="off" readonly="readonly">
+						<span class="ck_warn stratDate_warn">날짜를 선택해주세요.</span>
+					</div>
+				</div>
+
+				<!--  <div class="form_section">
                              <div class="form_section_title">
                                 <label>팝업/전시 지역</label>
                              </div>
@@ -107,131 +120,129 @@
                                 </div>                               
                                 <span class="ck_warn cateCode_warn">지역을 선택해주세요.</span>
                              </div>
-                          </div> -->  
-                          
-                          <div id="container_box">
-                          	<h2>팝업/전시 지역</h2>
-                          	<form role="form" method="post" autocomplete="off">
-                          	
-                          		<label>시/도</label>
-                          		<select class="cate1">
-                          			<option value="">선택</option>
-                          		</select>
-                          		
-                          		<label>시/군/구</label>
-                          		<select class="cate2">
-                          			<option value="">선택</option>
-                          		</select>                          		
-                          		
-                          	</form>
-                          	
-                                 
-                          <div class="form_section">
-                             <div class="form_section_title">
-                                <label>팝업/전시 가격</label>
-                             </div>
-                             <div class="form_section_content">
-                                <input name="pPrice">원
-                                <span class="ck_warn pPrice_warn">팝업/전시 가격을 입력해주세요.</span>
-                             </div>
-                          </div>                                                                           
-                                         
-                          <div class="form_section">
-                             <div class="form_section_title">
-                                <label>팝업/전시 이용 시설 안내</label>
-                             </div>
-                             <div class="form_section_content">
-                                <textarea name="pIntro" id="pIntro_textarea"></textarea>
-                                <span class="ck_warn pIntro_warn">팝업/전시 소개(상세 정보)를 입력해주세요.</span>
-                             </div>
-                          </div>  
-                          
-                          <div class="form_section">
-                             <div class="form_section_title">
-                                <label>팝업/전시 소개(상세 내용)</label>
-                             </div>
-                             <div class="form_section_content">
-                                <textarea name="pContents" id="pContents_textarea"></textarea>
-                                <span class="ck_warn pContents_warn">팝업/전시 이용 정보를 입력해주세요.</span>
-                             </div>
-                          </div>                       
-                                         
-                          <!-- 주소 -->   
-							<div class="form_section">
-							    <div class="form_section_title">
-							        <h4>주소(지역)</h4>
-							    </div>
-							    <div class="form_section_content">
-							        <div class="container">
-							            <div class="row">
-							                <div class="col">						                
-							 <div class="input-group mb-2">
-							 
-							    <!-- 검색 버튼을 입력창 오른쪽에 위치시킵니다. -->
-							    <div class="search" style="display: flex; align-items: center;">
-							        <input id="address" type="text" placeholder="검색할 주소" style="flex: 1; margin-right: 5px;">
-							        <input id="submit" type="button" value="주소 검색" class="btn btn-primary" style="width: 150px; height: 40px;">
-							    </div>
-							    
-							</div>
-				                </div>
-				            </div>
-				            <!-- 지도를 좀 더 크게 표시합니다. -->
-				            <div class="row">
-				                <div class="col">
-				                    <div id="map" style="height: 400px;"></div>
-				                </div>
-				            </div>
-				            
-				            <div class="row mt-2">
-				                <div class="col">
-				                    <table class="table">
-				                        <thead>
-				                            <tr>
-				                                <th>주소</th>
-				                                <th>위도</th>
-				                                <th>경도</th>
-				                            </tr>
-				                        </thead>
-				                        <tbody id="mapList"></tbody>
-				                    </table>
-				                </div>
-				            </div>
-						        </div>
-						    </div>
+                          </div> -->
+
+				<div id="container_box">
+					<h2>팝업/전시 지역</h2>
+					<form role="form" method="post" autocomplete="off">
+
+						<label>시/도</label> <select class="cate1">
+							<option value="">선택</option>
+						</select> <label>시/군/구</label> <select class="cate2">
+							<option value="">선택</option>
+						</select>
+
+					</form>
+
+
+					<div class="form_section">
+						<div class="form_section_title">
+							<label>팝업/전시 가격</label>
 						</div>
-							<!-- 주소 끝 -->
-							
-                          <div class="form_section">
-                             <div class="form_section_title">
-                                <label>팝업 이미지 등록</label>
-                             </div>
-                             <div class="form_section_content">
-                                <input type="file" id="fileItem" name='uploadFile' style="height: 30px;">
-                           <div id="uploadResult">
-                           <!--  
+						<div class="form_section_content">
+							<input name="pPrice">원 <span class="ck_warn pPrice_warn">팝업/전시
+								가격을 입력해주세요.</span>
+						</div>
+					</div>
+
+					<div class="form_section">
+						<div class="form_section_title">
+							<label>팝업/전시 이용 시설 안내</label>
+						</div>
+						<div class="form_section_content">
+							<textarea name="pIntro" id="pIntro_textarea"></textarea>
+							<span class="ck_warn pIntro_warn">팝업/전시 소개(상세 정보)를 입력해주세요.</span>
+						</div>
+					</div>
+
+					<div class="form_section">
+						<div class="form_section_title">
+							<label>팝업/전시 소개(상세 내용)</label>
+						</div>
+						<div class="form_section_content">
+							<textarea name="pContents" id="pContents_textarea"></textarea>
+							<span class="ck_warn pContents_warn">팝업/전시 이용 정보를 입력해주세요.</span>
+						</div>
+					</div>
+
+					<!-- 주소 -->
+					<div class="form_section">
+						<div class="form_section_title">
+							<h4>주소(지역)</h4>
+						</div>
+						<div class="form_section_content">
+							<div class="container">
+								<div class="row">
+									<div class="col">
+										<div class="input-group mb-2">
+
+											<!-- 검색 버튼을 입력창 오른쪽에 위치시킵니다. -->
+											<div class="search"
+												style="display: flex; align-items: center;">
+												<input id="address" type="text" placeholder="검색할 주소"
+													style="flex: 1; margin-right: 5px;"> <input
+													id="submit" type="button" value="주소 검색"
+													class="btn btn-primary" style="width: 150px; height: 40px;">
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<!-- 지도를 좀 더 크게 표시합니다. -->
+								<div class="row">
+									<div class="col">
+										<div id="map" style="height: 400px;"></div>
+									</div>
+								</div>
+
+								<div class="row mt-2">
+									<div class="col">
+										<table class="table">
+											<thead>
+												<tr>
+													<th>주소</th>
+													<th>위도</th>
+													<th>경도</th>
+												</tr>
+											</thead>
+											<tbody id="mapList"></tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 주소 끝 -->
+
+					<div class="form_section">
+						<div class="form_section_title">
+							<label>팝업 이미지 등록</label>
+						</div>
+						<div class="form_section_content">
+							<input type="file" id="fileItem" name='uploadFile'
+								style="height: 30px;">
+							<div id="uploadResult">
+								<!--  
                               <div id="result_card">
                                  <div class="imgDeleteBtn">x</div>
                                  <img src="/display?fileName=test.png">
                               </div>
                            -->
-                           </div>
-                             </div>
-                          </div>
-                          
-                         </form>
-                         
-                            <div class="btn_section">
-                               <button id="cancelBtn" class="btn">취 소</button>
-                             <button id="enrollBtn" class="btn enroll_btn">등 록</button>
-                          </div> 
-                    </div>  
-                </div>
-                   
-                
-             <%@include file="../includes/admin/footer.jsp" %>
- 
-<script>
+							</div>
+						</div>
+					</div>
+			</form>
+
+			<div class="btn_section">
+				<button id="cancelBtn" class="btn">취 소</button>
+				<button id="enrollBtn" class="btn enroll_btn">등 록</button>
+			</div>
+		</div>
+	</div>
+
+	<%@include file="../admin/nav.jsp"%>
+
+	<script>
 /* 캘린더 위젯 적용 */
 $(function() {
    
