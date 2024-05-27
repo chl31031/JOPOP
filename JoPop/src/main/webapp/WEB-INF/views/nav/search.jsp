@@ -17,7 +17,7 @@ $(document).ready(function() {
         var pId = button.data('pid');
         var liked = sessionStorage.getItem('liked_' + pId);
         if (liked === 'true') {
-            button.css('background-image', 'url(/resources/img/heart1.png)');
+            button.attr('src', '/resources/img/heart1.png');
         }
     });
 
@@ -27,7 +27,7 @@ $(document).ready(function() {
         var button = $(this);
         var pId = button.data('pid');
         var liked = sessionStorage.getItem('liked_' + pId);
-        var member = ${member.mId};
+        var member = "${member.mId}";
         if (!member) {
             // prelogin 페이지로 리디렉션
             window.location.href = '/nav/prelogin'; // 실제 prelogin 페이지의 URL로 변경해주세요
@@ -36,27 +36,18 @@ $(document).ready(function() {
         
         if (liked === 'true') {
             $.post('/nav/unlike.do', { pId: pId }, function(response) {
-                button.css('background-image', 'url(/resources/img/heart.png)'); // 성공 시 버튼 값 변경
+                button.attr('src', '/resources/img/heart.png'); // 성공 시 버튼 값 변경
                 sessionStorage.setItem('liked_' + pId, 'false'); // 세션 스토리지에 상태 저장
             });
         } else {
             $.post('/nav/like.do', { pId: pId }, function(response) {
-                button.css('background-image', 'url(/resources/img/heart1.png)'); // 성공 시 버튼 값 변경
+                button.attr('src', '/resources/img/heart1.png'); // 성공 시 버튼 값 변경
                 sessionStorage.setItem('liked_' + pId, 'true'); // 세션 스토리지에 상태 저장
             });
         }
     });
 });
 </script>
-<style>
-.btn_cart {
-    background-image: url('/resources/img/heart.png');
-    width: 30px;
-    height: 30px;
-    border: none;
-    cursor: pointer;
-}
-</style>
 </head>
 <body>
    <%@include file="../includes/header.jsp"%>
@@ -89,17 +80,10 @@ $(document).ready(function() {
                            </td>
                            <td class="cart">
                               <div class="cart_button">
-<<<<<<< HEAD
                                 <form method="post">
                                 <input type="hidden" name="pId" value="${list.pId}">
-                                <input class="btn_cart" type="button" data-pid="${list.pId}">
+                                <img class="btn_cart" data-pid="${list.pId}" src="/resources/img/heart.png">
                                 </form>
-=======
-                               <form action="/nav/like.do" method="post">
-                               <input type="hidden" name="pId" value="${list.pId}">
-                               <input class="btn_cart" type="submit" value="찜하기">
-                               </form>
->>>>>>> branch 'main' of https://github.com/rkawk775/JOPOP-Web.git
                               </div>
                            </td>
                            <td class="price">
