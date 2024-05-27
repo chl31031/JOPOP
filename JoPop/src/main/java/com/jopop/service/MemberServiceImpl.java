@@ -38,6 +38,12 @@ public class MemberServiceImpl implements MemberService {
 			
 			return membermapper.memberLogin(member);
 		}
+
+		@Override
+		public int memberDrop(int mId) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
 		
 				
 		
