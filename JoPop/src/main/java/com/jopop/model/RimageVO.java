@@ -18,6 +18,9 @@ public class RimageVO {
     
     // 멤버 id
     private int mId;
+    
+    // 리뷰 id (추가)
+    private int rId;
 
     // Getter 및 Setter (Lombok의 @Data 어노테이션으로 자동 생성)
     public String getUploadPath() {
@@ -59,10 +62,25 @@ public class RimageVO {
     public void setmId(int mId) {
         this.mId = mId;
     }
+    
+    public int getrId() {
+		return rId;
+	}
 
-    @Override
-    public String toString() {
-        return "RimageVO [uploadPath=" + uploadPath + ", uuid=" + uuid + ", fileName=" + fileName + ", pId=" + pId
-                + ", mId=" + mId + "]";
-    }
+	public void setrId(int rId) {
+		this.rId = rId;
+	}
+
+	@Override
+	public String toString() {
+		return "RimageVO [uploadPath=" + uploadPath + ", uuid=" + uuid + ", fileName=" + fileName + ", pId=" + pId
+				+ ", mId=" + mId + ", rId=" + rId + "]";
+	}
+
+
+   
+
+	
+
+	
 }
