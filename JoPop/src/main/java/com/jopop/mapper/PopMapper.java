@@ -31,6 +31,7 @@ public interface PopMapper {
     // 특정 리뷰에 해당하는 이미지 리스트를 가져오는 메서드 추가
     List<RimageVO> getImagesByReviewId(@Param("mId") int mId, @Param("pId") int pId) throws Exception;
 
+
     
     
 }

@@ -25,6 +25,15 @@
                   <tbody id="searchList">
                      <c:forEach items="${list}" var="list">
                         <tr class="list">
+                        <td class="image">
+										<div class="image_wrap"
+											data-pId="${list.imageList[0].pId}"
+											data-path="${list.imageList[0].uploadPath}"
+											data-uuid="${list.imageList[0].uuid}"
+											data-filename="${list.imageList[0].fileName}">
+											<img>
+										</div>
+									</td>
                            <td class="detail">
                               <div class="title">
                                  <a href="/goodsDetail/${list.pId}">
@@ -156,6 +165,20 @@ $(document).ready(function(){
 	if(selectedType != ""){
 		$("select[name='type']").val(selectedType).attr("selected", "selected");	
 	}
+	
+	/* 이미지 삽입 */
+	$(".image_wrap").each(function(i, obj) {
+		const bobj = $(obj);
+		
+		const uploadPath = bobj.data("path");
+		const uuid = bobj.data("uuid");
+		const fileName = bobj.data("filename");
+		
+		const filecallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "-" + fileName);
+		
+		$(this).find("img").attr('src', 'display?fileName=' + fileCallPath);
+		
+	});
 	
 });
 </script>

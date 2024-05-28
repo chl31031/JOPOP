@@ -1,11 +1,15 @@
 package com.jopop.service;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.jopop.mapper.AttachMapper;
 import com.jopop.mapper.PopMapper;
 import com.jopop.model.Criteria;
+import com.jopop.model.ImageVO;
 import com.jopop.model.PopVO;
 import com.jopop.model.ReviewVO;
 import com.jopop.model.RimageVO;
@@ -14,6 +18,9 @@ import com.jopop.model.RimageVO;
 public class PopServiceimpl implements PopService {
     @Autowired
     private PopMapper popMapper;
+    
+    @Autowired
+    private AttachMapper attachMapper;
 
     // 상품 상세 정보
     @Override
@@ -24,7 +31,18 @@ public class PopServiceimpl implements PopService {
     // 상품 검색
     @Override
     public List<PopVO> getGoodsList(Criteria cri) throws Exception {
-        return popMapper.getGoodsList(cri);
+    	
+    	List<PopVO> list = popMapper.getGoodsList(cri);
+    	
+    	list.forEach(pop ->{
+    		
+    		int pId = pop.getpId();
+    		
+    		List<ImageVO> imageList = attachMapper.getImageList(pId);
+    		
+    		pop.setImageList(imageList);
+    	});
+    	return list;
     }
 
     // 상품 총 갯수
