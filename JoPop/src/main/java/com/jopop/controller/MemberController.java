@@ -2,6 +2,7 @@ package com.jopop.controller;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jopop.model.MemberVO;
+import com.jopop.model.ReviewVO;
+import com.jopop.model.RimageVO;
 import com.jopop.service.MemberService;
 import com.jopop.service.PopService;
 
@@ -53,7 +56,7 @@ public class MemberController {
 
 	// 마이페이지 이동 - 리뷰 조회
 	@GetMapping("/mypage")
-	public void mypageGET(HttpServletRequest request,Model model) {
+	public String mypageGET(HttpServletRequest request,Model model) throws Exception {
 		logger.info("마이페이지로 이동");
 		
 		HttpSession session = request.getSession();
@@ -62,9 +65,20 @@ public class MemberController {
 		MemberVO mvo = (MemberVO)session.getAttribute("member");
 		
 		int mId = mvo.getmId();
-		System.out.println("테스트요오");
-		System.out.println(mId+"--------------------------");
 		
+		List<ReviewVO> reviews = popService.getReviewsByPid(mId);
+		
+		
+        for (ReviewVO review : reviews) {
+            List<RimageVO> images = popService.getImagesByReviewId(review.getmId(), review.getpId());
+            review.setImageList(images);
+        }
+		
+        model.addAttribute("reviews", reviews);
+        //getImagesByReviewId() 는 
+        //model.addAttribute(popService.getImagesByReviewId(mid, pid));
+
+        return "member/mypage";
 	}
 	
 

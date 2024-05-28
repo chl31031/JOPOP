@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,30 @@
             <li class="a">머니</li>
             <li class="b">${member.money }</li>
             <li class="a">내 작성 후기</li>
-            <li class="b">${review.contents }</li>
+            <li class="b">
+	          	<div class="section review-section">
+				    <h2>후기</h2>
+				    <c:if test="${not empty reviews}">
+				        <c:forEach var="review" items="${reviews}">
+				            <div class="review">
+				                <p>작성자: ${review.mId}</p> <!-- 작성자 정보 -->
+				                <p>내용: ${review.contents}</p>
+				                <p>평점: ${review.score}</p>
+				                <p>작성일: <fmt:formatDate value="${review.rDate}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" /></p>
+				                <c:if test="${not empty review.imageList}">
+			                <c:forEach items="${review.imageList}" var="image">
+							    <img src="http://localhost:8080/pop/display?fileName=${image.uploadPath.replace("\\", "/")}/${image.uuid}_${image.fileName}" alt="이미지" style="max-width: 100px;">
+							</c:forEach>
+							       </c:if>
+				            </div>
+				            <div class="review-divider"></div>
+				        </c:forEach>
+				    </c:if>
+				    <c:if test="${empty reviews}">
+				        <p>등록된 후기가 없습니다. 첫 번째 후기를 작성해 보세요!</p>
+				    </c:if>
+				</div>  <!-- //section review-section -->
+            </li>
          </ul>
       </div>
    </div>

@@ -102,6 +102,14 @@
  SELECT * FROM jp_Rimage WHERE mId = #{mId} AND pId = #{pId} 
  </select>
  
+ <!-- [마이페이지-리뷰] 회원정보에 맞는 상품명 출력 -->
+ <select id="getReviewsByPname" >
+ 	SELECT p.pName, r.pId
+	FROM jp_review r LEFT JOIN jp_pop p
+			ON r.pId = p.pId
+	WHERE r.pId = #{pId}
+ </select>
+ 
  
  <!--  리뷰 및 이미지 정보를 포함한 resultMap  -->
 <resultMap id="reviewWithImages" type="com.jopop.model.ReviewVO">
