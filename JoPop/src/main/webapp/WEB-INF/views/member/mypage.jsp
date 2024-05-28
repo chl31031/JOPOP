@@ -33,13 +33,12 @@
             <li class="a">머니</li>
             <li class="b">${member.money }</li>
             <li class="a">내 작성 후기</li>
-            <li class="b">
+            <li>
 	          	<div class="section review-section">
-				    <h2>후기</h2>
 				    <c:if test="${not empty reviews}">
 				        <c:forEach var="review" items="${reviews}">
 				            <div class="review">
-				                <p>작성자: ${review.mId}</p> <!-- 작성자 정보 -->
+				            	<p>팝업: ${review.pName}</p>
 				                <p>내용: ${review.contents}</p>
 				                <p>평점: ${review.score}</p>
 				                <p>작성일: <fmt:formatDate value="${review.rDate}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" /></p>
@@ -55,7 +54,7 @@
 				    <c:if test="${empty reviews}">
 				        <p>등록된 후기가 없습니다. 첫 번째 후기를 작성해 보세요!</p>
 				    </c:if>
-				</div>  <!-- //section review-section -->
+				</div>
             </li>
          </ul>
       </div>

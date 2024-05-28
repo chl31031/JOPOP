@@ -68,14 +68,15 @@ public class MemberController {
 		
 		List<ReviewVO> reviews = popService.getReviewsByPid(mId);
 		
-		
         for (ReviewVO review : reviews) {
+        	int pId = review.getpId();
+        	reviews = popService.getReviewsByPname(pId);
+        	
             List<RimageVO> images = popService.getImagesByReviewId(review.getmId(), review.getpId());
             review.setImageList(images);
         }
 		
         model.addAttribute("reviews", reviews);
-        //getImagesByReviewId() 는 
         //model.addAttribute(popService.getImagesByReviewId(mid, pid));
 
         return "member/mypage";

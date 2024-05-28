@@ -103,7 +103,7 @@
  </select>
  
  <!-- [마이페이지-리뷰] 회원정보에 맞는 상품명 출력 -->
- <select id="getReviewsByPname" >
+ <select id="getReviewsByPname" parameterType="int" resultMap="reviewWithImages">
  	SELECT p.pName, r.pId
 	FROM jp_review r LEFT JOIN jp_pop p
 			ON r.pId = p.pId
