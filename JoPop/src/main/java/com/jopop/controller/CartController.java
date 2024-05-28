@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jopop.model.CartVO;
 import com.jopop.model.MemberVO;
+import com.jopop.model.OrderPageDTO;
 import com.jopop.service.CartService;
 
 
@@ -125,8 +126,8 @@ private static final Logger logger = LoggerFactory.getLogger(CartController.clas
 					System.out.println("삭제 실패했습니다.");
 				}
 				
-				//return "redirect:/cart/cart/"+mId;
-				return null;
+				return "redirect:/cart/cart/"+mId;
+				//return null;
 				
 			}else{  //찜 추가 
 				
@@ -134,5 +135,6 @@ private static final Logger logger = LoggerFactory.getLogger(CartController.clas
 				
 			}
 		}
+		
 		
 }

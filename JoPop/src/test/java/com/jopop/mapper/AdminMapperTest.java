@@ -28,9 +28,9 @@ public class AdminMapperTest {
 		pop.setpPrice(20000);
 		pop.setpIntro("팝업 소개 ");
 		pop.setpContents("팝업 이용방법 ");
-		pop.setPAddr1("주소1");  // 새로운 속성 값 설정
-        pop.setPAddr2("주소2");  // 새로운 속성 값 설정
-        pop.setPAddr3("주소3");  // 새로운 속성 값 설정
+		pop.setpAddr1("주소1");  // 새로운 속성 값 설정
+        pop.setpAddr2("주소2");  // 새로운 속성 값 설정
+        pop.setpAddr3("주소3");  // 새로운 속성 값 설정
         
 		mapper.popsEnroll(pop);
 	}

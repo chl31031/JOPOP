@@ -15,4 +15,7 @@ public interface MemberService {
 
 		/* 유저 삭제 */
 		public int memberDrop(int mId);
+		
+		//주문자 정보
+		public MemberVO getMemberInfo(int mId);
 }

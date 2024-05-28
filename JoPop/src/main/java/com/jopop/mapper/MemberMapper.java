@@ -15,6 +15,9 @@ public interface MemberMapper {
 	
 	/* 유저 삭제 */
 	public int memberDrop(int mid);
+	
+	//주문자 주소 정보
+	public MemberVO getMemberInfo(int mId);
 
 	
 }

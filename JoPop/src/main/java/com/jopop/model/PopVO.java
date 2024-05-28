@@ -140,6 +140,7 @@ public class PopVO {
 				+ ", pIntro=" + pIntro + ", pContents=" + pContents + ", mapVO=" + mapVO + ", cateCode=" + cateCode
 				+ ", cateName=" + cateName + ", imageList=" + imageList + "]";
 	}
-    
+
+	
 
 }

@@ -45,6 +45,12 @@ public class MemberServiceImpl implements MemberService {
 			return 0;
 		}
 		
+		//주문자 정보
+		@Override
+		public MemberVO getMemberInfo(int mId) {
+			return membermapper.getMemberInfo(mId);
+		}
+		
 				
 		
 	
