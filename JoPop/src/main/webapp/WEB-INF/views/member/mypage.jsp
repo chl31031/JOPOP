@@ -26,7 +26,7 @@
             <li class="a">이메일</li>
             <li class="b">${member.mEmail }</li>
             <li class="a">주소</li>
-            <li class="b">${member.mAddr1 }</li>
+            <li class="b">${member.mAddr2} ${member.mAddr3}</li>
             <li class="a">멤버십</li>
             <li class="b">${member.memberShip }</li>
             <li class="a">머니</li>
