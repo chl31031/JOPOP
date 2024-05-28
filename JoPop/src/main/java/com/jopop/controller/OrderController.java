@@ -23,7 +23,7 @@ public class OrderController {
 	private MemberService memberSerivce;
 	
 	
-	@GetMapping(value="/order/{mId}")
+	@GetMapping("/order/{mId}")
 	public void orderPageGet(@PathVariable("mId") int mId, OrderPageDTO opd, Model model) {
 		
 		logger.info("orderPageGet 진입");
