@@ -1,5 +1,7 @@
 package com.jopop.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -13,6 +15,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jopop.model.MemberVO;
 import com.jopop.service.MemberService;
+import com.jopop.service.PopService;
 
 @Controller
 @RequestMapping(value = "/member")
@@ -36,6 +40,9 @@ public class MemberController {
 
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
+	
+	@Autowired
+	private PopService popService;
 
 	
 	// 회원가입 페이지 이동
@@ -44,10 +51,20 @@ public class MemberController {
 		logger.info("회원가입 페이지 진입");
 	}
 
-	/* 마이페이지 이동 */
+	// 마이페이지 이동 - 리뷰 조회
 	@GetMapping("/mypage")
-	public void mypageGET() {
+	public void mypageGET(HttpServletRequest request,Model model) {
 		logger.info("마이페이지로 이동");
+		
+		HttpSession session = request.getSession();
+		
+		//mId 세션 가져오기
+		MemberVO mvo = (MemberVO)session.getAttribute("member");
+		
+		int mId = mvo.getmId();
+		System.out.println("테스트요오");
+		System.out.println(mId+"--------------------------");
+		
 	}
 	
 

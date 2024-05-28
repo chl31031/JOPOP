@@ -94,7 +94,7 @@
  <select id="getReviewsByPid" parameterType="int" resultMap="reviewWithImages">
   SELECT r.*, i.uploadPath, i.uuid, i.fileName FROM 
  jp_Review r LEFT JOIN jp_Rimage
-  i ON r.pId = i.pId AND r.mId = i.mId WHERE r.pId = #{pid}
+  i ON r.pId = i.pId AND r.mId = i.mId WHERE r.pId = #{pid} OR r.mId =#{mId}
    </select>
   
   <!--  특정 리뷰에 해당하는 이미지 리스트를 가져오는 쿼리 수정  -->
