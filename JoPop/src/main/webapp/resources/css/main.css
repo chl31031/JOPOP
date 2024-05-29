@@ -10,13 +10,8 @@
 }
 .main_img_area{
 	width: 100%;
-	height: 100%;
-	background-color: #fff;
-}
-.slide_div{
-	width: 100%; /* 이미지의 너비를 부모 요소에 맞춤 */
-  	height: auto; /* 이미지의 높이를 자동으로 조정하여 비율 유지 */
-	opacity: 70%;
+	height: 200px;
+	background-color: #ccc;
 }
 /* 홈페이지 기능 네비 */ 
 .top_gnb_area{
@@ -24,8 +19,53 @@
     height: 50px;
     background-color: #f08080;
 }
-
-
+/* 로고, 검색, 로그인 */
+.top_area{
+	width: 100%;
+    height: 150px;
+    /* background-color: #f7f0b9; */
+}
+/* 로고 영역 */
+.logo_area{
+	width: 25%;
+	height: 100%;
+	background-color: red;
+	float:left;
+}
+/* 검색 박스 영역 */
+.search_area{
+	width: 50%;
+	height: 100%;
+	background-color: yellow;
+	float:left;	
+}
+/* 로그인 버튼 영역 */
+.login_area{
+	width: 25%;
+	height: 100%;
+	display: inline-block;	
+	text-align: center;		
+}
+.login_button{
+	height: 50%;
+    background-color: #D4DFE6;
+    margin-top: 30px;
+    line-height: 77px;
+    font-size: 40px;
+    font-weight: 900;
+    border-radius: 10px;
+    cursor: pointer;	
+}
+.login_area>span{
+	margin-top: 10px;
+    font-weight: 900;
+    display: inline-block;
+}
+.login_button{
+	height : 50%;
+	background-color: #D4DFE6;
+	margin-top:30px;
+}
 
 /* 제품 목록 네비 */
 .navi_bar_area{
@@ -45,120 +85,3 @@
 .clearfix{
 	clear: both;
 }
-
-/* Customize slick arrows */
-.slick-prev,
-.slick-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    text-align: center;
-    line-height: 30px;
-    font-size: 0; /* 텍스트 숨김 */
-    color: transparent; /* 텍스트 숨김 */
-    z-index: 1;
-    cursor: pointer;
-}
-
-.slick-prev {
-    left: 10px;
-}
-
-.slick-next {
-    right: 10px;
-}
-
-.slick-prev,
-.slick-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    background-color: transparent; /* 배경색을 투명하게 설정 */
-    border: none; /* 테두리 제거 */
-    z-index: 1;
-    cursor: pointer;
-}
-
-.slick-prev {
-    left: 10px;
-    background-image: url('/resources/img/pre.png'); /* 이전 버튼 이미지 */
-    background-size: cover;
-}
-
-.slick-next {
-    right: 10px;
-    background-image: url('/resources/img/next.png'); /* 다음 버튼 이미지 */
-    background-size: cover;
-}
-
-
-
-
-
-/* 추가된 CSS 코드 */
-.popupdetail-banner .slide-img-wrap::after,
-.slide-content .slide-img-wrap::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0.8;
-    z-index: 1;
-}
-
-.slide-img-wrap {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.slide-content .slide-img-wrap {
-    position: relative;
-    left: 0;
-    bottom: 0;
-    cursor: pointer;
-}
-
-.slick-slider {
-    position: relative;
-    display: block;
-    box-sizing: border-box;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: pan-y;
-    -webkit-tap-highlight-color: transparent;
-}
-.slick-dots {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 50px;
-  display: flex;
-  justify-content: center;
-}
-
-.slick-dots li {
-  width: 20px;
-  height: 4px;
-  background: #aaa;
-  margin: 0 6px 0 0; /* 오른쪽 마진을 0으로 설정하여 점 사이의 간격을 없앰 */
-  transition: 0.4s;
-   display: none;
-}
-
-.slick-dots li.slick-active {
-  background: #000000;
-  width: 40px;
-}
-
-
