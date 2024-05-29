@@ -130,7 +130,6 @@
 				type="hidden" name='pId' value="${popsInfo.pId}">
 		</form>
 	</div>
-	<%@include file="../admin/nav.jsp"%>
 
 	<script>
                 /* 캘린더 위젯 적용 */

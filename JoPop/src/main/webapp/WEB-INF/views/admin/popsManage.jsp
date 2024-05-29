@@ -112,7 +112,6 @@
 		</form>
 
 	</div>
-	<%@include file="../admin/nav.jsp"%>
 	<script>
 		$(document).ready(function() {
 

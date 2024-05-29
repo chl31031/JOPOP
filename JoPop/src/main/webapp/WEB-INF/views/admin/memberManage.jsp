@@ -71,6 +71,5 @@
 			</tbody>
 		</table>
 
-		<%@include file="../admin/nav.jsp"%>
 </body>
 </html>

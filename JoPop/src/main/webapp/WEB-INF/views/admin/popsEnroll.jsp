@@ -240,7 +240,6 @@ img.ui-datepicker-trigger {
 		</div>
 	</div>
 
-	<%@include file="../admin/nav.jsp"%>
 
 	<script>
 /* 캘린더 위젯 적용 */
