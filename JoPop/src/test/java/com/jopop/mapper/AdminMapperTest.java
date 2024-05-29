@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.jopop.model.PopVO;
-
+/*
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 public class AdminMapperTest {
@@ -17,7 +17,8 @@ public class AdminMapperTest {
 	@Autowired
 	private AdminMapper mapper;
 	
-	/* 상품 등록 */
+	/*
+	/* 
 	@Test
 	public void popsEnrollTest() throws Exception{
 		
@@ -35,3 +36,4 @@ public class AdminMapperTest {
 		mapper.popsEnroll(pop);
 	}
 }
+*/

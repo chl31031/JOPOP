@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.jopop.mapper.MemberMapper">
+  
+  <!-- 회원가입 쿼리  -->
+  <insert id="memberJoin">
+   insert into JP_member(mEmail, mPw, mName, mNick, mAddr1, mAddr2, mAddr3, money)
+ values(#{mEmail}, #{mPw}, #{mName}, #{mNick}, #{mAddr1}, #{mAddr2}, #{mAddr3}, 50000)
+  </insert>
+  
+  <!-- 아이디 중복검사 -->
+  <select id="idCheck" resultType="int">
+  	
+  	select count(*) from JP_member where mEmail = #{mEmail}
+  	
+  </select>
+  
+  <!-- 로그인 -->
+  <select id="memberLogin" resultType="com.jopop.model.MemberVO">
+  
+  select mId, mEmail, mPw, mName, mNick, adminCk, membership, money from JP_member where mEmail = #{mEmail}
+  </select>
+  
+  <!-- 주문자 정보(이메일 등등)  -->
+  <select id="getMemberInfo" resultType="com.jopop.model.MemberVO">
+  	select mId, mName, mAddr1, mAddr2, mAddr3, membership, money
+  	from jp_member
+  	where mId = #{mId}
+  </select>
+  </mapper>

@@ -1,0 +1,108 @@
+@charset "UTF-8";
+*{
+   margin: 0;
+   padding:0;
+}
+
+.wrapper{
+	height:auto;
+}
+.wrap{
+   width : 900px;
+   margin: auto;
+}
+.list{
+   width: 400px;
+   display: block;
+   float: left;
+}
+.main_img_area{
+   width: 100%;
+   height: 200px;
+   background-color: #ccc;
+}
+/* 홈페이지 기능 네비 */ 
+.top_gnb_area{
+   width: 100%;
+    height: 50px;
+    background-color: #f08080;
+}
+
+/* 로고 영역 */
+.logo_area{
+   width: 25%;
+   height: 100%;
+   background-color: red;
+   float:left;
+}
+/* 검색 박스 영역 */
+.search_area{
+   width: 50%;
+   height: 100%;
+   background-color: yellow;
+   float:left;   
+}
+
+/* 제품 목록 네비 */
+.navi_bar_area{
+   width: 100%;
+    height: 70px;
+    background-color: #7696fd;
+}
+
+/* 홈페이지 메인 제품 목록  */
+.content_area{
+   width: 100%;
+    /* background-color: #97ef97; */
+   height: 2000px;
+}
+
+/* float 속성 해제 */
+.clearfix{
+   clear: both;
+}
+
+.type_list{
+       width: 100%;
+       border-bottom: 1px solid #e7e7e7;
+       border-collapse: collapse;   
+   }
+.type_list tr{
+      height:200px;
+      border-bottom: 1px solid #e7e7e7;
+   }
+.detail div{
+      margin-bottom: 5px;
+   }
+.category{
+      font-size: 12px;
+       font-weight: 600;
+   }
+.title{
+       font-size: 20px;
+       color: #3a60df;
+       font-weight: 700;
+   }
+.author{
+      font-size: 14px;
+   }
+.info{
+      text-align: center;
+   }
+.price{
+      text-align: center;
+   }
+.org_price del{
+      font-size: 13px;
+   }
+.sell_price strong{
+      color: #da6262;
+       font-size: 18px;
+   }
+   
+.btn_cart {
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+}

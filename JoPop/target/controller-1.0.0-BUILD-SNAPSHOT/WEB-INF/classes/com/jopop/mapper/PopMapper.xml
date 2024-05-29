@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jopop.mapper.PopMapper">
+  
+  <resultMap id="jpPop" type="com.jopop.model.PopVO">
+    <id column="pid" property="pId"/>
+    <result column="pname" property="pName"/>
+    <result column="startdate" property="startDate"/>
+    <result column="enddate" property="endDate"/>
+    <result column="paddr1" property="pAddr1"/>
+    <result column="paddr2" property="pAddr2"/>
+    <result column="paddr3" property="pAddr3"/>
+    <result column="pprice" property="pPrice"/>
+    <result column="pintro" property="pIntro"/>
+    <result column="pcontents" property="pContents"/>
+     
+    <association javaType="com.jopop.model.MapVO" property="mapVO">
+      <id column="pId" property="pId"/>
+      <result column="catecode" property="cateCode"/>
+      <result column="catename" property="cateName"/>
+      <result column="lat" property="lat"/>
+      <result column="lng" property="lng"/>  
+    </association>
+  </resultMap>
+
+  <!-- 상품 상세 정보 쿼리 -->
+  <select id="PopGoodsInfo" resultMap="jpPop">
+    SELECT 
+      a.PID, a.CATECODE, a.PNAME, a.CATENAME, a.LAT, a.LNG,
+      b.STARTDATE, b.ENDDATE, b.PADDR1, b.PADDR2, b.PADDR3,
+      b.PPRICE, b.PINTRO, b.PCONTENTS
+    FROM 
+      jp_map a
+    INNER JOIN 
+      jp_pop b ON a.PID = b.PID
+    WHERE 
+      a.PID = #{pid}
+  </select>
+  
+  <!-- criteria(검색조건) -->
+  <sql id="criteria">
+    <if test="keyword != null">
+        pName like '%' || #{keyword} || '%' and
+    </if>
+  </sql>
+
+  <!-- 상품 검색 -->
+  <select id="getGoodsList" resultType="com.jopop.model.PopVO">
+    <![CDATA[
+        select * from(
+            select /*+INDEX_DESC(JP_POP SYS_C008444)*/ rownum as rn, pId, pName,
+                (select cateName from JP_CATE where JP_POP.cateCode = JP_CATE.cateCode)
+                cateName, cateCode, startDate, endDate, pAddr1, pAddr2, pPrice
+            from JP_POP
+            where 
+        ]]>
+        <include refid="criteria"></include>
+        <![CDATA[
+            rownum <= #{pageNum} * #{amount} 
+        )
+        where rn > (#{pageNum} -1) * #{amount}
+    ]]>
+  </select>
+  
+  <!-- 상품 총 개수 -->
+  <select id="goodsGetTotal" resultType="int">
+    select count(*) from JP_POP
+    where
+    <include refid="criteria"></include> 
+    pId >0
+  </select>
+  
+  <!-- 날짜 리스트 요청 -->
+  <select id="getDateIdList" resultType="String">
+    select startDate from JP_POP where pName like '%' || #{keyword} || '%'
+  </select>
+  
+  <!-- 리뷰 삽입 구문 추가 -->
+  <insert id="addReview" parameterType="com.jopop.model.ReviewVO">
+    INSERT INTO jp_Review (mId, pId, contents, score, rDate)
+    VALUES (#{mId}, #{pId}, #{contents}, #{score}, SYSDATE)
+  </insert>
+  
+  <!--  이미지 정보 데이터베이스에 저장  -->
+<insert id="addImage" parameterType="com.jopop.model.RimageVO"> INSERT INTO jp_Rimage
+ (uploadPath, uuid, fileName, pId, mId)
+  VALUES (#{uploadPath}, #{uuid}, #{fileName}, #{pId}, #{mId})
+   </insert>
+   
+   
+  <!-- 리뷰 관련 및 이미지 정보 가져오기 -->
+ <select id="getReviewsByPid" parameterType="int" resultMap="reviewWithImages">
+  SELECT r.*, i.uploadPath, i.uuid, i.fileName FROM 
+ jp_Review r LEFT JOIN jp_Rimage
+  i ON r.pId = i.pId AND r.mId = i.mId WHERE r.pId = #{pid}
+   </select>
+  
+  <!--  특정 리뷰에 해당하는 이미지 리스트를 가져오는 쿼리 수정  -->
+<select id="getImagesByReviewId" parameterType="int" resultType="com.jopop.model.RimageVO">
+ SELECT * FROM jp_Rimage WHERE mId = #{mId} AND pId = #{pId} 
+ </select>
+ 
+ 
+ <!--  리뷰 및 이미지 정보를 포함한 resultMap  -->
+<resultMap id="reviewWithImages" type="com.jopop.model.ReviewVO">
+		<id column="rId" property="rId"/>
+		<result column="mId" property="mId"/>
+		<result column="mNick" property="mNick"/>
+		<result column="pId" property="pId"/>
+		<result column="pName" property="pName"/>
+		<result column="contents" property="contents"/>
+		<result column="score" property="score"/>
+		<result column="rDate" property="rDate"/>
+		<collection property="imageList" ofType="com.jopop.model.RimageVO">
+		<result column="uploadPath" property="uploadPath"/>
+		<result column="uuid" property="uuid"/>
+		<result column="fileName" property="fileName"/>
+		</collection>
+</resultMap>
+</mapper>

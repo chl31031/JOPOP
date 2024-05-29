@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.jopop.mapper.CartMapper">
+
+	<!-- 찜 추가 -->
+	<insert id="addCart">
+		insert into JP_cart(mId, pId) values(#{mId}, #{pId})
+	</insert>
+	
+	<!-- 찜 삭제 -->
+	<delete id="deleteCart">
+		delete from JP_cart where pId = #{pId}
+	</delete>
+	
+	<!-- 찜 목록 -->
+	<select id="getCart" resultType="com.jopop.model.CartVO">
+		SELECT a.cartId, a.mId, a.pId, p.pName, p.pPrice, p.pAddr1, p.pAddr2,p.startDate, p.endDate
+		FROM jp_cart a left outer join jp_pop p on a.pId = p.pId
+		WHERE mId = #{mId}
+	</select>
+	
+	<!-- 찜 확인 -->
+	<select id="checkCart" resultType="com.jopop.model.CartVO">
+		SELECT * from jp_cart
+		WHERE mId = #{mId} and pId = #{pId}
+	</select>
+	
+	<!-- 찜 키워드 검색 -->
+	<select id="searchCart" resultType="com.jopop.model.CartVO">
+      SELECT a.cartId, a.mId, a.pId, p.pName, p.pPrice, p.pAddr1, p.pAddr2, p.startDate, p.endDate
+      FROM jp_cart a left outer join jp_pop p on a.pId = p.pId
+      WHERE mId = #{mId} AND (p.pName Like '%' || #{keyword, jdbcType=VARCHAR} || '%' OR p.pAddr2 Like '%' || #{keyword, jdbcType=VARCHAR} || '%' OR p.pAddr1 Like '%' || #{keyword, jdbcType=VARCHAR} || '%')
+	</select>
+	
+  </mapper>

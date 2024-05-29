@@ -90,6 +90,7 @@ public class MemberController {
 	public void joinGET() {
 
 		logger.info("로그인 페이지 진입");
+		
 	}
 
 	// 아이디 중복검사
