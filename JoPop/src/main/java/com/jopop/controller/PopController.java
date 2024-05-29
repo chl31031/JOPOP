@@ -76,12 +76,11 @@ public class PopController {
         }
         model.addAttribute("reviews", reviews);
         model.addAttribute(popService.getImagesByReviewId(pid, pid));
+        
+       
 
         return "pop/popsDetail";
     }
-
-
-
 
     // 첨부 파일 업로드
     @PostMapping(value="/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -103,7 +102,8 @@ public class PopController {
             }
         }
 
-        String uploadFolder = "C:\\upload";
+        // 경로 변경
+        String uploadFolder = "C:/Users/admin/git/JOPOP-Web/JoPop/src/main/webapp/resources/Rimg";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         String str = sdf.format(date);
@@ -151,12 +151,13 @@ public class PopController {
         ResponseEntity<List<RimageVO>> result = new ResponseEntity<>(list, HttpStatus.OK);
         return result;
     }
-    
-    //이미지 출력 
+
+    // 이미지 출력 
     @GetMapping("/display")
     public ResponseEntity<Resource> getImage(@RequestParam("fileName") String fileName) {
         try {
-            File file = new File("c:/upload/" + fileName);
+            // 경로 변경
+            File file = new File("C:/Users/admin/git/JOPOP-Web/JoPop/src/main/webapp/resources/Rimg/" + fileName);
             if (file.exists()) {
                 Resource resource = new FileSystemResource(file);
                 HttpHeaders headers = new HttpHeaders();
@@ -171,7 +172,6 @@ public class PopController {
         }
     }
 
-    
     // 이미지 삭제
     @PostMapping("/deleteFile")
     public ResponseEntity<String> deleteFile(String fileName) {
@@ -179,7 +179,8 @@ public class PopController {
 
         File file = null;
         try {
-            file = new File("c:\\upload\\" + URLDecoder.decode(fileName, "UTF-8"));
+            // 경로 변경
+            file = new File("C:/Users/admin/git/JOPOP-Web/JoPop/src/main/webapp/resources/Rimg/" + URLDecoder.decode(fileName, "UTF-8"));
             file.delete();
 
             String originFileName = file.getAbsolutePath().replace("s_", "");
@@ -193,7 +194,7 @@ public class PopController {
         return new ResponseEntity<String>("success", HttpStatus.OK);
     }
 
- // 리뷰 추가 메서드
+    // 리뷰 추가 메서드
     @PostMapping("/addReview")
     @ResponseBody
     public Map<String, String> addReview(@RequestParam("pId") int pId, @RequestParam("contents") String contents, @RequestParam("score") int score, @RequestParam(value = "imageList", required = false) String imageListJson, HttpSession session, Model model) throws Exception {

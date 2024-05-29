@@ -25,4 +25,7 @@ public interface PopService {
     
     // 특정 리뷰에 해당하는 이미지 리스트를 가져오는 메서드 추가
     List<RimageVO> getImagesByReviewId(int mId, int pId) throws Exception;
+    
+    // [마이페이지 - 리뷰] 회원정보에 맞는 상품명 출력
+    public List<ReviewVO> getReviewsByPname(int pid) throws Exception;
 }

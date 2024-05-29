@@ -52,57 +52,55 @@
                 <div id="map" style="width: 100%; height: 400px;"></div>
             </div>
             <div class="section review-section">
-          <div class="section review-section">
-			    <h2>후기</h2>
-			    <c:if test="${not empty reviews}">
-			        <c:forEach var="review" items="${reviews}">
-			            <div class="review">
-			                <p>작성자: ${review.mId}</p> <!-- 작성자 정보 -->
-			                <p>내용: ${review.contents}</p>
-			                <p>평점: ${review.score}</p>
-			                <p>작성일: <fmt:formatDate value="${review.rDate}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" /></p>
-			                <c:if test="${not empty review.imageList}">
-		                <c:forEach items="${review.imageList}" var="image">
-						    <img src="http://localhost:8080/pop/display?fileName=${image.uploadPath.replace("\\", "/")}/${image.uuid}_${image.fileName}" alt="이미지" style="max-width: 100px;">
-						</c:forEach>
-						       </c:if>
-			            </div>
-			            <div class="review-divider"></div>
-			        </c:forEach>
-			    </c:if>
-			    <c:if test="${empty reviews}">
-			        <p>등록된 후기가 없습니다. 첫 번째 후기를 작성해 보세요!</p>
-			    </c:if>
-			</div>
-
-                <c:if test="${not empty member}">
-                    <div class="rating">
-                        <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
-                        <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
-                        <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
-                        <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-                        <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
-                    </div>
-                    <div id="uploadResult"></div>
-                    <form class="review-form" id="reviewForm" enctype="multipart/form-data">
-                        <input type="hidden" name="pId" value="${popsInfo.pId}">
-                        <textarea name="contents" placeholder="리뷰를 입력하세요"></textarea>
-                        <input type="hidden" name="score" value="">
-                        <input type="file" id="fileInput" name="uploadFile" style="display: none;" />
-                        <div class="button-group">
-                            <button type="button" onclick="document.getElementById('fileInput').click();">사진 첨부하기</button>
-                            <button type="submit">후기 등록</button>
+                <h2>후기</h2>
+                <c:if test="${not empty reviews}">
+                    <c:forEach var="review" items="${reviews}">
+                        <div class="review">
+                            <p>작성자: ${review.mId}</p> <!-- 작성자 정보 -->
+                            <p>내용: ${review.contents}</p>
+                            <p>평점: ${review.score}</p>
+                            <p>작성일: <fmt:formatDate value="${review.rDate}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" /></p>
+                            <c:if test="${not empty review.imageList}">
+                                <c:forEach items="${review.imageList}" var="image">
+                                    <img src="${pageContext.request.contextPath}/pop/display?fileName=${image.uploadPath.replace('\\', '/')}/${image.uuid}_${image.fileName}" alt="이미지" style="max-width: 100px;">
+                                </c:forEach>
+                            </c:if>
                         </div>
-                    </form>
+                        <div class="review-divider"></div>
+                    </c:forEach>
                 </c:if>
-                <c:if test="${empty member}">
-                    <p>후기를 작성하려면 <a href="${pageContext.request.contextPath}/nav/prelogin">로그인</a> 해주세요.</p>
+                <c:if test="${empty reviews}">
+                    <p>등록된 후기가 없습니다. 첫 번째 후기를 작성해 보세요!</p>
                 </c:if>
             </div>
 
-            <div class="footer">
-                ---
-            </div>
+            <c:if test="${not empty member}">
+                <div class="rating">
+                    <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+                    <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                    <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                    <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                    <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+                </div>
+                <div id="uploadResult"></div>
+                <form class="review-form" id="reviewForm" enctype="multipart/form-data">
+                    <input type="hidden" name="pId" value="${popsInfo.pId}">
+                    <textarea name="contents" placeholder="리뷰를 입력하세요"></textarea>
+                    <input type="hidden" name="score" value="">
+                    <input type="file" id="fileInput" name="uploadFile" style="display: none;" />
+                    <div class="button-group">
+                        <button type="button" onclick="document.getElementById('fileInput').click();">사진 첨부하기</button>
+                        <button type="submit">후기 등록</button>
+                    </div>
+                </form>
+            </c:if>
+            <c:if test="${empty member}">
+                <p>후기를 작성하려면 <a href="${pageContext.request.contextPath}/nav/prelogin">로그인</a> 해주세요.</p>
+            </c:if>
+        </div>
+
+        <div class="footer">
+            ---
         </div>
     </div>
 <script>
@@ -113,7 +111,7 @@ $(document).ready(function() {
     var maxSize = 1048576; // 1MB
     var regex = new RegExp("(.*?)\.(jpg|png|jpeg|gif)$");
 
-    // 베너 슬라이더 초기화
+    // 배너 슬라이더 초기화
     $('.slider').slick({
         slidesToShow: 2,
         slidesToScroll: 1,
@@ -206,7 +204,7 @@ $(document).ready(function() {
         formData.append("uploadFile", fileObj);
 
         $.ajax({
-            url: '/pop/uploadAjaxAction',
+            url: '${pageContext.request.contextPath}/pop/uploadAjaxAction',
             processData: false,
             contentType: false,
             data: formData,
@@ -324,7 +322,7 @@ $(document).ready(function() {
         let fileCallPath = encodeURIComponent(obj.uploadPath.replace(/\\/g, '/') + "/s_" + obj.uuid + "_" + obj.fileName);
 
         str += "<div id='result_card'>";
-        str += "<img src='/pop/display?fileName=" + fileCallPath + "' style='width: 100px; height: auto;'>";
+        str += "<img src='${pageContext.request.contextPath}/pop/display?fileName=" + fileCallPath + "' style='width: 100px; height: auto;'>";
         str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>삭제</div>";
         str += "<input type='hidden' name='imageList[0].fileName' value='" + obj.fileName + "'>";
         str += "<input type='hidden' name='imageList[0].uuid' value='" + obj.uuid + "'>";
