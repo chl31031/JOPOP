@@ -27,5 +27,5 @@ public interface PopService {
     List<RimageVO> getImagesByReviewId(int mId, int pId) throws Exception;
     
     // [마이페이지 - 리뷰] 회원정보에 맞는 상품명 출력
-    public List<ReviewVO> getReviewsByPname(int pid) throws Exception;
+    public List<ReviewVO> getMyPageReivew(int mId) throws Exception;
 }

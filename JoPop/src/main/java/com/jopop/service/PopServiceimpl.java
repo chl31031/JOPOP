@@ -79,7 +79,7 @@ public class PopServiceimpl implements PopService {
     
     //[마이페이지 - 리뷰] 회원정보에 맞는 상품명 출력
 	@Override
-	public List<ReviewVO> getReviewsByPname(int pid) throws Exception {
-		return popMapper.getReviewsByPname(pid);
+	public List<ReviewVO> getMyPageReivew(int mId) throws Exception {
+		return popMapper.getMyPageReivew(mId);
 	}
 }

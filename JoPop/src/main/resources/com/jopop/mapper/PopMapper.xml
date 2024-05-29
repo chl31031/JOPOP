@@ -94,7 +94,7 @@
  <select id="getReviewsByPid" parameterType="int" resultMap="reviewWithImages">
   SELECT r.*, i.uploadPath, i.uuid, i.fileName FROM 
  jp_Review r LEFT JOIN jp_Rimage
-  i ON r.pId = i.pId AND r.mId = i.mId WHERE r.pId = #{pid} OR r.mId =#{mId}
+  i ON r.pId = i.pId AND r.mId = i.mId WHERE r.pId = #{pid} OR r.mId = #{mId}
    </select>
   
   <!--  특정 리뷰에 해당하는 이미지 리스트를 가져오는 쿼리 수정  -->
@@ -103,11 +103,13 @@
  </select>
  
  <!-- [마이페이지-리뷰] 회원정보에 맞는 상품명 출력 -->
- <select id="getReviewsByPname" parameterType="int" resultMap="reviewWithImages">
- 	SELECT p.pName, r.pId
-	FROM jp_review r LEFT JOIN jp_pop p
-			ON r.pId = p.pId
-	WHERE r.pId = #{pId}
+ <select id="getMyPageReivew" parameterType="int" resultMap="reviewWithImages">
+	SELECT r.*, i.uploadPath, i.uuid, i.fileName, p.pName 
+	FROM jp_Review r LEFT JOIN jp_Rimage i 
+	                                ON r.pId = i.pId AND r.mId = i.mId 
+	                 LEFT JOIN jp_pop p
+	                                ON r.pId = p.pId
+	WHERE r.mId =#{mId}
  </select>
  
  

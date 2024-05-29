@@ -66,18 +66,16 @@ public class MemberController {
 		
 		int mId = mvo.getmId();
 		
-		List<ReviewVO> reviews = popService.getReviewsByPid(mId);
+		List<ReviewVO> reviews = popService.getMyPageReivew(mId);
 		
         for (ReviewVO review : reviews) {
-        	int pId = review.getpId();
-        	reviews = popService.getReviewsByPname(pId);
         	
             List<RimageVO> images = popService.getImagesByReviewId(review.getmId(), review.getpId());
             review.setImageList(images);
+            model.addAttribute(popService.getImagesByReviewId(review.getmId(), review.getpId()));
         }
 		
         model.addAttribute("reviews", reviews);
-        //model.addAttribute(popService.getImagesByReviewId(mid, pid));
 
         return "member/mypage";
 	}
@@ -105,7 +103,6 @@ public class MemberController {
 	public void joinGET() {
 
 		logger.info("로그인 페이지 진입");
-		
 	}
 
 	// 아이디 중복검사
