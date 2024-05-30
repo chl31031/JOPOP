@@ -32,6 +32,9 @@ public interface PopMapper {
     List<RimageVO> getImagesByReviewId(@Param("mId") int mId, @Param("pId") int pId) throws Exception;
 
     // [마이페이지 - 리뷰] 회원정보에 맞는 상품명 출력
-    public List<ReviewVO> getReviewsByPname(int pid) throws Exception;
+    public List<ReviewVO> getMyPageReivew(int mId) throws Exception;
+    
+    // 리뷰 내용, 이미지 삭제
+    public int deleteReview(int pId, int mId);
     
 }

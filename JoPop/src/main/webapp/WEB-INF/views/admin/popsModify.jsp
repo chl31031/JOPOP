@@ -1,266 +1,242 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>관리자 수정 페이지</title>
-<link rel="stylesheet" href="../resources/css/admin/goodsModify.css">
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"
-	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.ckeditor.com/ckeditor5/26.0.0/classic/ckeditor.js"></script>
+<link rel="stylesheet" href="../resources/css/admin/popsModify.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+
+<!-- 캘린더 -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+<style>
+/*datepicker에서 사용한 이미지 버튼 style적용*/
+            img.ui-datepicker-trigger {
+                margin-left:5px; vertical-align:middle; cursor:pointer;
+</style>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/26.0.0/classic/ckeditor.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-</head>
+<!-- datepicker 한국어로 -->
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
 </head>
 <body>
 
-	<%@include file="../includes/admin/header.jsp"%>
+         <%@include file="../includes/admin/header.jsp" %>
+            
+                <div class="admin_content_wrap">
+                    <div class="admin_content_subject"><span>팝업/전시 정보 수정</span></div>
+                    <div class="admin_content_main">
+                       <form action="/admin/popsModify" method="post" id="modifyForm">
+                          <div class="form_section">
+                             <div class="form_section_title">
+                                <label>팝업/전시 이름</label>
+                             </div>
+                             <div class="form_section_content">
+                                <input name="pName" value="${popsInfo.pName}">
+                                <span class="ck_warn pName_warn">팝업/전시 이름을 입력해주세요.</span>
+                             </div>
+                          </div>
+                         
+                          <div class="form_section">
+    <div class="form_section_title">
+      <label>기간</label>
+    </div>
+    <div class="form_section_content">
+      <label for="startDate">시작일</label>
+      <input name="startDate" id="startDate" value="${popsInfo.startDate }">
+      ~
+      <label for="endDate">종료일</label>
+      <input name="endDate" id="endDate" value="${popsInfo.endDate }">
+      <span class="ck_warn startDate_warn">일정(시작일과 종료일)을 선택해주세요.</span>
+    </div>
+  </div>            
+                                       
+                          <div class="form_section">
+    <div class="form_section_title">
+        <label>팝업/전시 지역(주소)</label>
+    </div>
+    <div class="form_section_content">
+        <div class="cate_wrap">
+            <span>시/도</span>
+            <select class="cate1">
+                <option selected value="${popsInfo.cate1 }">선택</option>
+            </select>
+        </div>
+        <div class="cate_wrap">
+            <span>시/군/구</span>
+            <select class="cate2">
+                <option selected value="${popsInfo.cate }">선택</option>
+            </select>
+        </div>
+        <span class="ck_warn cateCode_warn">지역을 선택해주세요.</span>
+    </div>
+</div>
+                                   
+                          <div class="form_section">
+                             <div class="form_section_title">
+                                <label>가격</label>
+                             </div>
+                             <div class="form_section_content">
+                                <input name="pPrice" value="${popsInfo.pPrice}">원
+                                <span class="ck_warn pPrice_warn">팝업/전시 가격을 입력해주세요.</span>
+                             </div>
+                          </div>                                                                    
+                                        
+                          <div class="form_section">
+                             <div class="form_section_title">
+                                <label>이용 시설 안내</label>
+                             </div>
+                             <div class="form_section_content bit">
+                                <textarea name="pIntro" id="pIntro_textarea">${popsInfo.pIntro}</textarea>
+                                <span class="ck_warn pIntro_warn">이용 시설 안내를 입력해주세요.</span>
+                             </div>
+                          </div>              
+                          <div class="form_section">
+                             <div class="form_section_title">
+                                <label>팝업/전시 소개(상세 내용)</label>
+                             </div>
+                             <div class="form_section_content bct">
+                                <textarea name="pContents" id="pContents_textarea">${popsInfo.pContents}</textarea>
+                                <span class="ck_warn pContents_warn">팝업/전시 상세 정보를 입력해주세요.</span>
+                             </div>
+                          </div>
+                          
+                          <div class="form_section">
+                             <div class="form_section_title">
+                                <label>팝업/전시 이미지</label>
+                             </div>
+                             <div class="form_section_content">
+                           		<input type="file" id ="fileItem" name='uploadFile' style="height: 30px;">
+                           		<div id="uploadResult">                                     
+                           </div>                           
+                             </div>
+                          </div>
+                                                    
+                          <input type="hidden" name='pId' value="${popsInfo.pId}">
+                        </form>
+                            <div class="btn_section">
+                              <button id="cancelBtn" class="btn">취 소</button>
+                             <button id="modifyBtn" class="btn modify_btn">수 정</button>
+                             <button id="deleteBtn" class="btn delete_btn">삭 제</button>
+                          </div> 
+                    </div> 
+                              
+                   <form id="moveForm" action="/admin/popsManage" method="get" >
+                   <input type="hidden" name="pageNum" value="${cri.pageNum}">
+                  <input type="hidden" name="amount" value="${cri.amount}">
+                  <input type="hidden" name="keyword" value="${cri.keyword}">
+                  <input type="hidden" name='pId' value="${popsInfo.pId}">
+                   </form>                                
+                </div>
+ 
+             <!--원래 footer 있었음-->
+                          
+                 <script>
+    $(function() {
+      // Datepicker 한국어 설정
+      $.datepicker.setDefaults($.datepicker.regional['ko']); 
 
-	<div class="admin_content_wrap">
-		<div class="admin_content_subject">
-			<span>팝업/전시 정보 수정</span>
-		</div>
-		<div class="admin_content_main">
-			<form action="/admin/popsModify" method="post" id="modifyForm">
-				<div class="form_section">
-					<div class="form_section_title">
-						<label>팝업/전시 이름</label>
-					</div>
-					<div class="form_section_content">
-						<input name="pName" value="${popsInfo.pName}"> <span
-							class="ck_warn pName_warn">팝업/전시 이름을 입력해주세요.</span>
-					</div>
-				</div>
+      function initializeDatePickers() {
+        var startDateValue = $("#startDate").val();
+        var endDateValue = $("#endDate").val();
 
-				<div class="form_section">
-					<div class="form_section_title">
-						<label>기간</label>
-					</div>
-					<div class="form_section_content">
-						<input name="startDate" value="${popInfo.startDate }">~ <input
-							name="endDate" value="${popInfo.endDate }"> <span
-							class="ck_warn startDate_warn">일정(시작일과 종료일)을 선택해주세요.</span>
-					</div>
-				</div>
+        $('#startDate').datepicker({
+          showOn: "both",             
+          buttonText: "날짜선택",    
+          dateFormat: "yy-mm-dd",    
+          changeMonth: true,        
+          onClose: function(selectedDate) {    
+            $("#endDate").datepicker("option", "minDate", selectedDate);
+            validateDates();
+          }                
+        });
 
-				<div class="form_section">
-					<div class="form_section_title">
-						<label>지역 카테고리</label>
-					</div>
-					<div class="form_section_content">
-						<div class="cate_wrap">
-							<span>대분류</span> <select class="cate1">
-								<option selected value="none">선택</option>
-							</select>
-						</div>
-						<div class="cate_wrap">
-							<span>중분류</span> <select class="cate2">
-								<option selected value="none">선택</option>
-							</select>
-						</div>
-						<div class="cate_wrap">
-							<span>소분류</span> <select class="cate3" name="cateCode">
-								<option selected value="none">선택</option>
-							</select>
-						</div>
-						<span class="ck_warn cateCode_warn">카테고리를 선택해주세요.</span>
-					</div>
-				</div>
+        $('#endDate').datepicker({
+          showOn: "both",            
+          buttonText: "날짜선택",
+          dateFormat: "yy-mm-dd",
+          changeMonth: true,
+          onClose: function(selectedDate) {
+            $("#startDate").datepicker("option", "maxDate", selectedDate);
+            validateDates();
+          }                
+        });
 
-				<div class="form_section">
-					<div class="form_section_title">
-						<label>가격</label>
-					</div>
-					<div class="form_section_content">
-						<input name="pPrice" value="${popsInfo.pPrice}">원 <span
-							class="ck_warn pPrice_warn">팝업/전시 가격을 입력해주세요.</span>
-					</div>
-				</div>
+        // 시작일과 종료일의 값이 있으면 datepicker에 설정
+        if (startDateValue) {
+          $('#startDate').datepicker("setDate", startDateValue);
+        }
+        if (endDateValue) {
+          $('#endDate').datepicker("setDate", endDateValue);
+        }
+      }
 
-				<div class="form_section">
-					<div class="form_section_title">
-						<label>이용 시설 안내</label>
-					</div>
-					<div class="form_section_content bit">
-						<textarea name="pIntro" id="pIntro_textarea">${popsInfo.pIntro}</textarea>
-						<span class="ck_warn pIntro_warn">이용 시설 안내를 입력해주세요.</span>
-					</div>
-				</div>
-				<div class="form_section">
-					<div class="form_section_title">
-						<label>팝업/전시 소개(상세 내용)</label>
-					</div>
-					<div class="form_section_content bct">
-						<textarea name="pContents" id="pContents_textarea">${popsInfo.pContents}</textarea>
-						<span class="ck_warn pContents_warn">팝업/전시 상세 정보를 입력해주세요.</span>
-					</div>
-				</div>
+      function validateDates() {
+        var startDate = $('#startDate').datepicker('getDate');
+        var endDate = $('#endDate').datepicker('getDate');
+        if (startDate && endDate) {
+          $('.startDate_warn').hide();
+        } else {
+          $('.startDate_warn').show();
+        }
+      }
 
-				<div class="form_section">
-					<div class="form_section_title">
-						<label>팝업/전시 이미지</label>
-					</div>
-					<div class="form_section_content">
-						<input type="file" id="fileItem" name='uploadFile'
-							style="height: 30px;">
-						<div id="uploadResult"></div>
-					</div>
-				</div>
-
-				<input type="hidden" name='pId' value="${popsInfo.pId}">
-			</form>
-			<div class="btn_section">
-				<button id="cancelBtn" class="btn">취 소</button>
-				<button id="modifyBtn" class="btn modify_btn">수 정</button>
-				<button id="deleteBtn" class="btn delete_btn">삭 제</button>
-			</div>
-		</div>
-
-		<form id="moveForm" action="/admin/popsManage" method="get">
-			<input type="hidden" name="pageNum" value="${cri.pageNum}"> <input
-				type="hidden" name="amount" value="${cri.amount}"> <input
-				type="hidden" name="keyword" value="${cri.keyword}"> <input
-				type="hidden" name='pId' value="${popsInfo.pId}">
-		</form>
-	</div>
-	<%@include file="../admin/nav.jsp"%>
-
-	<script>
-                /* 캘린더 위젯 적용 */
-                $(function() {
-                   
-                    //datepicker 한국어로 사용하기 위한 언어설정
-                    $.datepicker.setDefaults($.datepicker.regional['ko']); 
-                    
-                    // 시작일(startDate)은 종료일(endDate) 이후 날짜 선택 불가
-                    // 종료일(endDate)은 시작일(startDate) 이전 날짜 선택 불가
-
-                    //시작일.
-                    $('#startDate').datepicker({
-                        showOn: "both",                     // 달력을 표시할 타이밍 (both: focus or button)       
-                        buttonText: "날짜선택",             // 버튼의 대체 텍스트
-                        dateFormat: "yy-mm-dd",             // 날짜의 형식
-                        changeMonth: true,                  // 월을 이동하기 위한 선택상자 표시여부
-                        //minDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
-                        onClose: function( selectedDate ) {    
-                            // 시작일(startDate) datepicker가 닫힐때
-                            // 종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-                            $("#endDate").datepicker( "option", "minDate", selectedDate );
-                        }                
-                    });
-
-                    //종료일
-                    $('#endDate').datepicker({
-                        showOn: "both",            
-                        buttonText: "날짜선택",
-                        dateFormat: "yy-mm-dd",
-                        changeMonth: true,
-                        //minDate: 0, // 오늘 이전 날짜 선택 불가
-                        onClose: function( selectedDate ) {
-                            // 종료일(startDate) datepicker가 닫힐때
-                            // 시작일(endDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
-                            $("#startDate").datepicker( "option", "maxDate", selectedDate );
-                        }                
-                    });
-                });
+      initializeDatePickers();
+      validateDates();
+    });
+  </script>
                 <!--캘린더 끝-->                           
-         
-         /* 카테고리 */
-         let cateList = JSON.parse('${cateList}');
+<script>                         
+  //카테고리(지역)
+   let cateList = JSON.parse('${cateList}');
 
-         let cate1Array = new Array();
-         let cate2Array = new Array();
-         let cate3Array = new Array();
-         let cate1Obj = new Object();
-         let cate2Obj = new Object();
-         let cate3Obj = new Object();
-         
-         let cateSelect1 = $(".cate1");      
-         let cateSelect2 = $(".cate2");
-         let cateSelect3 = $(".cate3");
-         
-         /* 카테고리 배열 초기화 메서드 */
-         function makeCateArray(obj,array,cateList, tier){
-            for(let i = 0; i < cateList.length; i++){
-               if(cateList[i].tier === tier){
-                  obj = new Object();
-                  
-                  obj.cateName = cateList[i].cateName;
-                  obj.cateCode = cateList[i].cateCode;
-                  obj.cateParent = cateList[i].cateParent;
-                  
-                  array.push(obj);            
-                  
-               }
-            }
-         }   
-         
-            /* 배열 초기화 */
-         makeCateArray(cate1Obj,cate1Array,cateList,1);
-         makeCateArray(cate2Obj,cate2Array,cateList,2);
-         makeCateArray(cate3Obj,cate3Array,cateList,3);
-         
-         
-         let targetCate2 = '';
-         let targetCate3 = '${goodsInfo.cateCode}';
-         
-            /* 소분류 */
-         for(let i = 0; i < cate3Array.length; i++){
-            if(targetCate3 === cate3Array[i].cateCode){
-               targetCate3 = cate3Array[i];
-            }
-         }// for         
-         
-         for(let i = 0; i < cate3Array.length; i++){
-            if(targetCate3.cateParent === cate3Array[i].cateParent){
-               cateSelect3.append("<option value='"+cate3Array[i].cateCode+"'>" + cate3Array[i].cateName + "</option>");
-            }
-         }            
-         
-         $(".cate3 option").each(function(i,obj){
-            if(targetCate3.cateCode === obj.value){
-               $(obj).attr("selected", "selected");
-            }
-         });         
-         
-            /* 중분류 */
-         for(let i = 0; i < cate2Array.length; i++){
-            if(targetCate3.cateParent === cate2Array[i].cateCode){
-               targetCate2 = cate2Array[i];   
-            }
-         }// for      
-         
-         for(let i = 0; i < cate2Array.length; i++){
-            if(targetCate2.cateParent === cate2Array[i].cateParent){
-               cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>" + cate2Array[i].cateName + "</option>");
-            }
-         }      
-         
-         $(".cate2 option").each(function(i,obj){
-            if(targetCate2.cateCode === obj.value){
-               $(obj).attr("selected", "selected");
-            }
-         });            
-         
-         
-            /* 대분류 */
-         for(let i = 0; i < cate1Array.length; i++){
-            cateSelect1.append("<option value='"+cate1Array[i].cateCode+"'>" + cate1Array[i].cateName + "</option>");
-         }   
-         
-         $(".cate1 option").each(function(i,obj){
-            if(targetCate2.cateParent === obj.value){
-               $(obj).attr("selected", "selected");
-            }
-         });                     
-         
+let cate1Array = [];
+let cate2Array = [];
+
+let cateSelect1 = $(".cate1");
+let cateSelect2 = $(".cate2");
+
+// 카테고리(지역) 배열 초기화 메서드
+function makeCateArray(array, cateList, tier) {
+    for (let i = 0; i < cateList.length; i++) {
+        if (cateList[i].tier === tier) {
+            let obj = {
+                cateName: cateList[i].cateName,
+                cateCode: cateList[i].cateCode,
+                cateParent: cateList[i].cateParent
+            };
+            array.push(obj);
+        }
+    }
+}
+
+// 배열 초기화
+makeCateArray(cate1Array, cateList, 1);
+makeCateArray(cate2Array, cateList, 2);
+
+// 시/도(대분류) <option> 태그 추가
+$(document).ready(function() {
+    for (let i = 0; i < cate1Array.length; i++) {
+        cateSelect1.append("<option value='" + cate1Array[i].cateCode + "'>" + cate1Array[i].cateName + "</option>");
+    }
+});
+
+// 시/도 선택 시 시/군/구(중분류) <option> 태그 추가
+$(cateSelect1).on("change", function() {
+    let selectVal1 = $(this).find("option:selected").val();
+    cateSelect2.children().remove();
+    cateSelect2.append("<option value='none'>선택</option>");
+    for (let i = 0; i < cate2Array.length; i++) {
+        if (selectVal1 === cate2Array[i].cateParent) {
+            cateSelect2.append("<option value='" + cate2Array[i].cateCode + "'>" + cate2Array[i].cateName + "</option>");
+        }
+    }
+});        
          
          
          /* 위지윅 적용 */
@@ -319,81 +295,56 @@
          
       }); // document ready
    
-</script>
+</script>          
+   
+<script>
+   
+/*카테고리(지역)*/
+let cateList = JSON.parse('${cateList}');
 
-	<script>
-   
-   /* 카테고리 */
-   let cateList = JSON.parse('${cateList}');
+let cate1Array = [];
+let cate2Array = [];
 
-   let cate1Array = new Array();
-   let cate2Array = new Array();
-   let cate3Array = new Array();
-   let cate1Obj = new Object();
-   let cate2Obj = new Object();
-   let cate3Obj = new Object();
-   
-   let cateSelect1 = $(".cate1");      
-   let cateSelect2 = $(".cate2");
-   let cateSelect3 = $(".cate3");
-   
-   /* 카테고리 배열 초기화 메서드 */
-   function makeCateArray(obj,array,cateList, tier){
-      for(let i = 0; i < cateList.length; i++){
-         if(cateList[i].tier === tier){
-            obj = new Object();
-            
-            obj.cateName = cateList[i].cateName;
-            obj.cateCode = cateList[i].cateCode;
-            obj.cateParent = cateList[i].cateParent;
-            
-            array.push(obj);            
-            
-         }
-      }
-   }   
-   
-      /* 배열 초기화 */
-   makeCateArray(cate1Obj,cate1Array,cateList,1);
-   makeCateArray(cate2Obj,cate2Array,cateList,2);
-   makeCateArray(cate3Obj,cate3Array,cateList,3);
+let cateSelect1 = $(".cate1");
+let cateSelect2 = $(".cate2");
 
-   
-      /* 중분류 <option> 태그 */
-   $(cateSelect1).on("change",function(){
+//카테고리(지역) 배열 초기화 메서드
+function makeCateArray(array, cateList, tier) {
+ for (let i = 0; i < cateList.length; i++) {
+     if (cateList[i].tier === tier) {
+         let obj = {
+             cateName: cateList[i].cateName,
+             cateCode: cateList[i].cateCode,
+             cateParent: cateList[i].cateParent
+         };
+         array.push(obj);
+     }
+ }
+}
+
+//배열 초기화
+makeCateArray(cate1Array, cateList, 1);
+makeCateArray(cate2Array, cateList, 2);
+
+//시/도(대분류) <option> 태그 추가
+$(document).ready(function() {
+ for (let i = 0; i < cate1Array.length; i++) {
+     cateSelect1.append("<option value='" + cate1Array[i].cateCode + "'>" + cate1Array[i].cateName + "</option>");
+ }
+});
+
+//시/도 선택 시 시/군/구(중분류) <option> 태그 추가
+$(cateSelect1).on("change", function() {
+ let selectVal1 = $(this).find("option:selected").val();
+ cateSelect2.children().remove();
+ cateSelect2.append("<option value='none'>선택</option>");
+ for (let i = 0; i < cate2Array.length; i++) {
+     if (selectVal1 === cate2Array[i].cateParent) {
+         cateSelect2.append("<option value='" + cate2Array[i].cateCode + "'>" + cate2Array[i].cateName + "</option>");
+     }
+ }
+}); 
       
-      let selectVal1 = $(this).find("option:selected").val();   
-      
-      cateSelect2.children().remove();
-      cateSelect3.children().remove();
-      
-      cateSelect2.append("<option value='none'>선택</option>");
-      cateSelect3.append("<option value='none'>선택</option>");
-      
-      for(let i = 0; i < cate2Array.length; i++){
-         if(selectVal1 === cate2Array[i].cateParent){
-            cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>" + cate2Array[i].cateName + "</option>");   
-         }
-      }// for
-      
-   });
-   
-      /* 소분류 <option>태그 */
-   $(cateSelect2).on("change",function(){
-      
-      let selectVal2 = $(this).find("option:selected").val();
-      
-      cateSelect3.children().remove();
-      
-      cateSelect3.append("<option value='none'>선택</option>");      
-      
-      for(let i = 0; i < cate3Array.length; i++){
-         if(selectVal2 === cate3Array[i].cateParent){
-            cateSelect3.append("<option value='"+cate3Array[i].cateCode+"'>" + cate3Array[i].cateName + "</option>");   
-         }
-      }// for      
-      
-   });      
             
    /* 취소 버튼 */
    $("#cancelBtn").on("click", function(e){
@@ -413,11 +364,10 @@
    });   
    
    /* 수정 버튼 */
-   $("#modifyBtn").on("click",function(e){
-      
+   $("#modifyBtn").on("click",function(e){      
       e.preventDefault();
       
-      /* 체크 변수 */
+      /*/ 체크 변수 
       let pNameCk = false;
       let startDateCk = false;
       let endtDateCk = false;
@@ -426,8 +376,8 @@
       let introCk = false;
       let contentsCk = false;   
       
-      /* 체크 대상 변수 */
-      let pName = $("input[name='bookName']").val();
+      // 체크 대상 변수 
+      let pName = $("input[name='pName']").val();
       let startDate = $("input[name='startDate']").val();
       let endtDate = $("input[name='endDate']").val();
       let cateCode = $("select[name='cateCode']").val();
@@ -435,7 +385,7 @@
       let pIntro = $(".bit p").html();
       let pContents = $(".bct p").html();   
       
-      /* 공란 체크 */
+      // 공란 체크 
       if(pName){
          $(".pName_warn").css('display','none');
          pNameCk = true;
@@ -492,12 +442,41 @@
          contentsCk = false;
       }      
       
-      /* 최종 확인 */
+      // 최종 확인 
       if(pNameCk && startDateCk && endDateCk && cateCodeCk && priceCk && introCk && contentsCk ){
          $("#modifyForm").submit();
       } else {
          return false;
+      }*/
+      
+   
+  
+      // 필드 유효성 검사 함수
+      function validateField(selector, warningSelector, invalidValue = "") {
+        let value = $(selector).val();
+        if (value && value !== invalidValue) {
+          $(warningSelector).hide();
+          return true;
+        } else {
+          $(warningSelector).show();
+          return false;
+        }
       }
+      
+      // 폼 데이터 유효성 검사
+      let pNameCk = validateField("input[name='pName']", ".pName_warn");
+      let startDateCk = validateField("input[name='startDate']", ".startDate_warn");
+      let endDateCk = validateField("input[name='endDate']", ".endDate_warn");
+      let cateCodeCk = validateField("select[name='cateCode']", ".cateCode_warn", "none");
+      let priceCk = validateField("input[name='pPrice']", ".pPrice_warn", "0");
+      let introCk = validateField("#pIntro_textarea", ".pIntro_warn", "<br data-cke-filler='true'>");
+      let contentsCk = validateField("#pContents_textarea", ".pContents_warn", "<br data-cke-filler='true'>");
+      
+      // 최종 확인
+      if (pNameCk && startDateCk && endDateCk && cateCodeCk && priceCk && introCk && contentsCk) {
+        $("#modifyForm").submit();
+      }
+    });
       
    });   
    
@@ -599,6 +578,6 @@
          uploadResult.append(str);     
         
    }         
-   </script>
+   </script>   
 </body>
 </html>

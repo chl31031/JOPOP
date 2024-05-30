@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -34,9 +35,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jopop.model.Criteria;
 import com.jopop.model.ImageVO;
+import com.jopop.model.MemberVO;
 import com.jopop.model.PageDTO;
 import com.jopop.model.PopVO;
 import com.jopop.service.AdminService;
+import com.jopop.service.MemberService;
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -48,6 +51,9 @@ public class AdminController {
   
   @Autowired
   private AdminService adminService;
+  
+  @Autowired
+  private MemberService memberService;
   
   /* 관리자 메인 페이지 이동 */
   @RequestMapping(value="main", method =RequestMethod.GET)
@@ -180,10 +186,13 @@ public class AdminController {
   
   /* 팝업 첨부 파일(이미지) 업로드 설명이 필요행*/
   @PostMapping(value="/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public  ResponseEntity<List<ImageVO>> uploadAjaxActionPOST(MultipartFile[] uploadFile) {
-		
-		logger.info("팝업 이미지 업로드(uploadAjaxAcitonPOST)....");
-		
+	public ResponseEntity<List<ImageVO>> uploadAjaxActionPOST(MultipartFile[] uploadFile) {	  
+	  //'@PostMapping' 어노테이션은 '/uploadAjaxAction' 경로로 POST 요청을 매핑
+	  //'produces = MediaType.APPLICATION_JSON_UTF8_VALUE'는 반환하는 데이터의 타입을 JSON으로 설정	
+	  //'MultipartFile[] uploadFile'은 업로드된 파일을 받아
+	  
+	  logger.info("팝업 이미지 업로드(uploadAjaxAcitonPOST)....");
+					
 		//이미지 파일 체크 
 		for(MultipartFile multipartFile:uploadFile) {
 			File checkfile = new File(multipartFile.getOriginalFilename());
@@ -202,7 +211,9 @@ public class AdminController {
 				return new ResponseEntity<>(list,HttpStatus.BAD_REQUEST);
 				
 			}
-		}
+		}//for
+		//업로드된 파일이 이미지 파일인지 MIME 타입으로 확인
+		//이미지 파일이 아닌 경우, 'BAD_REQUEST' 응답을 반환
 		
 		//업로드된 파일 경로
 		String uploadFolder = "C:\\upload"; 
@@ -221,12 +232,12 @@ public class AdminController {
 		
 		if(uploadPath.exists() == false) {
 			uploadPath.mkdirs();
-		}
-		  
+		}		
+		
 		//이미지 정보 담는 객체 
 		List<ImageVO> list = new ArrayList();
 		
-		//향상된 for ??
+		//파일 업로드 및 저장
 		for(MultipartFile multipartFile : uploadFile) {
 			
 			//이미지 정보 객체 
@@ -235,46 +246,23 @@ public class AdminController {
 			//파일 이름 transferTo 메소드
 			String uploadFileName = multipartFile.getOriginalFilename();
 			vo.setFileName(uploadFileName);
-			vo.setUploadPath(datePath);
-			
+			vo.setUploadPath(datePath);			
 			
 			// uuid 적용 파일 이름 __파일이름 같은 방식 적용
 			String uuid = UUID.randomUUID().toString();
 			vo.setUuid(uuid);
 			
 			uploadFileName = uuid + "_" + uploadFileName;
-			
+			//uuid를 적용해서 파일 이름이 중복되지 않도록 함
+			//UUID(Universally Unique Identifier)
+						
 			// 파일 위치, 파일 이름을 합친 File 객체 
 			File saveFile = new File(uploadPath, uploadFileName);
 			
 			// 파일 저장 
 			try {
 				multipartFile.transferTo(saveFile);
-				  //원본 파일 이름 앞에 s_붙임 썸네일
-				
-				/* 방법 1 ?
-				BufferedImage bo_image = ImageIO.read(saveFile);
-				
-				//비율 
-				double ratio = 3;
-				
-				//넓이 높이 
-				
-				int width = (int)(bo_image.getWidth()/ratio);
-				int height = (int)(bo_image.getHeight()/ratio);
-				
-			    BufferedImage bt_image = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
-			    
-			    Graphics2D graphic = bt_image.createGraphics();
-				
-			    graphic.drawImage(bo_image,0,0,width,height,null);
-			    
-			    ImageIO.write(bt_image, "jpg", thumbnailFile);*/
-				
-				
-				//replace(/\\/g, '/') 의미는 대상 String 문자열 중 모든 '\'을 '/'로 변경해준다는 의미
-				
-				//방법 2 
+								
 				File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);
 				
 				BufferedImage bo_image = ImageIO.read(saveFile);
@@ -295,11 +283,12 @@ public class AdminController {
 			} 
 			list.add(vo);
 			
-		}
+		}//for(파일 업로드 및 저장)
 		
 		ResponseEntity<List<ImageVO>> result = new ResponseEntity<List<ImageVO>>(list,HttpStatus.OK);
 	
 		return result;
+		//업로드된 이미지 정보가 담긴 'List<ImageVO>' 객체를 JSON 형식으로 반환
 	}
   
   /* 팝업 이미지 삭제 */ 
@@ -334,5 +323,109 @@ public class AdminController {
 	   
 	   return new  ResponseEntity<String>("success", HttpStatus.OK);
   }
+  
+  //여기서부터 회원관리 코드 추가
+  
+  /* 회원 정보 관리 페이지 접속 */
+  @RequestMapping(value = "memberManage", method = RequestMethod.GET)
+  public void MemberManageGET(Criteria cri, Model model) throws Exception{
+      
+	  logger.info("회원 정보 관리 페이지 접속");
+      
+      //회원 리스트 데이터 
+      List mlist = memberService.memberGetList(cri);
+      
+      if(!mlist.isEmpty()) {
+    	  model.addAttribute("list", mlist);
+      }else {
+    	  model.addAttribute("listCheck", "empty");
+    	  return;
+      }
+  }
+  
+  /* 회원 정보 상세 페이지 */
+  @GetMapping({"/memberDetail","/memberModify"})
+  public void memberGetInfoGET(int mId, Criteria cri, Model model) throws JsonProcessingException  {
+	  
+	  logger.info("팝업 정보 조회(memberGetInfo())....." + mId);
+	  
+	  ObjectMapper mapper = new ObjectMapper();
+	  	  
+	  //목록 페이지 조건 정보 ?
+	  model.addAttribute("cri", cri);
+	  
+	  //조회 페이지 정보 ?
+	  model.addAttribute("memberInfo", memberService.memberGetDetail(mId));
+  }
+  
+  /* 회원 정보 수정 */
+  @PostMapping("/memberModify")
+  public String memberModifyPOST(MemberVO vo, RedirectAttributes rttr) {
+	  
+	  logger.info("회원 정보 수정(memberModifyPost)...." + vo);
+	  
+	  int result = memberService.memberModify(vo);
+	  
+	  rttr.addFlashAttribute("modify_result",result);
+	  
+	  return "redirect:/admin/memberManage";
+  }
+  
+  /* 팝업 정보 삭제 
+  @PostMapping("/popsDelete")
+  public String popsDeletePOST(int pId,RedirectAttributes rttr) {
+	  
+	  logger.info("팝업 정보 삭제(popsDeletePOST)....");
+	  
+	  List<ImageVO> fileList = adminService.getImageInfo(pId);
+		
+		if(fileList != null) {
+			
+			List<Path> pathList = new ArrayList();
+			
+			fileList.forEach(vo ->{
+				
+				// 원본 이미지
+				Path path = Paths.get("C:\\upload", vo.getUploadPath(), vo.getUuid() + "_" + vo.getFileName());
+				pathList.add(path);
+				
+				// 썸네일 이미지
+				path = Paths.get("C:\\upload", vo.getUploadPath(), "s_" + vo.getUuid()+"_" + vo.getFileName());
+				pathList.add(path);
+				
+			});
+			
+			pathList.forEach(path ->{
+				path.toFile().delete();
+			});
+			
+		}
+	  
+	  int result = adminService.popsDelete(pId);
+	  
+	  rttr.addFlashAttribute("delete_result", result);
+	  
+	  return "redirect:/admin/popsManage";
+  }*/
+	
+	
+	//특정 회원이 작성한 후기
+	/*@ResponseBody
+	@PostMapping("/getCommentList")
+	public List<CommentVO> getCommentList(String com_writer){
+		System.out.println("open! user Comment List ajax!");
+		System.out.println("조회할 회원 아이디 : " + com_writer);
+		List<CommentVO> list = comService.getComList(com_writer);
+		System.out.println(list);
+		return list;
+	}*/
+	   
+  
+  /* 유저 삭제 */
+	@ResponseBody
+	@PostMapping("/memberDrop")
+	public void memberdrop(int mid) {
+		memberService.memberDrop(mid);
+	}
    
 }

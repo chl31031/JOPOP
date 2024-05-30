@@ -37,7 +37,7 @@ public interface AdminMapper {
 		public void deleteImageAll(int pId);
 		
 		//어제자 날짜 이미지 리스트 
-		//public List<ImageVO> checkFileList();
+		public List<ImageVO> checkFileList();
 		
 		//지정 팝업 이미지 정보 얻기
 		public List<ImageVO> getImageInfo(int pId);

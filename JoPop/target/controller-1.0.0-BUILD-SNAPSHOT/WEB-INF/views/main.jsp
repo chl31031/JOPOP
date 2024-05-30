@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<<<<<<< HEAD
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+=======
+>>>>>>> branch 'main' of https://github.com/rkawk775/JOPOP-Web.git
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,6 +53,7 @@
             <div class="navi_bar_area">
                 <h1>navi area</h1>
             </div>
+<<<<<<< HEAD
             
             <div class="content_area">
                <div class="list_search_result">
@@ -109,7 +113,16 @@
 </div>
 </div>
     <%@include file="nav/nav.jsp"%>
+=======
+            <div class="content_area">
+                <h1>content area</h1>
+                
+            </div>
+        </div>
+    </div>
+>>>>>>> branch 'main' of https://github.com/rkawk775/JOPOP-Web.git
 
+<<<<<<< HEAD
     <%@include file="includes/footer.jsp"%>
     <script type="text/javascript">
     $(document).ready(function(){
@@ -185,5 +198,22 @@ $(document).ready(function(){
 	
 });
 </script>
+=======
+    <%@include file="nav/nav.jsp"%>
+
+    <%@include file="includes/footer.jsp"%>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $(".slide_div").slick({
+            slidesToShow: 2,  // Shows 2 slides at a time
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            dots:true,
+            arrows: true
+        });
+    });
+    </script>
+>>>>>>> branch 'main' of https://github.com/rkawk775/JOPOP-Web.git
 </body>
 </html>
