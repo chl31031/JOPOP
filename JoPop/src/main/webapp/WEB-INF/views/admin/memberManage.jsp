@@ -17,59 +17,55 @@
 <body>
 	<%@include file="../includes/admin/header.jsp"%>
 
-	<div class="member_list">
-		<table class="admin_board_wrap" id="user-admin">
-			<thead class="admin_boardList">
-				<th class="admin_board_head">이름</th>
-				<th class="admin_board_head">아이디</th>
-				<th class="admin_board_head">현재상태</th>
-				<th class="admin_board_head">가입일</th>
-				<th class="admin_board_head">게시글수</th>
-				<th class="admin_board_head">댓글수</th>
-				<th class="admin_board_head">가입승인</th>
-			</thead>
-			<tbody>
-				<c:forEach var="vo" items="${userInfo}">
-					<tr class="admin_board_content">
-						<td class="admin_board_content_nm"><a
-							class="mypageModal user_id" value="${vo.userId}">${vo.userId}</a>
-						</td>
-						<td class="admin_board_content_nm">${vo.userName}</td>
-						<td class="admin_board_content_nm"><c:choose>
-								<c:when test="${vo.userStatus== 0}">취업준비생</c:when>
-								<c:when test="${vo.userStatus== 1}">직장인</c:when>
-							</c:choose></td>
-						<td class="admin_board_content_nm">${vo.userDate}</td>
-						<td class="admin_board_content_nm"><a href="#"
-							class="modal_boardList_admin" data-user-id="${vo.userId}">${vo.boardCnt}</a></td>
-						<td class="admin_board_content_nm"><a href="#"
-							class="modal_reply_admin" data-user-id="${vo.userId}">${vo.commentCnt}</a></td>
-						<c:choose>
-							<c:when test="${vo.userPass == 0}">
-								<td class="admin_board_content_nm">
-									<button data-user-id="${vo.userId}" type="button" value="승인"
-										class="appro">승인</button>
-									<button data-user-id="${vo.userId}" type="button" value="거부"
-										class="deni">거부</button>
-								</td>
-							</c:when>
-							<c:when test="${vo.userPass == 1}">
-								<td class="admin_board_content_nm">
-									<button data-user-id="${vo.userId}" type="button" value="승인"
-										class="userDrop">회원 추방</button>
-								</td>
-							</c:when>
-							<c:when test="${vo.userPass == 3}">
-								<td>추방회원</td>
-							</c:when>
-							<c:when test="${vo.userPass == 2 }">
-								<td>승인거절회원</td>
-							</c:when>
-						</c:choose>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+	<div class="admin_content_wrap">
+		<div class="admin_content_subject">
+			<span>회원 관리</span>
+		</div>
+		<div class="members_table_wrap">
 
+
+			<!-- 회원 리스트 O -->
+			<c:if test="${memberCheck != 'empty'}">
+				<table class="members_table">
+					<thead>
+						<tr>
+							<td class="th_column_1">No.</td>
+							<td class="th_column_2">아이디</td>
+							<td class="th_column_3">이름(닉네임)</td>
+							<td class="th_column_4">주소</td>
+							<td class="th_column_5">종류</td>
+							<td class="th_column_6">멤버십</td>
+							<td class="th_column_7">포인트</td>
+						</tr>
+					</thead>
+					<c:forEach items="${list}" var="list">
+						<tr>
+							<td><c:out value="${list.mId}"></c:out></td>
+
+							<td><a class="move" href='<c:out value="${list.mId}"/>'>
+									<c:out value="${list.mEmail}"></c:out>
+							</a></td>
+
+							<td><c:out value="${list.mName}"></c:out>(<c:out value="${list.mNick}">)</c:out></td>
+
+							<td><c:out value="${list.mAddr1}"></c:out> <c:out
+									value="${list.mAddr2}"></c:out> <c:out value="${list.mAddr3}"></c:out></td>
+
+							<td calss=""><c:choose>
+									<c:when test="${vo.memberShip== 1}">신규</c:when>
+									<c:when test="${vo.memberShip== 2}">실버</c:when>
+									<c:when test="${vo.memberShip== 3}">골드</c:when>
+									<c:when test="${vo.memberShip== 4}">VIP</c:when>
+								</c:choose></td>
+
+							<td><c:out value="${list.money}"></c:out></td>
+						</tr>
+					</c:forEach>
+				</table>
+			</c:if>
+			</table>
+
+
+			<!--원래 footer 있었음-->
 </body>
 </html>

@@ -1,8 +1,5 @@
 package com.jopop.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
-import java.util.List;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -16,7 +13,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,10 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jopop.model.MemberVO;
-import com.jopop.model.ReviewVO;
-import com.jopop.model.RimageVO;
 import com.jopop.service.MemberService;
-import com.jopop.service.PopService;
 
 @Controller
 @RequestMapping(value = "/member")
@@ -44,40 +37,16 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
 	
-	@Autowired
-	private PopService popService;
-
-	
 	// 회원가입 페이지 이동
 	@GetMapping("/join")
 	public void loginGET() {
 		logger.info("회원가입 페이지 진입");
 	}
 
-	// 마이페이지 이동 - 리뷰 조회
+	/* 마이페이지 이동 */
 	@GetMapping("/mypage")
-	public String mypageGET(HttpServletRequest request,Model model) throws Exception {
+	public void mypageGET() {
 		logger.info("마이페이지로 이동");
-		
-		HttpSession session = request.getSession();
-		
-		//mId 세션 가져오기
-		MemberVO mvo = (MemberVO)session.getAttribute("member");
-		
-		int mId = mvo.getmId();
-		
-		List<ReviewVO> reviews = popService.getMyPageReivew(mId);
-		
-        for (ReviewVO review : reviews) {
-        	
-            List<RimageVO> images = popService.getImagesByReviewId(review.getmId(), review.getpId());
-            review.setImageList(images);
-            model.addAttribute(popService.getImagesByReviewId(review.getmId(), review.getpId()));
-        }
-		
-        model.addAttribute("reviews", reviews);
-
-        return "member/mypage";
 	}
 	
 
@@ -202,4 +171,12 @@ public class MemberController {
 		}
 
 	}
+	
+	/* 유저 삭제 */
+	@ResponseBody
+	@PostMapping("/memberDrop")
+	public void memberdrop(int mid) {
+		memberservice.memberDrop(mid);
+	}
+	
 }
