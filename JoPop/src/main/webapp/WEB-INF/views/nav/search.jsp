@@ -36,10 +36,10 @@
 									</td>
                            <td class="detail">
                               <div class="title">
-                                 <a href="/goodsDetail/${list.pId}">
-                                    ${list.pName}
-                                 </a>
-                              </div>
+							<a href="/pop/popsDetail?pid=${list.pId}">
+							${list.pName}
+							</a>
+										</div>
                               <div class=adress>
                               ${list.pAddr1}  ${list.pAddr2}
                               </div>

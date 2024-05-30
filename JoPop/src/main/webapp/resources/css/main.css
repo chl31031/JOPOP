@@ -10,69 +10,16 @@
 }
 .main_img_area{
 	width: 100%;
-	height: 200px;
+	height: 100%;
 	background-color: #ccc;
+	margin: 5px;
 }
 
 .slide_div img {
     width: 500px;          /* 부모 요소의 너비에 맞춰 조정 */
-    height: 500px;        /* 원하는 높이로 설정 */
-    /* object-fit: cover;    /* 비율을 유지하면서 자를 경우 */
+    height: 400px;        /* 원하는 높이로 설정 */
+    object-fit: cover;    /* 비율을 유지하면서 자를 경우 */
     display: block;       /* 이미지 주변의 여백 제거 */
-}
-
-/* 홈페이지 기능 네비 */ 
-.top_gnb_area{
-	width: 100%;
-    height: 50px;
-    background-color: #f08080;
-}
-/* 로고, 검색, 로그인 */
-.top_area{
-	width: 100%;
-    height: 150px;
-    /* background-color: #f7f0b9; */
-}
-/* 로고 영역 */
-.logo_area{
-	width: 25%;
-	height: 100%;
-	background-color: red;
-	float:left;
-}
-/* 검색 박스 영역 */
-.search_area{
-	width: 50%;
-	height: 100%;
-	background-color: yellow;
-	float:left;	
-}
-/* 로그인 버튼 영역 */
-.login_area{
-	width: 25%;
-	height: 100%;
-	display: inline-block;	
-	text-align: center;		
-}
-.login_button{
-	height: 50%;
-    background-color: #D4DFE6;
-    margin-top: 30px;
-    line-height: 77px;
-    font-size: 40px;
-    font-weight: 900;
-    border-radius: 10px;
-    cursor: pointer;	
-}
-.login_area>span{
-	margin-top: 10px;
-    font-weight: 900;
-    display: inline-block;
-}
-.login_button{
-	height : 50%;
-	background-color: #D4DFE6;
-	margin-top:30px;
 }
 
 /* 제품 목록 네비 */
@@ -80,13 +27,13 @@
 	width: 100%;
     height: 70px;
     background-color: #7696fd;
+    margin: 5px;
 }
 
 
 /* float 속성 해제 */
 .clearfix{
 	clear: both;
-<<<<<<< HEAD
 }
 
 /* Customize slick arrows */
@@ -207,12 +154,12 @@
    width: 400px;
    display: block;
    float: left;
+   margin: 5px;
 }
 
 .content_area{
    width: 100%;
-    /* background-color: #97ef97; */
-   height: 2000px;
+   height: 100%;
 }
 
 .type_list{
@@ -273,7 +220,7 @@
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    margin: 20px auto; /* 중앙 정렬을 위한 마진 설정 */
+    margin: 5px auto; /* 중앙 정렬을 위한 마진 설정 */
     width: 90%; /* 버튼의 너비를 80%로 설정 */
     max-width: 1000px; /* 최대 너비 설정 */
 }
@@ -288,6 +235,4 @@
     transform: scale(0.95); /* 클릭 시 약간 축소 효과 */
 }
 
-=======
-}
->>>>>>> branch 'main' of https://github.com/rkawk775/JOPOP-Web.git
+
