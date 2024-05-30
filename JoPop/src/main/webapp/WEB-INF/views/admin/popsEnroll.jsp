@@ -80,16 +80,18 @@
                             </div>
                             <div class="form_section_content">
                                 <label for="startDate">시작일</label>
-                                <input type="text" name="startDate" id="startDate">
+                                <input type="text" name="startDate" id="startDate" placeholder="시작일" style="flex: 1; margin-right: 5px;">
+                                <input id="startDate" type="button" value="날짜 선택" class="btn btn-primary" style="width: 150px; height: 40px;">
                                 ~
                                 <label for="endDate">종료일</label>
-                                <input type="text" name="endDate" id="endDate">
+                                <input type="text" name="endDate" id="endDate" placeholder="종료일" style="flex: 1; margin-right: 5px;">
+                                <input id="endDate" type="button" value="날짜 선택" class="btn btn-primary" style="width: 150px; height: 40px;">
                              </div>
                              <div class="form_section_content">
                                 <!-- <input name="stratDate" autocomplete="off" readonly="readonly"> -->
                                 <span class="ck_warn stratDate_warn">날짜를 선택해주세요.</span>
                              </div>
-                          </div>                                                                                                                                                                                                       	
+                          </div>                                                 							 							                                                                                                                                                                                                      	
                                  
                           <div class="form_section">
                              <div class="form_section_title">
@@ -231,7 +233,7 @@ $(function() {
         onClose: function( selectedDate ) {    
             // 시작일(fromDate) datepicker가 닫힐때
             // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-            $("#endDate").datepicker( "option", "minDate", selectedDate );
+            $("#").datepicker( "option", "minDate", selectedDate );
         }                
     });
 

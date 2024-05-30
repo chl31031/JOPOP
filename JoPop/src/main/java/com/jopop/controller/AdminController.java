@@ -186,9 +186,12 @@ public class AdminController {
   
   /* 팝업 첨부 파일(이미지) 업로드 설명이 필요행*/
   @PostMapping(value="/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<List<ImageVO>> uploadAjaxActionPOST(MultipartFile[] uploadFile) {
-		
-		logger.info("팝업 이미지 업로드(uploadAjaxAcitonPOST)....");
+	public ResponseEntity<List<ImageVO>> uploadAjaxActionPOST(MultipartFile[] uploadFile) {	  
+	  //'@PostMapping' 어노테이션은 '/uploadAjaxAction' 경로로 POST 요청을 매핑
+	  //'produces = MediaType.APPLICATION_JSON_UTF8_VALUE'는 반환하는 데이터의 타입을 JSON으로 설정	
+	  //'MultipartFile[] uploadFile'은 업로드된 파일을 받아
+	  
+	  logger.info("팝업 이미지 업로드(uploadAjaxAcitonPOST)....");
 					
 		//이미지 파일 체크 
 		for(MultipartFile multipartFile:uploadFile) {
@@ -209,6 +212,8 @@ public class AdminController {
 				
 			}
 		}//for
+		//업로드된 파일이 이미지 파일인지 MIME 타입으로 확인
+		//이미지 파일이 아닌 경우, 'BAD_REQUEST' 응답을 반환
 		
 		//업로드된 파일 경로
 		String uploadFolder = "C:\\upload"; 
@@ -227,12 +232,12 @@ public class AdminController {
 		
 		if(uploadPath.exists() == false) {
 			uploadPath.mkdirs();
-		}
-		  
+		}		
+		
 		//이미지 정보 담는 객체 
 		List<ImageVO> list = new ArrayList();
 		
-		//향상된 for ??
+		//파일 업로드 및 저장
 		for(MultipartFile multipartFile : uploadFile) {
 			
 			//이미지 정보 객체 
@@ -241,15 +246,16 @@ public class AdminController {
 			//파일 이름 transferTo 메소드
 			String uploadFileName = multipartFile.getOriginalFilename();
 			vo.setFileName(uploadFileName);
-			vo.setUploadPath(datePath);
-			
+			vo.setUploadPath(datePath);			
 			
 			// uuid 적용 파일 이름 __파일이름 같은 방식 적용
 			String uuid = UUID.randomUUID().toString();
 			vo.setUuid(uuid);
 			
 			uploadFileName = uuid + "_" + uploadFileName;
-			
+			//uuid를 적용해서 파일 이름이 중복되지 않도록 함
+			//UUID(Universally Unique Identifier)
+						
 			// 파일 위치, 파일 이름을 합친 File 객체 
 			File saveFile = new File(uploadPath, uploadFileName);
 			
@@ -257,7 +263,6 @@ public class AdminController {
 			try {
 				multipartFile.transferTo(saveFile);
 								
-				//방법 2 
 				File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);
 				
 				BufferedImage bo_image = ImageIO.read(saveFile);
@@ -278,11 +283,12 @@ public class AdminController {
 			} 
 			list.add(vo);
 			
-		}//for
+		}//for(파일 업로드 및 저장)
 		
 		ResponseEntity<List<ImageVO>> result = new ResponseEntity<List<ImageVO>>(list,HttpStatus.OK);
 	
 		return result;
+		//업로드된 이미지 정보가 담긴 'List<ImageVO>' 객체를 JSON 형식으로 반환
 	}
   
   /* 팝업 이미지 삭제 */ 
