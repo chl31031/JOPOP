@@ -19,6 +19,5 @@
 		<div class="wrap"></div>
 	</div>
 	
-	<%@include file="../admin/nav.jsp"%>
 
 </body>

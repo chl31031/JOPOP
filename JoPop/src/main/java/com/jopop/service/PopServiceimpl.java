@@ -87,4 +87,15 @@ public class PopServiceimpl implements PopService {
 	public int deleteReview(int pId, int mId) {
 		return popMapper.deleteReview(pId, mId);
 	}
+
+	@Override
+	public int deleteRImage(int pId, int mId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void addReview(ReviewVO review) {
+		// TODO Auto-generated method stub
+		
+	}
 }

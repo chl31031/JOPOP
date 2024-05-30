@@ -17,7 +17,6 @@ com\jopop\mapper\CartMapper.class
 com\jopop\controller\CartController.class
 com\jopop\service\MemberServiceImpl.class
 com\jopop\model\Criteria.class
-com\jopop\controller\PopController$1.class
 com\jopop\model\OrderPageDTO.class
 com\jopop\model\ReviewVO.class
 com\jopop\service\OrderServiceImpl.class

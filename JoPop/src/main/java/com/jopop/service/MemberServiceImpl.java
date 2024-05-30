@@ -1,5 +1,7 @@
 package com.jopop.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jopop.mapper.MemberMapper;
+import com.jopop.model.Criteria;
 import com.jopop.model.MemberVO;
 
 import lombok.extern.log4j.Log4j;
@@ -49,6 +52,24 @@ public class MemberServiceImpl implements MemberService {
 		@Override
 		public MemberVO getMemberInfo(int mId) {
 			return membermapper.getMemberInfo(mId);
+		}
+
+		@Override
+		public List memberGetList(Criteria cri) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Object memberGetDetail(int mId) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public int memberModify(MemberVO vo) {
+			// TODO Auto-generated method stub
+			return 0;
 		}
 		
 				

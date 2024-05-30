@@ -89,3 +89,30 @@
 	margin-bottom: 30px;
 	
 }
+
+
+/* 리뷰 부분 css */
+.review-section {
+    background-color: #ffffff;
+    color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.review-section h2 {
+    color: #00c73c; /* Jopop 색상 */
+}
+
+.rating {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+    flex-direction: row-reverse;
+}
+
+/* 리뷰 구분선 스타일 */
+.review-divider {
+    border-top: 1px solid #00c73c; /* 구분선 색을 녹색으로 변경 */
+    margin: 20px 0; /* 구분선 위아래 여백 */
+}

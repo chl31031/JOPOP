@@ -1,5 +1,8 @@
 package com.jopop.service;
 
+import java.util.List;
+
+import com.jopop.model.Criteria;
 import com.jopop.model.MemberVO;
 
 public interface MemberService {
@@ -18,4 +21,10 @@ public interface MemberService {
 		
 		//주문자 정보
 		public MemberVO getMemberInfo(int mId);
+
+		public List memberGetList(Criteria cri);
+
+		public Object memberGetDetail(int mId);
+
+		public int memberModify(MemberVO vo);
 }

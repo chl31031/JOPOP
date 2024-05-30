@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>마이페이지</title>
 <link rel="stylesheet" href="../resources/css/member/mypage.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <%@include file="../includes/header.jsp"%>
@@ -48,6 +49,13 @@
 							</c:forEach>
 							       </c:if>
 				            </div>
+				            <div class="review-btn">
+				            	<input type="hidden" name="pName" value="${review.pName}">
+				            	<input type="hidden" name="pId" value="${review.pId}">
+				            	<input type="hidden" name="mId" value="${review.mId}">
+				            	<button class="btn_delete">삭제</button>
+				            	<button class="btn_modify">수정</button>
+				            </div>
 				            <div class="review-divider"></div>
 				        </c:forEach>
 				    </c:if>
@@ -59,9 +67,50 @@
          </ul>
       </div>
    </div>
+   
       <%@include file="../nav/nav.jsp"%>
 
       <%@include file="../includes/footer.jsp"%>
+      
+<script>
+	//삭제 버튼
+	$(".btn_delete").on("click", function(e){
+		var result = confirm("리뷰 삭제하시겠습니까?");
+		
+		if(result == true){
+			alert("리뷰 삭제되었습니다.");
+			
+			var pId = $(this).siblings('input[name="pId"]').val();   //pId 추출
+			var mId = $(this).siblings('input[name="mId"]').val();   //mId 추출
+			
+			console.log(pId);
+			console.log(mId);
+			
+			$.ajax({
+				type: 'POST',
+				url: '/member/delete',
+				data: {pId: pId, mId: mId},
+				success: function(response){
+					//성공적 요청 보냈을 때 처리
+					console.log("Ajax 요청 성공: ", response);
+				},
+				error: function(xhr, status, error){
+					//요청 보내기 실패
+					console.error("Ajax 요청 실패 : ",status, error);
+				}
+			});
+			
+		}else if(result == false){
+			alert("삭제 취소되었습니다.");
+		}
+		
+	});
+	
+	//수정 버튼
+	$(".btn_modify").on("click", function(e){
+		alert("수정 버튼");
+	});
+</script>
    
 </body>
 </html>
