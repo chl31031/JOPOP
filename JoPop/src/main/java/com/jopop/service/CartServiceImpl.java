@@ -55,12 +55,14 @@ public class CartServiceImpl implements CartService{
 		return cart;
 	}
 
-	//찜 확인
-	@Override
-	public CartVO checkCart(CartVO cart) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	 //찜 확인 
+	   @Override
+	    public CartVO checkCart(CartVO cart) {
+	        CartVO result = cartMapper.checkCart(cart);
+	        // 디버깅 로그 추가
+	        System.out.println("Cart check result: " + result);
+	        return result;
+	    }
 
 	//찜 키워드 검색 (지역명, 팝업명)
 	@Override

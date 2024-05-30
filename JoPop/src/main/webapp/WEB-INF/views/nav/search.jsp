@@ -26,14 +26,14 @@
                      <c:forEach items="${list}" var="list">
                         <tr class="list">
                         <td class="image">
-										<div class="image_wrap"
-											data-pId="${list.imageList[0].pId}"
-											data-path="${list.imageList[0].uploadPath}"
-											data-uuid="${list.imageList[0].uuid}"
-											data-filename="${list.imageList[0].fileName}">
-											<img>
-										</div>
-									</td>
+                                        <div class="image_wrap"
+                                            data-pId="${list.imageList[0].pId}"
+                                            data-path="${list.imageList[0].uploadPath}"
+                                            data-uuid="${list.imageList[0].uuid}"
+                                            data-filename="${list.imageList[0].fileName}">
+                                            <img>
+                                        </div>
+                                    </td>
                            <td class="detail">
                               <div class="title">
 							<a href="/pop/popsDetail?pid=${list.pId}">
