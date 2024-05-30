@@ -20,6 +20,8 @@ public class PopVO {
     private String cateName;
     
     private List<ImageVO> imageList; //이미지 정보
+    
+    private int mId;   //마이페이지에서 사용해야하는 mId값
 
 	public int getpId() {
 		return pId;
@@ -133,13 +135,23 @@ public class PopVO {
 		this.imageList = imageList;
 	}
 
+	public int getmId() {
+		return mId;
+	}
+
+	public void setmId(int mId) {
+		this.mId = mId;
+	}
+
 	@Override
 	public String toString() {
 		return "PopVO [pId=" + pId + ", pName=" + pName + ", startDate=" + startDate + ", endDate=" + endDate
 				+ ", pAddr1=" + pAddr1 + ", pAddr2=" + pAddr2 + ", pAddr3=" + pAddr3 + ", pPrice=" + pPrice
 				+ ", pIntro=" + pIntro + ", pContents=" + pContents + ", mapVO=" + mapVO + ", cateCode=" + cateCode
-				+ ", cateName=" + cateName + ", imageList=" + imageList + "]";
+				+ ", cateName=" + cateName + ", imageList=" + imageList + ", mId=" + mId + "]";
 	}
+
+    
 
 	
 

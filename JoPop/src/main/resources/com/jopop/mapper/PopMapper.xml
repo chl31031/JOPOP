@@ -112,6 +112,15 @@
 	WHERE r.mId =#{mId}
  </select>
  
+ <!-- 리뷰 내용, 리뷰 이미지 삭제 -->
+ <delete id="deleteReview">
+ 	delete from jp_review where pId = #{pId} and mId=#{mId}
+ </delete>
+ 
+ <!-- 리뷰 이미지 삭제 -->
+ <delete id="deleteRImage">
+ 	delete from jp_rimage where pId = #{pId} and mId=#{mId}
+ </delete>
  
  <!--  리뷰 및 이미지 정보를 포함한 resultMap  -->
 <resultMap id="reviewWithImages" type="com.jopop.model.ReviewVO">

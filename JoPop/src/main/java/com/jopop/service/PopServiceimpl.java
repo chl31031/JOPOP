@@ -65,7 +65,6 @@ public class PopServiceimpl implements PopService {
         }
     }
 
-
     // 리뷰 조회
     @Override
     public List<ReviewVO> getReviewsByPid(int pid) throws Exception {
@@ -81,5 +80,11 @@ public class PopServiceimpl implements PopService {
 	@Override
 	public List<ReviewVO> getMyPageReivew(int mId) throws Exception {
 		return popMapper.getMyPageReivew(mId);
+	}
+
+	// 리뷰 내용, 이미지 삭제
+	@Override
+	public int deleteReview(int pId, int mId) {
+		return popMapper.deleteReview(pId, mId);
 	}
 }
