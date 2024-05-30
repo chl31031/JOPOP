@@ -18,6 +18,14 @@
   	height: auto; /* 이미지의 높이를 자동으로 조정하여 비율 유지 */
 	opacity: 70%;
 }
+
+.slide_div img {
+    width: 500px;          /* 부모 요소의 너비에 맞춰 조정 */
+    height: 500px;        /* 원하는 높이로 설정 */
+    /* object-fit: cover;    /* 비율을 유지하면서 자를 경우 */
+    display: block;       /* 이미지 주변의 여백 제거 */
+}
+
 /* 홈페이지 기능 네비 */ 
 .top_gnb_area{
 	width: 100%;
@@ -34,12 +42,6 @@
     background-color: #7696fd;
 }
 
-/* 홈페이지 메인 제품 목록  */
-.content_area{
-	width: 100%;
-    background-color: #97ef97;
-    height: 1000px;
-}
 
 /* float 속성 해제 */
 .clearfix{
@@ -160,5 +162,88 @@
   background: #000000;
   width: 40px;
 }
+.list{
+   width: 400px;
+   display: block;
+   float: left;
+}
 
+.content_area{
+   width: 100%;
+    /* background-color: #97ef97; */
+   height: 2000px;
+}
+
+.type_list{
+       width: 100%;
+       border-bottom: 1px solid #e7e7e7;
+       border-collapse: collapse;   
+   }
+.type_list tr{
+      height:200px;
+      border-bottom: 1px solid #e7e7e7;
+   }
+.detail div{
+      margin-bottom: 5px;
+   }
+.category{
+      font-size: 12px;
+       font-weight: 600;
+   }
+.title{
+       font-size: 20px;
+       color: #3a60df;
+       font-weight: 700;
+   }
+.author{
+      font-size: 14px;
+   }
+.info{
+      text-align: center;
+   }
+.price{
+      text-align: center;
+   }
+.org_price del{
+      font-size: 13px;
+   }
+.sell_price strong{
+      color: #da6262;
+       font-size: 18px;
+   }
+   
+.btn_cart {
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+/* main.css 파일에 추가 */
+.addlink {
+    display: block;
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #000;
+    background-color: #fff; /* 기본 배경 색상 */
+    border: 1px solid #000;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin: 20px auto; /* 중앙 정렬을 위한 마진 설정 */
+    width: 90%; /* 버튼의 너비를 80%로 설정 */
+    max-width: 1000px; /* 최대 너비 설정 */
+}
+
+.addlink:hover {
+    background-color: #1ed760; /* 호버 시 배경 색상 */
+    transform: scale(1.05); /* 약간 확대 효과 */
+}
+
+.addlink:active {
+    background-color: #1ea750; /* 클릭 시 배경 색상 */
+    transform: scale(0.95); /* 클릭 시 약간 축소 효과 */
+}
 

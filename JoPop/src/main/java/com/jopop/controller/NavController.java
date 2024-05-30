@@ -41,6 +41,8 @@ public class NavController {
 	private CartService cartService;
 
 	private static final Logger logger = LoggerFactory.getLogger(NavController.class);
+	
+	
 
 	// 로그인 or 회원가입 선택 페이지 이동
 	@GetMapping("/prelogin")

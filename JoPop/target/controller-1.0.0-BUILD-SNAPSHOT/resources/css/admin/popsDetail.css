@@ -1,0 +1,96 @@
+/* Resetting default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  line-height: 1.6;
+}
+
+/* Header styles */
+.admin_header_wrap {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Content wrapper styles */
+.admin_content_wrap {
+  margin: 20px auto;
+  max-width: 800px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Content subject styles */
+.admin_content_subject {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+/* Form section styles */
+.form_section {
+  margin-bottom: 20px;
+}
+
+/* Form section title styles */
+.form_section_title label {
+  font-weight: bold;
+  display: block;
+}
+
+/* Form section content styles */
+.form_section_content input[type="text"],
+.form_section_content textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+/* Button styles */
+.btn {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #555;
+}
+
+.enroll_btn {
+  background-color: #4caf50;
+}
+
+.enroll_btn:hover {
+  background-color: #45a049;
+}
+
+/* Result card styles */
+#result_card img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  padding: 5px;
+  margin-top: 10px;
+  margin: auto;
+}
+
+/* Button section styles */
+.btn_section {
+  margin-top: 20px;
+  text-align: center;
+}

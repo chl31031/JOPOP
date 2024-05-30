@@ -115,7 +115,7 @@ $(document).ready(function() {
         var pId = button.data('pid');
         var liked = sessionStorage.getItem('liked_' + pId);
         if (liked === 'true') {
-            button.attr('src', '/resources/img/heart1.png');
+            button.attr('src', '/resources/img/heart2.png');
         }
     });
 
@@ -139,7 +139,7 @@ $(document).ready(function() {
             });
         } else {
             $.post('/nav/like.do', { pId: pId }, function(response) {
-                button.attr('src', '/resources/img/heart1.png'); // 성공 시 버튼 값 변경
+                button.attr('src', '/resources/img/heart2.png'); // 성공 시 버튼 값 변경
                 sessionStorage.setItem('liked_' + pId, 'true'); // 세션 스토리지에 상태 저장
             });
         }
