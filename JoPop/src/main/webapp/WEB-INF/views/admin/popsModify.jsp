@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 수정 페이지</title>
-<link rel="stylesheet" href="../resources/css/admin/goodsModify.css">
+<link rel="stylesheet" href="../resources/css/admin/popsModify.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 
 <!-- 캘린더 -->
