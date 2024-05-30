@@ -82,16 +82,16 @@ public class PopServiceimpl implements PopService {
 		return popMapper.getMyPageReivew(mId);
 	}
 
-	// 리뷰 내용, 이미지 삭제
+	// 리뷰 내용
 	@Override
 	public int deleteReview(int pId, int mId) {
 		return popMapper.deleteReview(pId, mId);
 	}
-
+	
+	//리뷰 이미지 삭제
 	@Override
 	public int deleteRImage(int pId, int mId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return popMapper.deleteReview(pId, mId);
 	}
 
 	public void addReview(ReviewVO review) {

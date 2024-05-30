@@ -34,7 +34,10 @@ public interface PopMapper {
     // [마이페이지 - 리뷰] 회원정보에 맞는 상품명 출력
     public List<ReviewVO> getMyPageReivew(int mId) throws Exception;
     
-    // 리뷰 내용, 이미지 삭제
+    // 리뷰 내용
     public int deleteReview(int pId, int mId);
+    
+    // 리뷰 이미지 삭제
+    public int deleteRImage(int pId, int mId);
     
 }
