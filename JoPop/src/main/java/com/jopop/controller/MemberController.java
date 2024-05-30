@@ -94,16 +94,15 @@ public class MemberController {
 		pop.setmId(mId);
 		pop.setpId(pId);
 		
-		int result = popService.deleteReview(pId, mId);
+		System.out.println(pop);
 		
-		if(result == 1) {
-			System.out.println("삭제 성공했습니다.");
-		}else if(result == 0) {
-			System.out.println("삭제 실패했습니다.");
-		}
+		// 이미지 리스트 출력, 값이 없으면 0, 있으면 1의 값 반환
+		popService.deleteReview(pId, mId);
+		//popService.deleteRImage(pId, mId);
 		
 		return "member/mypage";
 	}
+	
 
 	// 회원 가입
 	@PostMapping("/join")
