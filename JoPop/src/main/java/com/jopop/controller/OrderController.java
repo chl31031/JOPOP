@@ -24,27 +24,19 @@ public class OrderController {
 	
 	
 	@GetMapping("/order/{mId}")
-	public void orderPageGet(@PathVariable("mId") int mId, OrderPageDTO opd, Model model) {
+	public String orderPageGet(@PathVariable("mId") int mId, OrderPageDTO opd, Model model) {
 		
 		logger.info("orderPageGet 진입");
 		
 		System.out.println("mId : "+mId);
 		System.out.println("orders : "+ opd.getOrders());
-	}
-	
-	
-	/*
-	@GetMapping("/order/{mId}")
-	public String orderPgaeGET(@PathVariable("mId") int mId, OrderPageDTO opd, Model model) {
 		
-		System.out.println("memberId : " + mId);
-		System.out.println("orders : " + opd.getOrders());
-		
-		
-		model.addAttribute("orderList", orderService.getGoodsInfo(opd.getOrders()));
+		model.addAttribute("orderList", orderService.getPopsInfo(opd.getOrders()));
 		model.addAttribute("memberInfo", memberSerivce.getMemberInfo(mId));
 		
+		
+		System.out.println(orderService.getPopsInfo(opd.getOrders()));
 		return "/order/order";
-
-	}*/
+	}
+	
 }

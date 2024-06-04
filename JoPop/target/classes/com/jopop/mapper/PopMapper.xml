@@ -122,6 +122,7 @@
  	delete from jp_rimage where pId = #{pId} and mId=#{mId}
  </delete>
  
+ 
  <!--  리뷰 및 이미지 정보를 포함한 resultMap  -->
 <resultMap id="reviewWithImages" type="com.jopop.model.ReviewVO">
 		<id column="rId" property="rId"/>

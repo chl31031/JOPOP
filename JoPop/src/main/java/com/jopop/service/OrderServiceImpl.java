@@ -17,16 +17,20 @@ public class OrderServiceImpl implements OrderService{
 	
 	//주문 정보
 	@Override
-	public List<OrderPageItemDTO> getGoodsInfo(List<OrderPageItemDTO> orders) {
+	public List<OrderPageItemDTO> getPopsInfo(List<OrderPageItemDTO> orders) {
 		
 		List<OrderPageItemDTO> result = new ArrayList<OrderPageItemDTO>();
 		
 		for(OrderPageItemDTO ord : orders) {
-			OrderPageItemDTO goodsInfo = orderMapper.getGoodsInfo(ord.getpId());
 			
-			result.add(goodsInfo);
+			OrderPageItemDTO orderInfo = orderMapper.getPopsInfo(ord.getpId());
+			
+			//goodsInfo.setBookCount(ord.getBookCount());
+			//goodsInfo.initSaleTotal();
+			
+			result.add(orderInfo);
 		}
 		
-		return null;
+		return result;
 	}
 }
