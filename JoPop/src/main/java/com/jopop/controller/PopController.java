@@ -58,6 +58,36 @@ public class PopController {
     @Autowired
     CartService cartService;
 
+    
+ // 모든 장소 정보 조회 + 리스트 
+    @GetMapping("/locations")
+    public String getAllLocations(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+        Criteria cri = new Criteria();
+        cri.setKeyword(keyword);
+
+        logger.info("Criteria: " + cri);
+
+        List<PopVO> list = new ArrayList<>();
+        try {
+            list = popService.getGoodsList(cri);
+            logger.info("List: " + list);
+        } catch (Exception e) {
+            logger.error("Error fetching goods list", e);
+        }
+
+        model.addAttribute("list", list);
+
+        List<PopVO> locations = new ArrayList<>();
+        try {
+            locations = popService.getAllLocations();
+            model.addAttribute("locations", locations);
+        } catch (Exception e) {
+            logger.error("Error fetching locations", e);
+        }
+
+        return "pop/locations";
+    }
+    
      
  // 상품 리뷰 조회
     @GetMapping("/popsDetail")

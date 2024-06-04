@@ -123,5 +123,12 @@ public class PopServiceimpl implements PopService {
 		
 		return list;
 	}
+	
+	 //내주변 지도 위치 마커 찍기 
+		@Override
+		public List<PopVO> getAllLocations() throws Exception {
+			
+			return popMapper.getAllLocations();
+		}
 
 }

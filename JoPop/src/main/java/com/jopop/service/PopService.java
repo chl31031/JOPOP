@@ -39,5 +39,8 @@ public interface PopService {
     
     // 리뷰 이미지 삭제
     public int deleteRImage(int pId, int mId);
+    
+   // 내주변 지도 모든 장소 정보 조회 (위도와 경도 포함 + 마커 찍기 )
+    public List<PopVO> getAllLocations() throws Exception;
 
 }

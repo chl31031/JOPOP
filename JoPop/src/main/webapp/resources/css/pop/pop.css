@@ -6,11 +6,26 @@ body {
     padding: 0;
 }
 
+html, body {
+    height: 100%; /* 전체 높이를 100%로 설정 */
+    overflow-y: scroll; /* 수직 스크롤바 항상 표시 */
+}
+
+/* 네비게이션 바 */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999; /* 최상위로 설정 */
+}
+
 .container {
     width: 1060px; /* header와 동일한 너비 설정 */
     margin: auto; /* 중앙 정렬 및 위아래 여백 */
     background-color: #ffffff; /* 내부 컨텐츠 배경색 */
     padding: 20px; /* 내부 여백 */
+    min-height: 100vh; /* 최소 높이를 뷰포트 높이로 설정 */
+    padding-top: 60px; /* 네비게이션 바 높이만큼 위쪽 패딩 추가 */
 }
 
 .banner {
@@ -60,6 +75,7 @@ body {
 
 .content {
     padding: 20px;
+    min-height: calc(100vh - 300px); /* 컨텐츠 최소 높이를 설정 */
 }
 
 .section {
@@ -94,6 +110,8 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative; /* 상대 위치 */
+    z-index: 10; /* 네비게이션보다 낮은 값으로 설정 */
 }
 
 .review-section h2 {
@@ -130,6 +148,9 @@ body {
 .review-form {
     display: flex;
     flex-direction: column;
+    position: relative; /* 상대 위치 설정 */
+    z-index: 1; /* 네비게이션보다 낮은 값으로 설정 */
+    margin-bottom: 60px; /* 추가된 부분: 아래쪽 마진 추가 */
 }
 
 .review-form textarea {
@@ -147,6 +168,8 @@ body {
 .review-form .button-group {
     display: flex;
     justify-content: space-between;
+    position: relative; /* 상대 위치 설정 */
+    z-index: 1; /* 네비게이션보다 낮은 값으로 설정 */
 }
 
 .review-form .button-group button {
@@ -218,7 +241,7 @@ body {
 
 /* 스타일을 적용한 제목 */
 .styled-heading {
-    font-family: 'Arial', sans-serif; /* 원하는 글꼴 */
+    font-family: 'Arial', sans-serif; /* 원하는 글꼄 */
     font-size: 2rem; /* 글자 크기 */
     color: #00c73c; /* Jopop 색상 */
     border-bottom: 2px solid #00c73c; /* 아래 테두리 */
@@ -256,7 +279,7 @@ body {
 
 .slick-slider {
     position: relative;
-    display: block;
+        display: block;
     box-sizing: border-box;
     user-select: none;
     -webkit-user-select: none;
@@ -271,6 +294,7 @@ body {
     position: absolute;
     top: 540px; /* 원하는 위치로 조정 */
     right: 10px; /* 원하는 위치로 조정 */
+    z-index: 1; /* 네비게이션보다 낮은 값으로 설정 */
 }
 
 .btn_cart img {

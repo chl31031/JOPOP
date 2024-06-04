@@ -111,12 +111,12 @@
    </insert>
    
    
-  <!-- 리뷰 관련 및 이미지 정보 가져오기 -->
- <select id="getReviewsByPid" parameterType="int" resultMap="reviewWithImages">
-  SELECT r.*, i.uploadPath, i.uuid, i.fileName FROM 
- jp_Review r LEFT JOIN jp_Rimage
-  i ON r.pId = i.pId AND r.mId = i.mId WHERE r.pId = #{pid} OR r.mId = #{mId}
-   </select>
+<!--  리뷰 관련 및 이미지 정보 가져오기  -->
+<select id="getReviewsByPid" parameterType="int" resultMap="reviewWithImages">
+ SELECT r.*, i.uploadPath, i.uuid, i.fileName, m.MNICK AS mNick 
+ FROM jp_Review 
+r LEFT JOIN jp_Rimage i ON r.pId = i.pId AND r.mId = i.mId 
+LEFT JOIN jp_member m ON r.mId = m.MID WHERE r.pId = #{pid} OR r.mId = #{mId} </select>
   
   <!--  특정 리뷰에 해당하는 이미지 리스트를 가져오는 쿼리 수정  -->
 <select id="getImagesByReviewId" parameterType="int" resultType="com.jopop.model.RimageVO">
@@ -142,6 +142,13 @@
  <delete id="deleteRImage">
  	delete from jp_rimage where pId = #{pId} and mId=#{mId}
  </delete>
+ 
+ <!--   위도와 경도를 포함한 모든 장소 정보 조회   -->
+<select id="getAllLocations" resultMap="jpPop"> SELECT a.PID, a.CATECODE, a.PNAME, a.CATENAME, 
+a.LAT, a.LNG, b.STARTDATE, b.ENDDATE, b.PADDR1, b.PADDR2,
+ b.PADDR3, b.PPRICE, b.PINTRO,
+ b.PCONTENTS FROM jp_map a INNER JOIN
+  jp_pop b ON a.PID = b.PID </select>
  
  
  <!--  리뷰 및 이미지 정보를 포함한 resultMap  -->
