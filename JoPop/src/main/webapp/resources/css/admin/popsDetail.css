@@ -185,13 +185,18 @@ body {
 }
 
 /* Form section content styles */
-.form_section_content input[type="text"], .form_section_content textarea
+.form_section_content input, .form_section_content textarea
 	{
-	width: 100%;
+	width: 300px;
+	height: 10px;
 	padding: 8px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	margin-top: 5px;
+}
+
+.addr input{
+	width: 670px;
 }
 
 /* Button styles */

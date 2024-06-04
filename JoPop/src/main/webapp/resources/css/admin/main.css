@@ -1,5 +1,26 @@
 @charset "UTF-8";
 
+/*
+@font-face {
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+font-family: 'GmarketSansMedium';
+
+*/
+
+body {
+	
+	background-color: #f0f0f0;
+	line-height: 1.6;
+}
+
+
 * {
 	margin: 0;
 	padding: 0;
@@ -90,19 +111,19 @@ ul {
 	font-weight: 600;
 }
 
-.admin_list_01:hover{
+.admin_list_01:hover {
 	width: 190px;
 	border-radius: 100px;
 	background-color: #fff;
 }
 
-.admin_list_02:hover{
+.admin_list_02:hover {
 	width: 190px;
 	border-radius: 100px;
 	background-color: #fff;
 }
 
-.admin_list_03:hover{
+.admin_list_03:hover {
 	width: 190px;
 	border-radius: 100px;
 	background-color: #fff;
@@ -137,11 +158,6 @@ ul {
 /* 여기까지 동일 양식 */
 /* 여기까지 동일 양식 */
 
-body {
-	font-family: Arial, sans-serif;
-	background-color: #f0f0f0;
-	line-height: 1.6;
-}
 
 /* 관리자페이지 컨텐츠 영역 */
 .admin_content_wrap {

@@ -90,19 +90,19 @@ ul {
 	font-weight: 600;
 }
 
-.admin_list_01:hover{
+.admin_list_01:hover {
 	width: 190px;
 	border-radius: 100px;
 	background-color: #fff;
 }
 
-.admin_list_02:hover{
+.admin_list_02:hover {
 	width: 190px;
 	border-radius: 100px;
 	background-color: #fff;
 }
 
-.admin_list_03:hover{
+.admin_list_03:hover {
 	width: 190px;
 	border-radius: 100px;
 	background-color: #fff;
@@ -137,127 +137,137 @@ ul {
 /* 여기까지 동일 양식 */
 /* 여기까지 동일 양식 */
 
+/* Body styles */
 body {
 	font-family: Arial, sans-serif;
 	background-color: #f0f0f0;
 	line-height: 1.6;
 }
 
-/* 관리자 페이지 컨텐츠 영역 */
+/* Header styles */
+.admin_header_wrap {
+	background-color: #333;
+	color: #fff;
+	padding: 10px;
+	text-align: center;
+}
+
+/* Content wrapper styles */
 .admin_content_wrap {
-    width: 700px;
-    float: left;
+	margin: 20px auto;
+	width: 700px;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	float: left;
 }
 
-/* 관리자 컨텐츠 제목 영역 */
+/* Content subject styles */
 .admin_content_subject {
-    font-size: 40px;
-    font-weight: bolder;
-    padding-left: 15px;
-    background-color: #6AAFE6;
-    height: 80px;
-    line-height: 80px;
-    color: white;
+	font-size: 1.5rem;
+	margin-bottom: 20px;
 }
 
-/* 관리자 컨텐츠 메인 영역 */
+/* Form section styles */
 .form_section {
-    width: 95%;
-    margin-left: 2%;
-    margin-top: 20px;
-    border: 1px solid #dbdde2;
-    background-color: #efefef;
+	margin-bottom: 20px;
 }
 
-.form_section_title {
-    padding: 20px 35px;
-}
-
+/* Form section title styles */
 .form_section_title label {
-    display: block;
-    font-size: 20px;
-    font-weight: 800;
+	font-weight: bold;
+	display: block;
 }
 
-.form_section_content {
-    padding: 20px 35px;
-    border-top: 1px solid #dbdde2;
+.form_section_content input, .form_section_content select {
+	width: 300px;
+	height: 10px;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-top: 5px;
 }
 
-.form_section_content input {
-    width: 98%;
-    height: 25px;
-    font-size: 20px;
-    padding: 5px 1%;
+.form_section_content textarea {
+	width: 680px; /* 원하는 너비 값으로 조정하세요 */
+	height: 150px; /* 원하는 높이 값으로 조정하세요 */
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-top: 5px;
+	resize: vertical; /* 사용자가 수직으로만 크기 조정할 수 있도록 설정합니다 */
 }
 
-.form_section_content select {
-    width: 98%;
-    height: 35px;
-    font-size: 20px;
-    text-align-last: center;
-}
-
-.ui-datepicker-trigger { /* 캘린더 CSS 설정 */
-    margin-left: 25px;
-    width: 14%;
-    height: 38px;
-    font-weight: 600;
-    background-color: #dfe8f5;
-    font-size: 15px;
-    cursor: pointer;
+.ui-datepicker-trigger {
+	margin-left: 25px;
+	width: 14%;
+	height: 38px;
+	font-weight: 600;
+	background-color: #dfe8f5;
+	font-size: 15px;
+	cursor: pointer;
 }
 
 input[name='publeYear'] {
-    width: 80%;
-    text-align: center;
+	width: 70%;
+	text-align: center;
 }
 
-/* 버튼 영역 */
+/* Button */
 .btn_section {
-    text-align: center;
-    margin: 80px 0;
+	text-align: center;
+	margin: 80px 0;
 }
 
 .btn {
-    min-width: 180px;
-    padding: 4px 30px;
-    font-size: 25px;
-    font-weight: 600;
-    line-height: 40px;
+	background-color: #333;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
 .enroll_btn {
-    background-color: #dbdde2;
-    margin-left: 15px;
+	background-color: #dbdde2;
+	margin-left: 15px;
 }
 
 #enrollBtn:hover {
-    background-color: #c9cbd0;
+	background-color: #45a049;
 }
 
-.form_section_content select { /* 카테고리 CSS 설정 */
-    width: 92%;
-    height: 35px;
-    font-size: 20px;
-    text-align-last: center;
-    margin-left: 5px;
+/* 팝업/전시 지역(주소) */
+.form_section_content .cate_wrap {
+    display: flex; /* 가로로 정렬하기 위해 Flexbox를 사용합니다 */
+    align-items: center;
+    
+    
 }
 
-.cate_wrap span {
-    font-weight: 600;
+.form_section_content .cate_wrap .cate1,
+.form_section_content .cate_wrap .cate2 {
+    width: 330px; /* 각 선택란의 너비를 300px로 설정합니다 */
+    height: 40px; /* 높이를 50px로 설정합니다 */
 }
+
+/* 시/도 선택란을 왼쪽으로 정렬합니다 */
+.form_section_content .cate_wrap .cate1 {
+    margin-right: 28px; /* 시/도 선택란과 시/군/구 선택란 사이의 간격을 조절합니다 */
+}
+
+
+
 
 .cate_wrap:not(:first-child) {
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
-.ck_warn { /* 입력란 공란 경고 태그 */
-    display: none;
-    padding-top: 10px;
-    text-align: center;
-    color: #e05757;
-    font-weight: bold; /* 누락된 CSS 속성 추가 */
+.ck_warn {
+	display: none;
+	padding-top: 10px;
+	text-align: center;
+	color: #e05757;
+	font-weight: bold;
 }
-
-

@@ -200,24 +200,28 @@ body {
 .search_input {
 	position: relative;
 	margin-bottom: 10px;
+	text-align: center;
 }
 
-.search_input input[type='text'] {
-	width: 70%;
+.search_input input {
+	width: 60%;
 	padding: 8px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
+	margin: 0 auto;
+	margin-right: 30px;
 }
 
 .search_btn {
 	position: absolute;
 	top: 0;
-	right: 0;
 	padding: 8px 15px;
 	border: none;
 	background-color: #333;
 	color: #fff;
 	cursor: pointer;
+	margin: 0 auto;
+	text-align: center;
 }
 
 /* Page maker styles */
