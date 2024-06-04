@@ -83,7 +83,7 @@
     <div class="list_search_result">
         <table class="type_list">
             <tbody id="searchList">
-                <c:forEach items="${goodsList}" var="list">
+                <c:forEach items="${list}" var="list">
                     <tr class="list">
                         <td class="image">
                             <c:if test="${not empty list.imageList}">
@@ -136,7 +136,7 @@
                 
                
 <div class="rt_div_subject">
-    평점순 상품
+    <h1>담당자 픽 ! 인기 팝업!</h1>
 </div>
 <div class="rt_div">
     <c:forEach items="${rating}" var="rating">
@@ -245,22 +245,19 @@
     });
 
     $(document).ready(function(){
-    	/*이미지 삽입*/
+    	 /* 이미지 삽입 */
         $(".image_wrap").each(function(i, obj) {
-            
-        	const bobj = $(obj);
-            
-        	if(bobj.data("pid")){
-        		 const uploadPath = bobj.data("path");
-                 const uuid = bobj.data("uuid");
-                 const fileName = bobj.data("filename");
-                 
-                 const filecallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "-" + fileName);
-                 
-                 $(this).find("img").attr('src', 'display?fileName=' + filecallPath);
-        	} else{
-        		$(this).find("img").attr('src', '/resources/img/noimage.png');
-        	}
+            const bobj = $(obj);
+            const uploadPath = bobj.data("path");
+            const uuid = bobj.data("uuid");
+            const fileName = bobj.data("filename");
+
+            if(uploadPath && uuid && fileName) {
+                const filecallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "-" + fileName);
+                $(this).find("img").attr('src', 'display?fileName=' + filecallPath);
+            } else {
+                $(this).find("img").attr('src', '/resources/img/noimage.png');
+            }
         });
     });
     </script>

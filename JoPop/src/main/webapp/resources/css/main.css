@@ -1,151 +1,122 @@
 @charset "UTF-8";
-*{
-	margin: 0;
-	padding:0;
-}
 
-.wrap{
-	width : 900px;
-	margin: auto;
-	
-}
-
-/* 메인 배너 CSS */
-
-.main_slick_area {
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-.slick-list {
-    overflow: hidden;
+* {
     margin: 0;
     padding: 0;
-    list-style: none;
-    position: relative;
 }
 
-.slick-track {
-    display: flex;
-    transition: transform 0.3s ease;
-}
-
-.popupbanner_list {
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-    width: 480px; /* Modified width */
-    outline: none;
-}
-
-.slide-contents {
-    padding: 10px;
-}
-
-.slide_img_wrap img {
-    display: block;
-    max-width: 100%;
+.wrapper {
     height: auto;
-    width: 100%; /* Ensure images fill their containers */
-    height: auto; /* Preserve aspect ratio */
+    
 }
 
-.slick-prev,
-.slick-next {
-    display: none; /* Hide navigation arrows */
+.wrap {
+    width: 960px;
+    margin: auto;
 }
 
-.slick-dots {
-    position: absolute;
-    bottom: 10px;
+.list {
+    width: 450px;
+    display: block;
+    float: left;
+    margin-top: 10px;
+}
+
+.main_img_area {
     width: 100%;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-    list-style: none;
+    height: 200px;
+    background-color: #ccc;
 }
 
-.slick-dots li {
-    display: inline-block;
-    margin: 0 5px;
-    cursor: pointer;
+/* 홈페이지 기능 네비 */
+.top_gnb_area {
+    width: 100%;
+    height: 50px;
+    background-color: #f08080;
 }
 
-.slick-dots li button {
-    display: none; /* Hide pagination buttons */
+/* 로고 영역 */
+.logo_area {
+    width: 25%;
+    height: 100%;
+    background-color: red;
+    float: left;
 }
 
-.slick-dots li.slick-active button {
-    background: #000;
+/* 검색 박스 영역 */
+.search_area {
+    width: 50%;
+    height: 100%;
+    background-color: yellow;
+    float: left;
 }
 
-
-
+/* 제품 목록 네비 */
 .navi_bar_area {
-	width: 100%;
+    width: 100%;
     height: 70px;
     background-color: #7696fd;
-    margin: 5px;
 }
 
+/* 홈페이지 메인 제품 목록  */
+.content_area {
+    width: 100%;
+    height: 1100px;
+}
 
 /* float 속성 해제 */
-.clearfix{
-	clear: both;
+.clearfix {
+    clear: both;
 }
 
-.list{
-   width: 400px;
-   display: block;
-   float: left;
-   margin: 5px;
+.type_list {
+    width: 100%;
+    border-bottom: 1px solid #e7e7e7;
+    border-collapse: collapse;
 }
 
-.content_area{
-   width: 100%;
-   height: 100%;
+.type_list tr {
+    height: 200px;
+    border-bottom: 1px solid #e7e7e7;
 }
 
-.type_list{
-       width: 100%;
-       border-bottom: 1px solid #e7e7e7;
-       border-collapse: collapse;   
-   }
-.type_list tr{
-      height:200px;
-      border-bottom: 1px solid #e7e7e7;
-   }
-.detail div{
-      margin-bottom: 5px;
-   }
-.category{
-      font-size: 12px;
-       font-weight: 600;
-   }
-.title{
-       font-size: 20px;
-       color: #3a60df;
-       font-weight: 700;
-   }
-.author{
-      font-size: 14px;
-   }
-.info{
-      text-align: center;
-   }
-.price{
-      text-align: center;
-   }
-.org_price del{
-      font-size: 13px;
-   }
-.sell_price strong{
-      color: #da6262;
-       font-size: 18px;
-   }
-   
+.detail div {
+    margin-bottom: 5px;
+}
+
+.category {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.title a {
+    font-size: 17px;
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.author {
+    font-size: 14px;
+}
+
+.info {
+    text-align: center;
+}
+
+.price {
+    text-align: center;
+}
+
+.org_price del {
+    font-size: 13px;
+}
+
+.sell_price strong {
+    color: #da6262;
+    font-size: 18px;
+}
+
 .btn_cart {
     width: 20px;
     height: 20px;
@@ -153,7 +124,74 @@
     cursor: pointer;
 }
 
-/* main.css 파일에 추가 */
+/* 리스트 부분*/
+.image_wrap1 {
+    position: relative;
+    display: inline-block;
+  
+    
+}
+
+/* 밑에 부분 */
+.image_wrap2 {
+    position: relative;
+    display: inline-block;
+  
+    
+}
+
+.image_wrap2 img {
+    display: block;
+    width: 100%;
+    height: auto;
+    width: 260px;
+    height: 260px;
+    border-radius: 20px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px; /* 내용과 이미지 사이의 간격 */
+    
+    
+}
+
+.overlay div {
+    margin-bottom: 5px;
+  
+}
+
+.detail {
+    display: block;
+    float: left;
+    width: 210px;
+    height: 150px;
+    margin-left: 10px;
+}
+
+.cart {
+    display: block;
+    float: left;
+    width: 20px;
+    height: 150px;
+}
+
+.price {
+    display: block;
+    float: left;
+    width: 240px;
+    height: 50px;
+}
+
+.org_price {
+    float: right;
+    margin-top: 20px;
+}
+
 .addlink {
     display: block;
     padding: 15px 20px;
@@ -181,150 +219,45 @@
     transform: scale(0.95); /* 클릭 시 약간 축소 효과 */
 }
 
-.type_list {
-	width: 100%;
-	border-bottom: 1px solid #e7e7e7;
-	border-collapse: collapse;
+.rt_div_subject{
+	margin: 30px;
+	
 }
 
-.type_list tr {
-	height: 200px;
-	border-bottom: 1px solid #e7e7e7;
-}
-
-.detail div {
-	margin-bottom: 5px;
-}
-
-.category {
-	font-size: 12px;
-	font-weight: 500;
-}
-
-.title a {
-	font-size: 17px;
-	color: #000; /* 텍스트 색상을 지정합니다. */
-	font-weight: 600;
-	text-decoration: none;
-}
-
-.author {
-	font-size: 14px;
-}
-
-.info {
-	text-align: center;
-}
-
-.price {
-	text-align: center;
-}
-
-.org_price del {
-	font-size: 13px;
-}
-
-.sell_price strong {
-	color: #da6262;
-	font-size: 18px;
-}
-
-.btn_cart {
-	width: 20px;
-	height: 20px;
-	border: none;
-	cursor: pointer;
-}
 
 .image {
-	display: block;
-	float: left;
-	width: 190px;
-	height: 190px;
-	border: 1px solid red;
-	cursor: pointer;
+    display: block;
+    float: left;
+    width: 190px;
+    height: 190px;
+    border: 1px solid red;
+    cursor: pointer;
+    overflow: hidden; /* 자식 요소가 부모 요소를 넘지 않도록 설정 */
 }
 
-.detail {
-	display: block;
-	float: left;
-	width: 210px;
-	height: 150px;
-	/* background-color: yellow; */
-	margin-left: 10px;
+.image img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover; /* 이미지가 부모 요소에 맞게 조절됨 */
 }
 
-.cart {
-	display: block;
-	float: left;
-	width: 20px;
-	height: 150px;
-	/* background-color: green;*/
+.slick-slide, .slick-cloned {
+    outline: none; /* 슬라이드 요소들의 아웃라인 제거 */
+   
 }
 
-.price {
-	display: block;
-	float: left;
-	width: 240px;
-	height: 50px;
-	/* background-color: lightblue;*/
+.popupbanner_list{
+	width: 480px;
+	height: 480px;
 }
 
-.org_price {
-	float: right;
-	margin-top: 20px;
+.slide_img_wrap img {
+    display: block;
+    width: 480px;
+    height: 480px;
 }
 
-/* 페이지 이동 인터페이스 */
-.pageMaker_wrap {
-	margin-top: 20px;
-	text-align: center;
-}
-
-.pageMaker_wrap ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
-.pageMaker_wrap ul li {
-	display: inline-block;
-	margin-right: 5px;
-}
-
-.pageMaker_wrap ul li a {
-	display: inline-block;
-	padding: 8px 10px 5px 10px;
-	border: 1px solid #ccc;
-	text-decoration: none;
-	color: #333;
-	text-align: center;
-}
-
-.pageMaker_wrap ul li a:hover {
-	background-color: #f0f0f0;
-}
-
-.pageMaker_wrap ul li.active a {
-	background-color: #333;
-	color: #fff;
-}
-
-/* 폼 스타일 */
-#moveForm {
-	margin-top: 20px;
-	text-align: center;
-}
-
-#moveForm input[type="hidden"] {
-	display: none;
-}
-
-.rt_div{
-	height:900px;
-	width: 100%;
-}
-
-td_detail{
-	font-size: 12px;
+.slide-contents{
+	 width: 480px;
+    height: 480px;
 }

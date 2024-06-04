@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -7,84 +8,108 @@
 <meta charset="UTF-8">
 <title>Welcome JoPoP</title>
 <link rel="stylesheet" href="../resources/css/nav/search.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <body>
-    <div class="navi_bar_area">
-        <h1>navi area</h1>
-    </div>
-    <div class="content_area">
-        <div class="list_search_result">
-            <table class="type_list">
-                <tbody id="searchList">
-                    <c:forEach items="${list}" var="list">
-                        <tr class="list">
-                            <td class="image">
-                                <div class="image_wrap"
-                                    data-pid="${list.imageList[0].pId}"
-                                    data-path="${list.imageList[0].uploadPath}"
-                                    data-uuid="${list.imageList[0].uuid}"
-                                    data-filename="${list.imageList[0].fileName}">
-                                    <img src="/resources/img/noimage.png" alt="상품 이미지">
-                                </div>
-                            </td>
-                            <td class="detail">
-                                <div class="title">
-                                    <a href="/pop/popsDetail?pid=${list.pId}">${list.pName}</a>
-                                </div>
-                                <div class="adress">${list.pAddr1} ${list.pAddr2}</div>
-                                <div class="date">
-                                    <fmt:formatDate value="${list.startDate}" pattern="yyyy.MM.dd" />
-                                    -
-                                    <fmt:formatDate value="${list.endDate}" pattern="yyyy.MM.dd" />
-                                </div>
-                            </td>
-                            <td class="cart">
-                                <div class="cart_button">
-                                    <form method="post">
-                                        <input type="hidden" name="pId" value="${list.pId}">
-                                        <img class="btn_cart" data-pid="${list.pId}" src="/resources/img/heart.png">
-                                    </form>
-                                </div>
-                            </td>
-                            <td class="price">
-                                <div class="org_price">
-                                    <fmt:formatNumber value="${list.pPrice}" pattern="#,### 원" />
-                                </div>
-                            </td>
-                            <td class="option"></td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </div>
-        <!-- 페이지 이동 인터페이스 -->
-        <div class="pageMaker_wrap">
-            <ul class="pageMaker">
-                <!-- 이전 버튼 -->
-                <c:if test="${pageMaker.prev }">
-                    <li class="pageMaker_btn prev"><a href="${pageMaker.pageStart -1}">이전</a></li>
-                </c:if>
-                <!-- 페이지 번호 -->
-                <c:forEach begin="${pageMaker.pageStart }" end="${pageMaker.pageEnd }" var="num">
-                    <li class="pageMaker_btn ${pageMaker.cri.pageNum == num ? 'active':''}">
-                        <a href="${num}">${num}</a>
-                    </li>
-                </c:forEach>
-                <!-- 다음 버튼 -->
-                <c:if test="${pageMaker.next}">
-                    <li class="pageMaker_btn next"><a href="${pageMaker.pageEnd + 1 }">다음</a></li>
-                </c:if>
-            </ul>
-        </div>
-        <form id="moveForm" action="/nav/search" method="get">
-            <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-            <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-            <input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
-        </form>
-    </div>
-    <%@include file="../nav/nav.jsp"%>
-    <script type="text/javascript">
+
+	<%@include file="../includes/header.jsp"%>
+	<div class="wrapper">
+		<div class="wrap">
+
+			<div class="navi_bar_area">
+				<h1>navi area</h1>
+			</div>
+			<div class="content_area">
+				<div class="list_search_result">
+					<table class="type_list">
+						<tbody id="searchList">
+							<c:forEach items="${list}" var="list">
+								<tr class="list">
+									<td class="image">
+										<div class="image_wrap"
+											data-pId="${list.imageList[0].pId}"
+											data-path="${list.imageList[0].uploadPath}"
+											data-uuid="${list.imageList[0].uuid}"
+											data-filename="${list.imageList[0].fileName}">
+											<img>
+										</div>
+									</td>
+									<td class="detail">
+										<div class="title">
+											<a href="/pop/popsDetail?pid=${list.pId}"> ${list.pName}
+											</a>
+										</div>
+										<div class=adress>${list.pAddr1}${list.pAddr2}</div>
+										<div class="date">
+											<fmt:formatDate value="${list.startDate}"
+												pattern="yyyy.MM.dd" />
+											-
+											<fmt:formatDate value="${list.endDate}" pattern="yyyy.MM.dd" />
+										</div>
+									</td>
+									<td class="cart">
+										<div class="cart_button">
+											<form method="post">
+												<input type="hidden" name="pId" value="${list.pId}">
+												<img class="btn_cart" data-pid="${list.pId}"
+													src="/resources/img/heart.png">
+											</form>
+										</div>
+									</td>
+									<td class="price">
+										<div class="org_price">
+											<fmt:formatNumber value="${list.pPrice}" pattern="#,### 원" />
+										</div>
+									</td>
+									<td class="option"></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+
+					</table>
+				</div>
+				<!-- 페이지 이동 인터페이스 -->
+				<div class="pageMaker_wrap">
+					<ul class="pageMaker">
+
+						<!-- 이전 버튼 -->
+						<c:if test="${pageMaker.prev }">
+							<li class="pageMaker_btn prev"><a
+								href="${pageMaker.pageStart -1}">이전</a></li>
+						</c:if>
+
+						<!-- 페이지 번호 -->
+						<c:forEach begin="${pageMaker.pageStart }"
+							end="${pageMaker.pageEnd }" var="num">
+							<li
+								class="pageMaker_btn ${pageMaker.cri.pageNum == num ? 'active':''}">
+								<a href="${num}">${num}</a>
+							</li>
+						</c:forEach>
+
+						<!-- 다음 버튼 -->
+						<c:if test="${pageMaker.next}">
+							<li class="pageMaker_btn next"><a
+								href="${pageMaker.pageEnd + 1 }">다음</a></li>
+						</c:if>
+					</ul>
+				</div>
+
+				<form id="moveForm" action="/nav/search" method="get">
+					<input type="hidden" name="pageNum"
+						value="${pageMaker.cri.pageNum}"> <input type="hidden"
+						name="amount" value="${pageMaker.cri.amount}"> <input
+						type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	<%@include file="../nav/nav.jsp"%>
+	<script type="text/javascript">
         $(document).ready(function() {
             // 페이지 로드 시 세션 스토리지에서 버튼 상태를 읽어옵니다.
             $('.btn_cart').each(function() {

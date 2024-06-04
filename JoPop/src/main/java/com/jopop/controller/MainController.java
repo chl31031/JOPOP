@@ -42,11 +42,11 @@ public class MainController {
 	public String mainPageGET(HttpSession session, Model model, Criteria cri) {
 	    try {
 	        // 기존의 상품 목록 가져오기
-	        List<PopVO> goodsList = popservice.getGoodsList(cri);
+	        List<PopVO> list = popservice.getGoodsList(cri);
 
 	        // 가져온 목록이 비어있지 않다면 모델에 추가
-	        if (goodsList != null && !goodsList.isEmpty()) {
-	            model.addAttribute("goodsList", goodsList);
+	        if (list != null && !list.isEmpty()) {
+	            model.addAttribute("list", list);
 	            model.addAttribute("rating" , popservice.rating());
 	            
 	            System.out.println("rating" + popservice.rating());
