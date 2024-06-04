@@ -2,6 +2,7 @@ package com.jopop.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -81,18 +82,23 @@ public class PopServiceimpl implements PopService {
     //[마이페이지 - 리뷰] 회원정보에 맞는 상품명 출력
 	@Override
 	public List<ReviewVO> getMyPageReivew(int mId) throws Exception {
+		
 		return popMapper.getMyPageReivew(mId);
 	}
 
-	// 리뷰 내용
+	// 리뷰 내용 삭제
 	@Override
 	public int deleteReview(int pId, int mId) {
+		System.out.println("실행  pId : "+pId+" , mId: "+mId);
 		return popMapper.deleteReview(pId, mId);
 	}
+	
 	
 	//리뷰 이미지 삭제
 	@Override
 	public int deleteRImage(int pId, int mId) {
+		System.out.println("PopServiceImpl까지는 옴");
+		
 		return popMapper.deleteReview(pId, mId);
 	}
 

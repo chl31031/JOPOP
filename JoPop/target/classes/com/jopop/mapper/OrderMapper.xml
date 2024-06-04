@@ -4,9 +4,14 @@
   <mapper namespace="com.jopop.mapper.OrderMapper">
 
 	<!-- 주문 상품 정보 -->
-	<select id="getGoodsInfo" resultType="com.jopop.model.OrderPageItemDTO">
+	<select id="getPopsInfo" resultType="com.jopop.model.OrderPageItemDTO">
 		select pId, pName, pPrice
 		from jp_Pop where pId = #{pId}
 	</select>
+	
+	<!-- 카트 수량 수정 -->
+	<update id="modifyCount">
+		update jp_order set count = #{count} where orderId = #{orderId};
+	</update>
 	
   </mapper>

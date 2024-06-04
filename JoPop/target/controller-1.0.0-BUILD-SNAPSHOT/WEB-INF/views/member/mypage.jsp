@@ -56,6 +56,26 @@
 				            	<button class="btn_delete">삭제</button>
 				            	<button class="btn_modify">수정</button>
 				            </div>
+				            <div id='modify-form'>
+				            	<div class="rating">
+				                    <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+				                    <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+				                    <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+				                    <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+				                    <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+				                </div>
+				                <div id="uploadResult"></div>
+				                <form class="review-form" id="reviewForm" enctype="multipart/form-data">
+				                    <input type="hidden" name="pId" value="${review.pId}">
+				                    <input type="hidden" name="pName" value="${review.pName}">
+				            		<input type="hidden" name="mId" value="${review.mId}">
+				                    <textarea name="contents" placeholder="리뷰를 입력하세요"></textarea>
+				                    <input type="hidden" name="score" value="">
+				                    <div class="button-group">
+				                        <button type="submit">후기 등록</button>
+				                    </div>
+				                </form>
+				            </div>
 				            <div class="review-divider"></div>
 				        </c:forEach>
 				    </c:if>
@@ -109,7 +129,216 @@
 	//수정 버튼
 	$(".btn_modify").on("click", function(e){
 		alert("수정 버튼");
+		
+		const mydiv = document.getElementById('modify-form');
+		  
+		if(mydiv.style.display === 'block') {
+		  mydiv.style.display = 'none';
+		}else {
+		  mydiv.style.display = 'block';
+		}
 	});
+	
+	 // 평점 선택 기능
+    document.querySelectorAll('.rating label').forEach(label => {
+        label.addEventListener('click', function() {
+            let value = this.previousElementSibling.value;
+            document.querySelector('input[name="score"]').value = value;
+            highlightStars(value);
+        });
+    });
+
+    function highlightStars(rating) {
+        document.querySelectorAll('.rating label').forEach(label => {
+            label.style.color = label.previousElementSibling.value <= rating ? '#ffcc00' : '#ccc';
+        });
+    }
+
+    let selectedRating = document.querySelector('.rating input:checked');
+    if (selectedRating) {
+        highlightStars(selectedRating.value);
+    }
+
+    // 리뷰 폼 제출 처리
+    $('#reviewForm').submit(function(e) {
+        e.preventDefault();
+
+        var formData = new FormData(this);
+        var files = $('input[name="uploadFile"]')[0].files;
+
+        if (files.length > 0) {
+            // 이미지가 있는 경우 이미지 업로드 후 리뷰 등록
+            uploadImagesAndSubmitReview(files, formData);
+        } else {
+            // 이미지가 없는 경우 바로 리뷰 등록
+            submitReviewForm([]);
+        }
+    });
+
+    // 이미지 업로드 및 삭제 처리
+    $("input[type='file']").on("change", function(e) {
+        // 이미지를 업로드하기 전에 기존 이미지를 삭제합니다.
+        if ($(".imgDeleteBtn").length > 0) {
+            deleteFile();
+        }
+
+        let formData = new FormData();
+        let fileInput = $('input[name="uploadFile"]');
+        let fileList = fileInput[0].files;
+        let fileObj = fileList[0];
+
+        if (!fileCheck(fileObj.name, fileObj.size)) {
+            return false;
+        }
+
+        formData.append("uploadFile", fileObj);
+
+        $.ajax({
+            url: '${pageContext.request.contextPath}/pop/uploadAjaxAction',
+            processData: false,
+            contentType: false,
+            data: formData,
+            type: 'POST',
+            dataType: 'json',
+            success: function(result) {
+                showUploadImage(result);
+            },
+            error: function(xhr, status, error) {
+                alert("이미지 업로드 중 오류가 발생했습니다.");
+            }
+        });
+    });
+
+    function uploadImagesAndSubmitReview(files, formData) {
+        let uploadFormData = new FormData();
+
+        $.each(files, function(i, file) {
+            uploadFormData.append('uploadFile', file);
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: '${pageContext.request.contextPath}/pop/uploadAjaxAction',
+            data: uploadFormData,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function(response) {
+                var imageList = [];
+                $.each(response, function(i, image) {
+                    var imageInfo = {
+                        uuid: image.uuid,
+                        fileName: image.fileName,
+                        uploadPath: image.uploadPath
+                    };
+                    imageList.push(imageInfo);
+                });
+
+                submitReviewForm(imageList);
+            },
+            error: function(xhr, status, error) {
+                alert("이미지 업로드 중 오류가 발생했습니다.");
+            }
+        });
+    }
+
+    function submitReviewForm(imageList) {
+        var reviewFormData = new FormData();
+        reviewFormData.append('pId', $('input[name="pId"]').val());
+        reviewFormData.append('contents', $('textarea[name="contents"]').val());
+        reviewFormData.append('score', $('input[name="score"]').val());
+        reviewFormData.append('pName', $('input[name="pName"]').val());
+        reviewFormData.append('mId', $('input[name="mId"]').val());
+        reviewFormData.append('imageList', JSON.stringify(imageList)); // JSON 문자열로 변환하여 전송
+
+        $.ajax({
+            type: 'POST',
+            url: '${pageContext.request.contextPath}/pop/addReview',
+            data: reviewFormData,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function(response) {
+                alert(response.message);
+                location.reload();
+            },
+            error: function(xhr, status, error) {
+                if (xhr.status === 401) {
+                    alert("로그인이 필요합니다.");
+                    window.location.href = "${pageContext.request.contextPath}/nav/prelogin";
+                } else {
+                    alert("후기 등록 중 오류가 발생했습니다.");
+                }
+            }
+        });
+    }
+
+    $("#uploadResult").on("click", ".imgDeleteBtn", function(e) {
+        deleteFile();
+    });
+
+    function deleteFile() {
+        let targetFile = $(".imgDeleteBtn").data("file");
+        let targetDiv = $("#result_card");
+
+        $.ajax({
+            url: '/pop/deleteFile',
+            data: {fileName: targetFile},
+            dataType: 'text',
+            type: 'POST',
+            success: function(result) {
+                if (result === 'success') {
+                    targetDiv.remove();
+                    $("input[type='file']").val("");
+                } else {
+                    alert("파일을 삭제하지 못하였습니다.");
+                }
+            },
+            error: function(result) {
+                alert("파일을 삭제하지 못하였습니다.");
+            }
+        });
+    }
+
+    function showUploadImage(uploadResultArr) {
+        if (!uploadResultArr || uploadResultArr.length == 0) {
+            return;
+        }
+
+        let uploadResult = $("#uploadResult");
+
+        let obj = uploadResultArr[0];
+
+        let str = "";
+
+        let fileCallPath = encodeURIComponent(obj.uploadPath.replace(/\\/g, '/') + "/s_" + obj.uuid + "_" + obj.fileName);
+
+        str += "<div id='result_card'>";
+        str += "<img src='${pageContext.request.contextPath}/pop/display?fileName=" + fileCallPath + "' style='width: 100px; height: auto;'>";
+        str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>삭제</div>";
+        str += "<input type='hidden' name='imageList[0].fileName' value='" + obj.fileName + "'>";
+        str += "<input type='hidden' name='imageList[0].uuid' value='" + obj.uuid + "'>";
+        str += "<input type='hidden' name='imageList[0].uploadPath' value='" + obj.uploadPath + "'>";
+        str += "</div>";
+
+        uploadResult.empty();
+        uploadResult.append(str);
+    }
+
+    function fileCheck(fileName, fileSize) {
+        if (fileSize >= maxSize) {
+            alert("파일 사이즈 초과");
+            return false;
+        }
+
+        if (!regex.test(fileName)) {
+            alert("해당 종류의 파일은 업로드할 수 없습니다.");
+            return false;
+        }
+
+        return true;
+    }
+    });
 </script>
    
 </body>

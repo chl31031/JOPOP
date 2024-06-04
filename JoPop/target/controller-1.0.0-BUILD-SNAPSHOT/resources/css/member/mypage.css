@@ -111,8 +111,75 @@
     flex-direction: row-reverse;
 }
 
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 2rem;
+    color: #ccc; /* 기본 상태 빈 별 색상 */
+    cursor: pointer;
+}
+
+.rating label:hover,
+.rating label:hover ~ label,
+.rating input:checked ~ label {
+    color: #ffcc00; /* hover 및 체크된 상태의 별 색상 */
+}
+
+.rating input:checked ~ label ~ label {
+    color: #ccc; /* 선택된 별보다 오른쪽 별들은 다시 기본 색상으로 */
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-form textarea {
+    width: 100%;
+    height: 100px;
+    background-color: #f0f0f0;
+    color: #1e1e1e;
+    border: 1px solid #004225;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    resize: none; /* textarea 크기 고정 */
+}
+
+.review-form .button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.review-form .button-group button {
+    background-color: #00c73c; /* Jopop 색상 */
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.review-form .button-group button:hover {
+    background-color: #008f28; /* Hover 색상 */
+}
+
+.review-section p {
+    color: #1e1e1e;
+}
+
 /* 리뷰 구분선 스타일 */
 .review-divider {
     border-top: 1px solid #00c73c; /* 구분선 색을 녹색으로 변경 */
     margin: 20px 0; /* 구분선 위아래 여백 */
+}
+
+/*수정 창*/
+#modify-form {
+  width: 500px;
+  height: 400px;
+  background-color: red;
+  display: none;
 }

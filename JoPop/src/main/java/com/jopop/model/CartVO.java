@@ -23,6 +23,7 @@ public class CartVO {
    
    //검색을 위한 키워드
    private String keyword;
+   
 
 	public int getCartId() {
 		return cartId;

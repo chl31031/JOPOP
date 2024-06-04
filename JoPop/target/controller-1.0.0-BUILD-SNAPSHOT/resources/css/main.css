@@ -7,6 +7,7 @@
 .wrap{
 	width : 900px;
 	margin: auto;
+	
 }
 
 /* 메인 배너 CSS */
@@ -319,3 +320,11 @@
 	display: none;
 }
 
+.rt_div{
+	height:900px;
+	width: 100%;
+}
+
+td_detail{
+	font-size: 12px;
+}

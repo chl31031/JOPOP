@@ -1,5 +1,26 @@
 @charset "UTF-8";
 
+/*
+@font-face {
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+font-family: 'GmarketSansMedium';
+
+*/
+
+body {
+	
+	background-color: #f0f0f0;
+	line-height: 1.6;
+}
+
+
 * {
 	margin: 0;
 	padding: 0;
@@ -27,28 +48,28 @@ ul {
 	height: 50px;
 	background-color: #f0f0f1;
 	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .top_gnb_area .list {
-	position: absolute;
-	top: 0px;
-	right: 0;
-}
-
-.top_gnb_area .list li {
+	display: flex;
+	align-items: center;
 	list-style: none;
-	float: left;
-	padding: 13px 15px 0 10px;
-	font-weight: 900;
-	cursor: pointer;
+	margin: 0;
+	padding: 0;
 }
 
-.top_gnb_area img {
-    position: relative; /* 이미지의 위치를 부모 요소에 상대적으로 설정 */
-    top: 50%; /* 부모 요소의 세로 중앙에 위치 */
-    transform: translateY(-50%); /* 세로 중앙 정렬 */
-    width: 150px;
-    margin: 15px 600px 0 0;
+.top_gnb_area li {
+	margin-left: auto; /* 메뉴를 오른쪽으로 이동시킵니다 */
+	text-align: right; /* 메뉴 텍스트를 오른쪽으로 정렬합니다 */
+	margin-left: 180px;
+}
+
+.top_gnb_area .list img {
+	margin: 15px 0 0 40px; /* 이미지와 메뉴 사이 간격을 조절하세요 */
+	width: 150px;
 }
 
 /* 관리제 페이지 상단 현페이지 정보 */
@@ -66,6 +87,7 @@ ul {
 	font-size: 50px;
 	font-weight: bolder;
 }
+
 /* 관리자 wrap(네비+컨텐츠) */
 .admin_wrap {
 	
@@ -77,6 +99,7 @@ ul {
 	height: 300px;
 	float: left;
 	height: 100%;
+	margin: 20px 0 10px 0;
 }
 
 .admin_navi_wrap li {
@@ -84,6 +107,26 @@ ul {
 	height: 80px;
 	line-height: 80px;
 	text-align: center;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.admin_list_01:hover {
+	width: 190px;
+	border-radius: 100px;
+	background-color: #fff;
+}
+
+.admin_list_02:hover {
+	width: 190px;
+	border-radius: 100px;
+	background-color: #fff;
+}
+
+.admin_list_03:hover {
+	width: 190px;
+	border-radius: 100px;
+	background-color: #fff;
 }
 
 .admin_navi_wrap li a {
@@ -92,8 +135,7 @@ ul {
 	width: 95%;
 	margin: 0 auto;
 	cursor: pointer;
-	font-size: 20px;
-	font-weight: bolder;
+	hover
 }
 
 .admin_navi_wrap li a:link {
@@ -111,6 +153,11 @@ ul {
 .admin_navi_wrap li a:hover {
 	color: black;
 }
+
+/* 여기까지 동일 양식 */
+/* 여기까지 동일 양식 */
+/* 여기까지 동일 양식 */
+
 
 /* 관리자페이지 컨텐츠 영역 */
 .admin_content_wrap {

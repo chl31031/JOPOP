@@ -114,7 +114,6 @@
       
       /* 주문 페이지 이동 */   
       $(".order_btn").on("click", function(){
-         alert("버튼 눌림");
          
          let form_contents ='';
          let orderNumber = 0;

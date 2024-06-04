@@ -134,18 +134,18 @@
                     <a href="/nav/search" class="addlink">더보기</a>
                 </div>
                 
-               <div>
-    <div class="ls_div_subject">
+               
+<div class="rt_div_subject">
     평점순 상품
 </div>
 <div class="rt_div">
     <c:forEach items="${rating}" var="rating">
-        <a href="/pop/popsDetail?pid=${rating.pId}">
+        <a href="/goodsDetail/${rating.pId}">
             <div class="rt_div_content_wrap">
                 <div class="rt_div_content">
                     <c:if test="${not empty rating.imageList}">
                         <div class="image_wrap"
-                             data-pId="${rating.imageList[0].pId}"
+                             data-pid="${rating.imageList[0].pId}"
                              data-path="${rating.imageList[0].uploadPath}"
                              data-uuid="${rating.imageList[0].uuid}"
                              data-filename="${rating.imageList[0].fileName}">
@@ -174,11 +174,11 @@
 </div>
 
 
+
          
            
         </div>
         </div>
-</div> 
    
     <%@ include file="nav/nav.jsp" %>
     <%@ include file="includes/footer.jsp" %>
@@ -245,17 +245,12 @@
     });
 
     $(document).ready(function(){
-        const selectedType = '<c:out value="${pageMaker.cri.type}"/>';
-        if(selectedType != ""){
-            $("select[name='type']").val(selectedType).attr("selected", "selected");    
-        }
-
-        /*이미지 삽입*/
+    	/*이미지 삽입*/
         $(".image_wrap").each(function(i, obj) {
             
         	const bobj = $(obj);
             
-        	if(bobj.data("rating.pId")){
+        	if(bobj.data("pid")){
         		 const uploadPath = bobj.data("path");
                  const uuid = bobj.data("uuid");
                  const fileName = bobj.data("filename");
