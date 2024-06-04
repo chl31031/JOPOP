@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.jopop.model.Criteria;
 import com.jopop.model.PopVO;
+import com.jopop.model.RatingDTO;
 import com.jopop.model.ReviewVO;
 import com.jopop.model.RimageVO;
 
@@ -18,6 +19,9 @@ public interface PopMapper {
 
     // 상품 총 갯수
     public int goodsGetTotal(Criteria cri) throws Exception;
+    
+    /* 인기 있는 순 리스트 */
+    public List<RatingDTO> rating() throws Exception;
 
     // 리뷰 추가
     public void addReview(ReviewVO review) throws Exception;

@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="/resources/css/nav/nav.css">
-    <link rel="stylesheet" href="/resources/css/pop/pop.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/nav/nav.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/pop/pop.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
     <meta charset="UTF-8">
@@ -28,6 +28,10 @@
                 <div><img src="<%=request.getContextPath()%>/resources/eximg/mok1.png" alt="배너 이미지4"></div>
                 <div><img src="<%=request.getContextPath()%>/resources/eximg/hello1.png" alt="배너 이미지4"></div>
             </div>
+            <!-- 찜 추가/삭제 버튼 -->
+            <button id="heartIcon" class="btn_cart">
+                <img src="${pageContext.request.contextPath}/resources/img/heart.png" alt="찜 아이콘" id="heartImage">
+            </button>
         </div>
 
         <div class="content">
@@ -105,12 +109,6 @@
     </div>
 <script>
 $(document).ready(function() {
-    var lat = ${popsInfo.mapVO.lat};
-    var lng = ${popsInfo.mapVO.lng};
-    var address = "${popsInfo.pAddr1} ${popsInfo.pAddr2} ${popsInfo.pAddr3}";
-    var maxSize = 1048576; // 1MB
-    var regex = new RegExp("(.*?)\.(jpg|png|jpeg|gif)$");
-
     // 배너 슬라이더 초기화
     $('.slider').slick({
         slidesToShow: 2,
@@ -123,7 +121,12 @@ $(document).ready(function() {
         nextArrow: '<button type="button" class="custom-next">&#10095;</button>'
     });
 
+    // 지도 초기화
     function initMap() {
+        var lat = ${popsInfo.mapVO.lat};
+        var lng = ${popsInfo.mapVO.lng};
+        var address = "${popsInfo.pAddr1} ${popsInfo.pAddr2} ${popsInfo.pAddr3}";
+
         var mapOptions = {
             center: new naver.maps.LatLng(lat, lng),
             zoom: 14
@@ -148,6 +151,63 @@ $(document).ready(function() {
     }
 
     initMap();
+
+    // 페이지 로드 시 찜 상태 확인
+    function checkLikeStatus() {
+        var pId = ${popsInfo.pId};
+        $.ajax({
+            url: '${pageContext.request.contextPath}/pop/checkCart',
+            type: 'GET',
+            data: { pId: pId },
+            dataType: 'json', // JSON 형식으로 응답 처리
+            success: function(response) {
+                console.log("찜 상태: ", response); // 상태 출력
+                if (response.isLiked) {
+                    $('#heartImage').attr('src', '${pageContext.request.contextPath}/resources/img/heart2.png');
+                    $('#heartIcon').data('liked', true);
+                } else {
+                    $('#heartImage').attr('src', '${pageContext.request.contextPath}/resources/img/heart.png');
+                    $('#heartIcon').data('liked', false);
+                }
+            },
+            error: function(xhr) {
+                if (xhr.status === 401) {
+                    alert('로그인이 필요합니다.');
+                    window.location.href = '${pageContext.request.contextPath}/nav/prelogin';
+                } else {
+                    alert('찜 상태 확인에 실패했습니다.');
+                }
+            }
+        });
+    }
+
+    checkLikeStatus();
+
+    // 찜 추가/삭제 기능
+    $('#heartIcon').click(function() {
+        var liked = $(this).data('liked');
+        var pId = ${popsInfo.pId};
+        var actionUrl = liked ? '${pageContext.request.contextPath}/pop/deletelike' : '${pageContext.request.contextPath}/pop/addlike';
+
+        $.post(actionUrl, { pId: pId }, function(response) {
+            if (liked) {
+                $('#heartImage').attr('src', '${pageContext.request.contextPath}/resources/img/heart.png');
+                $('#heartIcon').data('liked', false);
+                alert("찜이 삭제되었습니다.");
+            } else {
+                $('#heartImage').attr('src', '${pageContext.request.contextPath}/resources/img/heart2.png');
+                $('#heartIcon').data('liked', true);
+                alert("찜이 추가되었습니다.");
+            }
+        }).fail(function(xhr) {
+            if (xhr.status === 401) {
+                alert('로그인이 필요합니다.');
+                window.location.href = '${pageContext.request.contextPath}/nav/prelogin';
+            } else {
+                alert('찜 상태 변경에 실패했습니다.');
+            }
+        });
+    });
 
     // 평점 선택 기능
     document.querySelectorAll('.rating label').forEach(label => {
@@ -218,6 +278,9 @@ $(document).ready(function() {
             }
         });
     });
+
+    var maxSize = 5242880; // 5MB
+    var regex = new RegExp("(.*?)\\.(jpg|jpeg|png|gif|bmp)$");
 
     function uploadImagesAndSubmitReview(files, formData) {
         let uploadFormData = new FormData();
@@ -291,7 +354,7 @@ $(document).ready(function() {
 
         $.ajax({
             url: '/pop/deleteFile',
-            data: {fileName: targetFile},
+            data: { fileName: targetFile },
             dataType: 'text',
             type: 'POST',
             success: function(result) {

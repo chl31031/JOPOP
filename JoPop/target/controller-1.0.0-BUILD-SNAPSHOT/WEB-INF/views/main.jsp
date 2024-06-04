@@ -9,181 +9,265 @@
 <title>Welcome JoPoP</title>
 <link rel="stylesheet" href="../resources/css/main.css">
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </head>
 <body>
-    <%@include file="includes/header.jsp"%>
+    <%@ include file="includes/header.jsp" %>
     <div class="wrapper">
         <div class="wrap">
-            <div class="main_img_area">
-                <div class="slide_div_wrap">
-                    <div class="slide_div">
-                        <div>
-                            <a>
-                                <img src="/resources/eximg/hell.png">
-                            </a>
-                        </div>
-                        <div>
-                            <a>
-                                <img src="/resources/eximg/mokk.png">
-                            </a>
-                        </div>
-                        <div>
-                            <a>
-                                <img src="/resources/eximg/mok1.png">
-                            </a>
-                        </div>
-                        <div>
-                            <a>
-                                <img src="/resources/eximg/hello1.png">
-                            </a>
-                        </div>                
-                    </div>    
-                </div>
+            <!-- Main Image Area -->
+            <div class="main_slick_area">
+               <div class="mainPrevious"></div>
+             	
+             	<div class="slick-list">
+             	<!-- 1번 -->
+             	<div class="popupbanner_list">
+             	<div class="slide-contents">
+             	<div class="slide_img_wrap">
+             	<img src="/resources/eximg/hell.png"alt="">
+             	</div>
+             	</div>
+             	</div>
+             	<!-- 2번 -->
+             	<div class="popupbanner_list">
+             	<div class="slide-contents">
+             	<div class="slide_img_wrap">
+             	<img src="/resources/eximg/hello.png"alt="">
+             	</div>
+             	</div>
+             	</div>
+             	
+             	<!-- 3번 -->
+             	<div class="popupbanner_list">
+             	<div class="slide-contents">
+             	<div class="slide_img_wrap">
+             	<img src="/resources/eximg/hello1.png"alt="">
+             	</div>
+             	</div>
+             	</div>
+             	
+             	<!-- 4번 -->
+             	<div class="popupbanner_list">
+             	<div class="slide-contents">
+             	<div class="slide_img_wrap">
+             	<img src="/resources/eximg/mok.png"alt="">
+             	</div>
+             	</div>
+             	</div>
+             	
+             	<!-- 5번 -->
+             	<div class="popupbanner_list">
+             	<div class="slide-contents">
+             	<div class="slide_img_wrap">
+             	<img src="/resources/eximg/mok1.png"alt="">
+             	</div>
+             	</div>
+             	</div>
+             	
+             	</div>
+             	<div class="mainNext"></div>
+             	<ul class="popup-banner-dots" style="display: block;">
+             	</ul>
             </div>
 
+            <!-- Navigation Bar Area -->
             <div class="navi_bar_area">
                 <h1>navi area</h1>
             </div>
-            
-            <div class="content_area">
-               <div class="list_search_result">
-               <table class="type_list">
-                  <tbody id="searchList">
-                     <c:forEach items="${list}" var="list">
-                        <tr class="list">
-                        <td class="image">
-										<div class="image_wrap"
-											data-pId="${list.imageList[0].pId}"
-											data-path="${list.imageList[0].uploadPath}"
-											data-uuid="${list.imageList[0].uuid}"
-											data-filename="${list.imageList[0].fileName}">
-											<img>
-										</div>
-									</td>
-                           <td class="detail">
-                              <div class="title">
-                                 <a href="/goodsDetail/${list.pId}">
-                                    ${list.pName}
-                                 </a>
-                              </div>
-                              <div class=adress>
-                              ${list.pAddr1}  ${list.pAddr2}
-                              </div>
-                              <div class="date">
-                                  <fmt:formatDate value="${list.startDate}" pattern="yyyy.MM.dd"/>
-                                  -
-                                  <fmt:formatDate value="${list.endDate}" pattern="yyyy.MM.dd"/>
-                              </div>
-                           </td>
-                           <td class="cart">
-                              <div class="cart_button">
-                                <form method="post">
-                                <input type="hidden" name="pId" value="${list.pId}">
-                                <img class="btn_cart" data-pid="${list.pId}" src="/resources/img/heart.png">
-                                </form>
-                              </div>
-                           </td>
-                           <td class="price">
-                              <div class="org_price">
-                                    <fmt:formatNumber value="${list.pPrice}" pattern="#,### 원" />
-                              </div>
-                           </td>
-                           <td class="option"></td>
-                        </tr>
-                     </c:forEach>
-                  </tbody>
-               </table>
-               
-              
-    </div>
-				<div>
-					<a href="/nav/search" class="addlink">더보기</a>
-				</div>
-			</div>
-</div>
-</div>
-    <%@include file="nav/nav.jsp"%>
 
-    <%@include file="includes/footer.jsp"%>
+        
+<!-- Content Area -->
+<div class="content_area">
+    <div class="list_search_result">
+        <table class="type_list">
+            <tbody id="searchList">
+                <c:forEach items="${goodsList}" var="list">
+                    <tr class="list">
+                        <td class="image">
+                            <c:if test="${not empty list.imageList}">
+                                <div class="image_wrap"
+                                    data-pId="${list.imageList[0].pId}"
+                                    data-path="${list.imageList[0].uploadPath}"
+                                    data-uuid="${list.imageList[0].uuid}"
+                                    data-filename="${list.imageList[0].fileName}">
+                                    <img>
+                                </div>
+                            </c:if>
+                        </td>
+                        <td class="detail">
+                            <div class="title">
+                                <a href="/pop/popsDetail?pid=${list.pId}">${list.pName}</a>
+                            </div>
+                            <div class="address">
+                                ${list.pAddr1} ${list.pAddr2}
+                            </div>
+                            <div class="date">
+                                <fmt:formatDate value="${list.startDate}" pattern="yyyy.MM.dd"/>
+                                -
+                                <fmt:formatDate value="${list.endDate}" pattern="yyyy.MM.dd"/>
+                            </div>
+                        </td>
+                        <td class="cart">
+                            <div class="cart_button">
+                                <form method="post">
+                                    <input type="hidden" name="pId" value="${list.pId}">
+                                    <img class="btn_cart" data-pid="${list.pId}" src="/resources/img/heart.png">
+                                </form>
+                            </div>
+                        </td>
+                        <td class="price">
+                            <div class="org_price">
+                                <fmt:formatNumber value="${list.pPrice}" pattern="#,### 원" />
+                            </div>
+                        </td>
+                        <td class="option"></td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+                <div>
+                    <a href="/nav/search" class="addlink">더보기</a>
+                </div>
+                
+               <div>
+    <div class="ls_div_subject">
+    평점순 상품
+</div>
+<div class="rt_div">
+    <c:forEach items="${rating}" var="rating">
+        <a href="/pop/popsDetail?pid=${rating.pId}">
+            <div class="rt_div_content_wrap">
+                <div class="rt_div_content">
+                    <c:if test="${not empty rating.imageList}">
+                        <div class="image_wrap"
+                             data-pId="${rating.imageList[0].pId}"
+                             data-path="${rating.imageList[0].uploadPath}"
+                             data-uuid="${rating.imageList[0].uuid}"
+                             data-filename="${rating.imageList[0].fileName}">
+                            <img src="display?fileName=${rating.imageList[0].uploadPath}/s_${rating.imageList[0].uuid}-${rating.imageList[0].fileName}" alt="${rating.pName}">
+                        </div>
+                    </c:if>
+                    <div class="rt_pName">
+                        ${rating.pName}
+                    </div>
+                    <div class="rt_startDate">
+                        <fmt:formatDate value="${rating.startDate}" pattern="yyyy.MM.dd"/>
+                    </div>
+                    <div class="rt_endDate">
+                        <fmt:formatDate value="${rating.endDate}" pattern="yyyy.MM.dd"/>
+                    </div>
+                    <div class="rt_adress">
+                        ${rating.pAddr1} ${rating.pAddr2}
+                    </div>
+                    <div class="rt_rating">
+                        <fmt:formatNumber value="${rating.pPrice}" pattern="#,### 원" />
+                    </div>
+                </div>
+            </div>
+        </a>
+    </c:forEach>
+</div>
+
+
+         
+           
+        </div>
+        </div>
+</div> 
+   
+    <%@ include file="nav/nav.jsp" %>
+    <%@ include file="includes/footer.jsp" %>
     <script type="text/javascript">
     $(document).ready(function(){
-        $(".slide_div").slick({
-            slidesToShow: 2,  // Shows 2 slides at a time
+        $(".slick-list").slick({
+            slidesToShow: 2,
             slidesToScroll: 1,
             autoplay: true,
             autoplaySpeed: 2000,
-            dots:true,
-            arrows: true
+            dots: true,
+            prevArrow : "<button type='button' class='slick-list_div_content_prev'>이전</button>",		// 이전 화살표 모양 설정
+			nextArrow : "<button type='button' class='slick-list_div_content_next'>다음</button>"		// 다음 화살표 모양 설정
+        });
+        
+        $(".rt_div").slick({
+        	slidesToShow: 5,
+        	slidesToScroll: 2,
+        	autoplay: true,
+            autoplaySpeed: 2000,
+            dots: false,
+			prevArrow : "<button type='button' class='rt_div_content_prev'>이전</button>",		// 이전 화살표 모양 설정
+			nextArrow : "<button type='button' class='rt_div_content_next'>다음</button>"		// 다음 화살표 모양 설정
+        });
+        	
+        
+    });
+    
+    
+
+    $(document).ready(function() {
+        $('.btn_cart').each(function() {
+            var button = $(this);
+            var pId = button.data('pid');
+            var liked = sessionStorage.getItem('liked_' + pId);
+            if (liked === 'true') {
+                button.attr('src', '/resources/img/heart2.png');
+            }
+        });
+
+        $('.btn_cart').click(function(event) {
+            event.preventDefault();
+            var button = $(this);
+            var pId = button.data('pid');
+            var liked = sessionStorage.getItem('liked_' + pId);
+            var member = "${member.mId}";
+            if (!member) {
+                window.location.href = '/nav/prelogin';
+                return;
+            }
+
+            if (liked === 'true') {
+                $.post('/nav/unlike.do', { pId: pId }, function(response) {
+                    button.attr('src', '/resources/img/heart.png');
+                    sessionStorage.setItem('liked_' + pId, 'false');
+                });
+            } else {
+                $.post('/nav/like.do', { pId: pId }, function(response) {
+                    button.attr('src', '/resources/img/heart2.png');
+                    sessionStorage.setItem('liked_' + pId, 'true');
+                });
+            }
         });
     });
-</script>
-<script type="text/javascript">
-$(document).ready(function() {
-    // 페이지 로드 시 세션 스토리지에서 버튼 상태를 읽어옵니다.
-    $('.btn_cart').each(function() {
-        var button = $(this);
-        var pId = button.data('pid');
-        var liked = sessionStorage.getItem('liked_' + pId);
-        if (liked === 'true') {
-            button.attr('src', '/resources/img/heart2.png');
-        }
-    });
 
-    // 버튼 클릭 시 세션 스토리지에 상태를 저장하고 버튼 값 변경
-    $('.btn_cart').click(function(event) {
-        event.preventDefault(); // 기본 폼 제출 동작 방지
-        var button = $(this);
-        var pId = button.data('pid');
-        var liked = sessionStorage.getItem('liked_' + pId);
-        var member = "${member.mId}";
-        if (!member) {
-            // prelogin 페이지로 리디렉션
-            window.location.href = '/nav/prelogin'; // 실제 prelogin 페이지의 URL로 변경해주세요
-            return; // 더 이상의 실행을 막습니다
+    $(document).ready(function(){
+        const selectedType = '<c:out value="${pageMaker.cri.type}"/>';
+        if(selectedType != ""){
+            $("select[name='type']").val(selectedType).attr("selected", "selected");    
         }
-        
-        if (liked === 'true') {
-            $.post('/nav/unlike.do', { pId: pId }, function(response) {
-                button.attr('src', '/resources/img/heart.png'); // 성공 시 버튼 값 변경
-                sessionStorage.setItem('liked_' + pId, 'false'); // 세션 스토리지에 상태 저장
-            });
-        } else {
-            $.post('/nav/like.do', { pId: pId }, function(response) {
-                button.attr('src', '/resources/img/heart2.png'); // 성공 시 버튼 값 변경
-                sessionStorage.setItem('liked_' + pId, 'true'); // 세션 스토리지에 상태 저장
-            });
-        }
-    });
-});
 
-$(document).ready(function(){
-	// 검색 타입 selected
-	const selectedType = '<c:out value="${pageMaker.cri.type}"/>';
-	if(selectedType != ""){
-		$("select[name='type']").val(selectedType).attr("selected", "selected");	
-	}
-	
-	/* 이미지 삽입 */
-	$(".image_wrap").each(function(i, obj) {
-		const bobj = $(obj);
-		
-		const uploadPath = bobj.data("path");
-		const uuid = bobj.data("uuid");
-		const fileName = bobj.data("filename");
-		
-		const filecallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "-" + fileName);
-		
-		$(this).find("img").attr('src', 'display?fileName=' + fileCallPath);
-		
-	});
-	
-});
-</script>
+        /*이미지 삽입*/
+        $(".image_wrap").each(function(i, obj) {
+            
+        	const bobj = $(obj);
+            
+        	if(bobj.data("rating.pId")){
+        		 const uploadPath = bobj.data("path");
+                 const uuid = bobj.data("uuid");
+                 const fileName = bobj.data("filename");
+                 
+                 const filecallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "-" + fileName);
+                 
+                 $(this).find("img").attr('src', 'display?fileName=' + filecallPath);
+        	} else{
+        		$(this).find("img").attr('src', '/resources/img/noimage.png');
+        	}
+        });
+    });
+    </script>
 </body>
 </html>

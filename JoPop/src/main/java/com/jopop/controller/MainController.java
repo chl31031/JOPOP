@@ -37,20 +37,35 @@ public class MainController {
     private CartService cartService;
 	
 	// 메인 페이지 이동
+	// 메인 페이지 이동
 	@GetMapping("/main")
-	public String mainPageGET(HttpSession session, Model model, Criteria cri) throws Exception {
-		List <PopVO> list = popservice.getGoodsList(cri);
-		
-		 if (!list.isEmpty()) {
-			 
-		        model.addAttribute("list", list);
-		    } else {
-		    	
-		        model.addAttribute("listcheck", "empty");
-		       
-		    }
-		return "main";
+	public String mainPageGET(HttpSession session, Model model, Criteria cri) {
+	    try {
+	        // 기존의 상품 목록 가져오기
+	        List<PopVO> goodsList = popservice.getGoodsList(cri);
+
+	        // 가져온 목록이 비어있지 않다면 모델에 추가
+	        if (goodsList != null && !goodsList.isEmpty()) {
+	            model.addAttribute("goodsList", goodsList);
+	            model.addAttribute("rating" , popservice.rating());
+	            
+	            System.out.println("rating" + popservice.rating());
+	            
+	        } else {
+	            // 가져온 목록이 비어있다면 모델에 "empty" 속성 추가
+	            model.addAttribute("goodsListEmpty", true);
+	        }
+	    } catch (Exception e) {
+	        // 예외 처리
+	        e.printStackTrace();
+	        // 에러 메시지를 모델에 추가하여 뷰에서 확인할 수 있도록 함
+	        model.addAttribute("errorMessage", "상품 목록을 가져오는 도중 오류가 발생했습니다.");
+	    }
+	    return "main"; // 메인 페이지로 이동
 	}
+
+
+
 	
 	/* 이미지 출력 */
     @GetMapping("/display")

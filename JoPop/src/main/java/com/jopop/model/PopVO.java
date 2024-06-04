@@ -22,6 +22,11 @@ public class PopVO {
     private List<ImageVO> imageList; //이미지 정보
     
     private int mId;   //마이페이지에서 사용해야하는 mId값
+    
+  
+    
+    
+
 
 	public int getpId() {
 		return pId;
@@ -151,8 +156,7 @@ public class PopVO {
 				+ ", cateName=" + cateName + ", imageList=" + imageList + ", mId=" + mId + "]";
 	}
 
-    
-
+	
 	
 
 }

@@ -17,6 +17,7 @@ com\jopop\mapper\CartMapper.class
 com\jopop\controller\CartController.class
 com\jopop\service\MemberServiceImpl.class
 com\jopop\model\Criteria.class
+com\jopop\controller\PopController$1.class
 com\jopop\model\OrderPageDTO.class
 com\jopop\model\ReviewVO.class
 com\jopop\service\OrderServiceImpl.class
@@ -27,6 +28,7 @@ com\jopop\service\PopServiceimpl.class
 com\jopop\controller\AdminController.class
 com\jopop\mapper\MemberMapper.class
 com\jopop\model\CateVO.class
+com\jopop\model\RatingDTO.class
 com\jopop\model\PopVO.class
 com\jopop\model\PageDTO.class
 com\jopop\controller\NavController.class

@@ -11,6 +11,7 @@ import com.jopop.mapper.PopMapper;
 import com.jopop.model.Criteria;
 import com.jopop.model.ImageVO;
 import com.jopop.model.PopVO;
+import com.jopop.model.RatingDTO;
 import com.jopop.model.ReviewVO;
 import com.jopop.model.RimageVO;
 
@@ -50,6 +51,7 @@ public class PopServiceimpl implements PopService {
     public int goodsGetTotal(Criteria cri) throws Exception {
         return popMapper.goodsGetTotal(cri);
     }
+    
 
     // 리뷰 및 이미지 추가
     @Override
@@ -98,4 +100,22 @@ public class PopServiceimpl implements PopService {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List<RatingDTO> rating() throws Exception {
+		
+		List<RatingDTO> list = popMapper.rating();
+		
+		list.forEach(dto ->{
+			
+			int pId = dto.getpId();
+			
+			List<ImageVO> imageList = attachMapper.getImageList(pId);
+			
+			dto.setImageList(imageList);
+		});
+		
+		return list;
+	}
+
 }
