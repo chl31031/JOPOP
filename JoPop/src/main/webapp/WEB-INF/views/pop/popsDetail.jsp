@@ -33,6 +33,17 @@
             <button id="heartIcon" class="btn_cart">
                 <img src="${pageContext.request.contextPath}/resources/img/heart.png" alt="찜 아이콘" id="heartImage">
             </button>
+            
+            
+
+<!-- 결제하기 버튼 추가 -->
+<form action="/order/${member.mId}" method="get" class="order_form">
+    <button type="button" class="order_btn">결제하기</button>
+	<input type="hidden" name="orders[0].pId" value="${popsInfo.pId}">
+</form>
+
+
+ 
         </div>
 
         <div class="content">
@@ -125,6 +136,29 @@
 
 <script>
 $(document).ready(function() {
+	
+	$(".order_btn").on("click", function(){
+	    let Count = $(".quantity_input").val();
+	    
+	    // 현재 페이지 URL에서 mId 가져오기
+	    let mId = "${member.mId}";
+
+	    if (mId) {
+	        // 가져온 mId를 사용하여 form action URL 변경
+	        $(".order_form").attr("action", "/order/" + mId);
+
+	        // 주문 수량 설정
+	        $(".order_form").find("input[name='orders[0].pCount']").val(Count);
+
+	        // form 제출
+	        $(".order_form").submit();
+	    } else {
+	        // 로그인 안했을 때 알림창 표시
+	        alert("로그인 후 가능합니다.");
+	    }
+	});
+
+
     // 배너 슬라이더 초기화
     $('.slider').slick({
         slidesToShow: 2,

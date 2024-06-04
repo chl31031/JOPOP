@@ -287,17 +287,38 @@ nav {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* 고정된 하트 아이콘 스타일 */
 .btn_cart {
     background: none; /* 배경 제거 */
     border: none; /* 테두리 제거 */
     position: absolute;
     top: 540px; /* 원하는 위치로 조정 */
-    right: 10px; /* 원하는 위치로 조정 */
+    right: 10px; /* 찜 버튼의 위치 */
     z-index: 1; /* 네비게이션보다 낮은 값으로 설정 */
+    cursor: pointer;
 }
 
 .btn_cart img {
-    width: 30px; /* 이미지 크기 조절 */
+    width: 24px; /* 이미지 크기 조절 */
     height: auto; /* 이미지 비율 유지 */
+}
+
+.order_btn {
+    position: absolute;
+    top: 540px; /* 찜 버튼과 동일한 높이로 조정 */
+    right: 50px; /* 찜 버튼 왼쪽에 위치 */
+    background-color: #44c700; /* 배경색 */
+    color: #ffffff; /* 텍스트 색상 */
+    font-size: 14px; /* 텍스트 크기 */
+    padding: 5px 10px; /* 내부 여백 (위아래 크기 줄임) */
+    border-radius: 4px; /* 모서리 둥글게 */
+    text-decoration: none; /* 하이퍼링크 밑줄 제거 */
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* 배경색 및 변형 전환 효과 */
+    border: none; /* 테두리 제거 */
+}
+
+.order_btn:hover {
+    background-color: #d9534f; /* Hover 색상 */
+    transform: scale(1.1); /* Hover 시 크기 확대 */
 }

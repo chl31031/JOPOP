@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
@@ -32,6 +33,17 @@
             <button id="heartIcon" class="btn_cart">
                 <img src="${pageContext.request.contextPath}/resources/img/heart.png" alt="찜 아이콘" id="heartImage">
             </button>
+            
+            
+
+<!-- 결제하기 버튼 추가 -->
+<form action="<%=request.getContextPath()%>/order/${member.mId}" method="get" class="order_form">
+    <!-- 다른 form 요소들 -->
+    <button type="button" class="payment-link order_btn">결제하기</button>
+</form>
+
+
+ 
         </div>
 
         <div class="content">
@@ -60,10 +72,26 @@
                 <c:if test="${not empty reviews}">
                     <c:forEach var="review" items="${reviews}">
                         <div class="review">
-                            <p>작성자: ${review.mId}</p> <!-- 작성자 정보 -->
+                            <p>작성자: 
+                              <c:choose>
+                                    <c:when test="${fn:length(review.mNick) > 1}">
+                                        ${fn:substring(review.mNick, 0, 1)}**
+                                    </c:when>
+                                    <c:otherwise>
+                                        ${review.mNick}
+                                    </c:otherwise>
+                                </c:choose>
+                            </p> 
                             <p>내용: ${review.contents}</p>
-                            <p>평점: ${review.score}</p>
-                            <p>작성일: <fmt:formatDate value="${review.rDate}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" /></p>
+                            <p>평점: 
+                                <c:forEach var="i" begin="1" end="${review.score}">
+                                    <span style="color: gold;">★</span>
+                                </c:forEach>
+                                <c:forEach var="i" begin="${review.score + 1}" end="5">
+                                    <span style="color: lightgray;">★</span>
+                                </c:forEach>
+                            </p>
+                            <p>작성일: <fmt:formatDate value="${review.rDate}" pattern="yyyy년 M월 d일 HH시 m분 ss초" /></p>
                             <c:if test="${not empty review.imageList}">
                                 <c:forEach items="${review.imageList}" var="image">
                                     <img src="${pageContext.request.contextPath}/pop/display?fileName=${image.uploadPath.replace('\\', '/')}/${image.uuid}_${image.fileName}" alt="이미지" style="max-width: 100px;">
@@ -74,41 +102,67 @@
                     </c:forEach>
                 </c:if>
                 <c:if test="${empty reviews}">
-                    <p>등록된 후기가 없습니다. 첫 번째 후기를 작성해 보세요!</p>
+                    <div class="login-message">
+                        <p>등록된 후기가 없습니다. 첫 번째 후기를 작성해 보세요!</p>
+                    </div>
                 </c:if>
             </div>
 
-            <c:if test="${not empty member}">
-                <div class="rating">
-                    <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
-                    <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
-                    <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
-                    <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-                    <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+            <p style="text-align: center; position: relative; top: 20px;">클릭해서 별점을 매겨주세요!</p>
+            <div class="rating">
+                <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+                <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+            </div>
+            <div id="uploadResult"></div>
+            <form class="review-form" id="reviewForm" enctype="multipart/form-data">
+                <input type="hidden" name="pId" value="${popsInfo.pId}">
+                <textarea name="contents" placeholder="방문하신 팝업스토어는 어떠셨나요? 후기를 통해 회원님의 멋진 경험을 다른 분들과 공유해보세요!"></textarea>
+                <input type="hidden" name="score" value="">
+                <input type="file" id="fileInput" name="uploadFile" style="display: none;" />
+                <div class="button-group">
+                    <button type="button" onclick="document.getElementById('fileInput').click();">사진 첨부하기</button>
+                    <button type="submit">후기 등록</button>
                 </div>
-                <div id="uploadResult"></div>
-                <form class="review-form" id="reviewForm" enctype="multipart/form-data">
-                    <input type="hidden" name="pId" value="${popsInfo.pId}">
-                    <textarea name="contents" placeholder="리뷰를 입력하세요"></textarea>
-                    <input type="hidden" name="score" value="">
-                    <input type="file" id="fileInput" name="uploadFile" style="display: none;" />
-                    <div class="button-group">
-                        <button type="button" onclick="document.getElementById('fileInput').click();">사진 첨부하기</button>
-                        <button type="submit">후기 등록</button>
-                    </div>
-                </form>
-            </c:if>
-            <c:if test="${empty member}">
-                <p>후기를 작성하려면 <a href="${pageContext.request.contextPath}/nav/prelogin">로그인</a> 해주세요.</p>
-            </c:if>
+            </form>
         </div>
 
         <div class="footer">
             ---
         </div>
     </div>
+
 <script>
 $(document).ready(function() {
+	   /* 주문 페이지 이동 */
+    $(".order_btn").on("click", function(event) {
+        event.preventDefault(); // 기본 동작 방지
+
+        let queryParams = '';
+        let orderNumber = 0;
+
+        $(".popup_li").each(function(index, element) {
+            // 각 요소에서 pId 값을 가져오기
+            let pId = $(element).find(".individual_pId_input").val();
+            
+            if (pId) {
+                queryParams += 'orders[' + orderNumber + '].pId=' + pId + '&';
+                orderNumber += 1;
+            }
+        });
+
+        // 마지막 '&'를 제거
+        queryParams = queryParams.slice(0, -1);
+
+        // 요청 URL 생성
+        let requestUrl = $(".order_form").attr("action") + '?' + queryParams;
+
+        // 페이지 리디렉션
+        window.location.href = requestUrl;
+    });
+	
     // 배너 슬라이더 초기화
     $('.slider').slick({
         slidesToShow: 2,
@@ -121,7 +175,7 @@ $(document).ready(function() {
         nextArrow: '<button type="button" class="custom-next">&#10095;</button>'
     });
 
-    // 지도 초기화
+    // 지도 초기화 함수
     function initMap() {
         var lat = ${popsInfo.mapVO.lat};
         var lng = ${popsInfo.mapVO.lng};
@@ -131,10 +185,21 @@ $(document).ready(function() {
             center: new naver.maps.LatLng(lat, lng),
             zoom: 14
         };
+
         var map = new naver.maps.Map('map', mapOptions);
+
+        var iconUrl = '<%=request.getContextPath()%>/resources/img/map.png';
+
         var marker = new naver.maps.Marker({
             position: new naver.maps.LatLng(lat, lng),
-            map: map
+            map: map,
+            icon: {
+                url: iconUrl,
+                size: new naver.maps.Size(50, 52),
+                scaledSize: new naver.maps.Size(30, 32),
+                origin: new naver.maps.Point(0, 0),
+                anchor: new naver.maps.Point(15, 16)
+            }
         });
 
         var infoWindow = new naver.maps.InfoWindow({
@@ -150,6 +215,7 @@ $(document).ready(function() {
         });
     }
 
+    // 페이지 로드 후 지도 초기화
     initMap();
 
     // 페이지 로드 시 찜 상태 확인
@@ -159,9 +225,8 @@ $(document).ready(function() {
             url: '${pageContext.request.contextPath}/pop/checkCart',
             type: 'GET',
             data: { pId: pId },
-            dataType: 'json', // JSON 형식으로 응답 처리
+            dataType: 'json',
             success: function(response) {
-                console.log("찜 상태: ", response); // 상태 출력
                 if (response.isLiked) {
                     $('#heartImage').attr('src', '${pageContext.request.contextPath}/resources/img/heart2.png');
                     $('#heartIcon').data('liked', true);
@@ -170,14 +235,6 @@ $(document).ready(function() {
                     $('#heartIcon').data('liked', false);
                 }
             },
-            error: function(xhr) {
-                if (xhr.status === 401) {
-                    alert('로그인이 필요합니다.');
-                    window.location.href = '${pageContext.request.contextPath}/nav/prelogin';
-                } else {
-                    alert('찜 상태 확인에 실패했습니다.');
-                }
-            }
         });
     }
 
@@ -200,12 +257,8 @@ $(document).ready(function() {
                 alert("찜이 추가되었습니다.");
             }
         }).fail(function(xhr) {
-            if (xhr.status === 401) {
-                alert('로그인이 필요합니다.');
-                window.location.href = '${pageContext.request.contextPath}/nav/prelogin';
-            } else {
-                alert('찜 상태 변경에 실패했습니다.');
-            }
+            alert('로그인이 필요합니다.');
+            window.location.href = '${pageContext.request.contextPath}/nav/prelogin';
         });
     });
 
@@ -233,21 +286,24 @@ $(document).ready(function() {
     $('#reviewForm').submit(function(e) {
         e.preventDefault();
 
+        if (!isLoggedIn) {
+            alert('로그인이 필요합니다.');
+            window.location.href = '${pageContext.request.contextPath}/nav/prelogin';
+            return;
+        }
+
         var formData = new FormData(this);
         var files = $('input[name="uploadFile"]')[0].files;
 
         if (files.length > 0) {
-            // 이미지가 있는 경우 이미지 업로드 후 리뷰 등록
             uploadImagesAndSubmitReview(files, formData);
         } else {
-            // 이미지가 없는 경우 바로 리뷰 등록
             submitReviewForm([]);
         }
     });
 
     // 이미지 업로드 및 삭제 처리
     $("input[type='file']").on("change", function(e) {
-        // 이미지를 업로드하기 전에 기존 이미지를 삭제합니다.
         if ($(".imgDeleteBtn").length > 0) {
             deleteFile();
         }
@@ -320,7 +376,7 @@ $(document).ready(function() {
         reviewFormData.append('pId', $('input[name="pId"]').val());
         reviewFormData.append('contents', $('textarea[name="contents"]').val());
         reviewFormData.append('score', $('input[name="score"]').val());
-        reviewFormData.append('imageList', JSON.stringify(imageList)); // JSON 문자열로 변환하여 전송
+        reviewFormData.append('imageList', JSON.stringify(imageList));
 
         $.ajax({
             type: 'POST',
@@ -334,12 +390,7 @@ $(document).ready(function() {
                 location.reload();
             },
             error: function(xhr, status, error) {
-                if (xhr.status === 401) {
-                    alert("로그인이 필요합니다.");
-                    window.location.href = "${pageContext.request.contextPath}/nav/prelogin";
-                } else {
-                    alert("후기 등록 중 오류가 발생했습니다.");
-                }
+                alert("후기는 한번만 등록할 수 있습니다.");
             }
         });
     }
@@ -410,7 +461,14 @@ $(document).ready(function() {
         return true;
     }
 });
+
 </script>
-<%@include file="../nav/nav.jsp"%>
+
+<%@ include file="../nav/nav.jsp" %>
+
+<script>
+    var isLoggedIn = <%= (session.getAttribute("member") != null) %>;
+</script>
+
 </body>
 </html>
