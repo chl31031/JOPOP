@@ -98,9 +98,9 @@
         </form>
     </div>
 
-    <!-- 아이콘 -->
+   <!-- 아이콘 -->
     <div class="icon">
-        <a href="/nav/prelogin">
+        <a href="/member/logout">
             <img src="/resources/img/icon.png" alt="Icon">
         </a>
     </div>

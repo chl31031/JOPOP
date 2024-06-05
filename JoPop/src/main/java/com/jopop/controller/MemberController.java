@@ -225,4 +225,11 @@ public class MemberController {
 		}
 
 	}
+	   // 로그아웃 메서드 추가
+		@GetMapping("/logout")
+		public String logout(HttpServletRequest request) {
+			HttpSession session = request.getSession();
+			session.invalidate(); // 세션 무효화
+			return "redirect:/nav/prelogin"; // 로그아웃 후 메인 페이지로 리디렉션
+		}
 }
