@@ -53,7 +53,7 @@
 			<li><a href="/main"><img src="/resources/img/home.png"><span>홈</span></a></li>
 			<li><a href="/cart/cart/${member.mId}"><img
 					src="/resources/img/cart.png"><span>관심팝업</span></a></li>
-			<li><a href="#"><img src="/resources/img/map.png"><span>내
+			<li><a href="/pop/locations"><img src="/resources/img/map.png"><span>내
 						주변</span></a></li>
 			<li><a href="/nav/search"><img
 					src="/resources/img/search.png"><span>팝업 찾기</span></a></li>
