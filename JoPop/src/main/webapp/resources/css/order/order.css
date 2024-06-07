@@ -75,8 +75,13 @@ li {
 .resPerson {
 	border: 1px solid #ccc; /* 테두리를 설정합니다. */
 	border-radius: 10px; /* 둥근 네모의 반지름을 설정합니다. */
-	padding: 20px; /* 내부 여백을 설정합니다. */
+	padding: 30px; /* 내부 여백을 설정합니다. */
 	background-color: white;
+}
+
+.resPerson li{
+	padding: 5px;
+	
 }
 
 /*예약 팝업*/
