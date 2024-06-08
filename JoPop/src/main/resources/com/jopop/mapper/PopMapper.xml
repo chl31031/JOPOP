@@ -133,6 +133,20 @@ LEFT JOIN jp_member m ON r.mId = m.MID WHERE r.pId = #{pid} OR r.mId = #{mId} </
 	WHERE r.mId =#{mId}
  </select>
  
+   <!--[마이페이지] 리뷰 수정 -->
+  <update id="modifyReview" parameterType="com.jopop.model.ReviewVO">
+   UPDATE jp_review 
+   SET contents=#{contents}, score=#{score}, rdate=sysdate 
+   WHERE mId = #{mId} AND pId=#{pId}
+  </update>
+  
+  <!-- [마이페이지] 이미지 정보 데이터베이스에 저장  -->
+  <update id="modifyImage" parameterType="com.jopop.model.RimageVO"> 
+    UPDATE jp_rimage 
+    SET fileName=#{fileName}, uploadPath=#{uploadPath}, uuid=#{uuid} 
+    WHERE mId =#{mId} AND pId=#{pId}
+   </update>
+ 
  <!-- 리뷰 내용 삭제 -->
  <delete id="deleteReview">
  	delete from jp_review where pId=#{pId} and mId=#{mId}

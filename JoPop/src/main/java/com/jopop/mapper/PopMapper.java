@@ -27,22 +27,31 @@ public interface PopMapper {
     public void addReview(ReviewVO review) throws Exception;
     
     // 이미지 추가 메서드
-    void addImage(RimageVO image) throws Exception;
+    public void addImage(RimageVO image) throws Exception;
 
     // 리뷰 조회
     public List<ReviewVO> getReviewsByPid(int pid) throws Exception;
     
     // 특정 리뷰에 해당하는 이미지 리스트를 가져오는 메서드 추가
-    List<RimageVO> getImagesByReviewId(@Param("mId") int mId, @Param("pId") int pId) throws Exception;
+    public List<RimageVO> getImagesByReviewId(@Param("mId") int mId, @Param("pId") int pId) throws Exception;
 
     // [마이페이지 - 리뷰] 회원정보에 맞는 상품명 출력
     public List<ReviewVO> getMyPageReivew(int mId) throws Exception;
     
+    // [마이페이지 - 리뷰/이미지] 수정
+    void modifyReviewAndImages(ReviewVO review, List<RimageVO> images) throws Exception;
+    
+    // [마이페이지] 리뷰 수정
+    public void modifyReview(ReviewVO review) throws Exception;
+    
+    // [마이페이지] 이미지 수정
+    public void modifyImage(RimageVO image) throws Exception;
+    
     // 리뷰 내용
-    public int deleteReview(int pId, int mId);
+    public int deleteReview(PopVO pop);
     
     // 리뷰 이미지 삭제
-    public int deleteRImage(int pId, int mId);
+    public int deleteRImage(PopVO pop);
     
     // 내주변 지도 모든 장소 정보 조회 (위도와 경도 포함 + 마커 찍기 )
     public List<PopVO> getAllLocations() throws Exception;

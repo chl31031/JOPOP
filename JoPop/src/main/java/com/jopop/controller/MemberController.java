@@ -2,7 +2,9 @@ package com.jopop.controller;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -25,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jopop.model.MemberVO;
 import com.jopop.model.PopVO;
 import com.jopop.model.ReviewVO;
@@ -96,13 +100,42 @@ public class MemberController {
 		
 		System.out.println(pop);
 		
-		// 이미지 리스트 출력, 값이 없으면 0, 있으면 1의 값 반환
-		popService.deleteReview(pId, mId);
-		//popService.deleteRImage(pId, mId);
+		popService.deleteReview(pop);
+		popService.deleteRImage(pop);
 		
-		return "member/mypage";
+		return "/member/mypage";
 	}
 	
+	//마이페이지 - 리뷰 수정
+    @PostMapping("/modifyReview")
+    @ResponseBody
+    public Map<String, String> addReview(@RequestParam("pId") int pId, @RequestParam("contents") String contents, @RequestParam("score") int score, @RequestParam(value = "imageList", required = false) String imageListJson, HttpSession session, Model model) throws Exception {
+        Map<String, String> result = new HashMap<>();
+        MemberVO member = (MemberVO) session.getAttribute("member");
+
+        if (member == null) {
+            result.put("message", "로그인이 필요합니다.");
+            return result;
+        }
+
+        int mId = member.getmId();
+
+        ReviewVO review = new ReviewVO();
+        review.setpId(pId);
+        review.setmId(mId);
+        review.setContents(contents);
+        review.setScore(score);
+
+        List<RimageVO> imageList = null;
+        if (imageListJson != null && !imageListJson.isEmpty()) {
+            imageList = new ObjectMapper().readValue(imageListJson, new TypeReference<List<RimageVO>>() {});
+        }
+
+        popService.modifyReviewAndImages(review, imageList);
+
+        result.put("message", "후기 등록이 완료되었습니다!");
+        return result;
+    }
 
 	// 회원 가입
 	@PostMapping("/join")
