@@ -8,10 +8,25 @@
 		select pId, pName, pPrice
 		from jp_Pop where pId = #{pId}
 	</select>
+
+	<!-- 주문 상품 정보(주문 구현) -->
+	<select id="getOrderInfo" resultType="com.jopop.model.OrderItemDTO">
+		select pId, pPrice
+		from jp_pop where pId = #{pId}
+	</select>
 	
-	<!-- 카트 수량 수정 -->
-	<update id="modifyCount">
-		update jp_order set count = #{count} where orderId = #{orderId};
+	<!-- 주문 테이블 등록 -->
+	<insert id="enrollOrder">
+		insert into jp_order(orderId, mId, mnick, memail) values(#{orderId}, #{mId}, #{mNick}, #{mEmail})
+	</insert>
+	
+	<!-- 주문 아이템 테이블 등록 -->
+	<insert id="enrollOrderItem">
+		insert into jp_orderItem(orderId, pId, orderDate, orderTime, count, pPrice) values(#{orderId},#{pId},#{orderDate},#{orderTime},#{count},#{pPrice})
+	</insert>
+	
+	<!--  주문 금액 차감 -->
+	<update id="deductMoney">
+		update jp_member set money = #{money} where mId = #{mId}
 	</update>
-	
   </mapper>

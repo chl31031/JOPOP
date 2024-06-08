@@ -34,4 +34,8 @@
       WHERE mId = #{mId} AND (p.pName Like '%' || #{keyword, jdbcType=VARCHAR} || '%' OR p.pAddr2 Like '%' || #{keyword, jdbcType=VARCHAR} || '%' OR p.pAddr1 Like '%' || #{keyword, jdbcType=VARCHAR} || '%')
 	</select>
 	
+	<!-- 찜 목록에서 제거(주문) -->
+	<delete id="deleteOrderCart">
+		delete from jp_cart where mId = #{mId} and pId = #{pId}
+	</delete>
   </mapper>

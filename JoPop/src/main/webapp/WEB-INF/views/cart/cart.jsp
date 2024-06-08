@@ -41,8 +41,9 @@
                   <c:forEach items="${cartInfo}" var="ci">
 
                      <ul class="list_like">
-                        <li><img src="/resources/eximg/mokk.png"
-                           style="width: 170px;"></li>
+                        <li class="image_wrap" data-pId = "${ci.imageList[0].pId}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].filename}">
+                        	<img>
+                        </li>
                         <li class="popup-name"><a
                            href="/pop/popsDetail?pid=${ci.pId}">${ci.pName}</a></li>
                         <li class="popup-addr">${ci.pAddr1}${ci.pAddr2}</li>
@@ -92,6 +93,25 @@
          mId : '${member.mId}',
          pId : '${ci.pId}' //pop세션 가져올 수 있게되면 '${pop.pId}' 로 변경하기
       }
+      
+      $(document).ready(function(){
+    	 //이미지 삽입
+    	 $(".image_wrap").each(function(i,obj){
+    			const bobj = $(obj);
+    			
+    			if(bobj.data("bookid")){
+    				const uploadPath = bobj.data("path");
+    				const uuid = bobj.data("uuid");
+    				const fileName = bobj.data("filename");
+    				
+    				const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+    				
+    				$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+    			} else {
+    				$(this).find("img").attr('src', '/resources/img/logo.png');
+    			}
+    	 });
+      });
 
       //찜 버튼 구현
       $(".btn_cart").on("click", function(e) {

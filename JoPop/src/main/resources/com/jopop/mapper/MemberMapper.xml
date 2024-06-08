@@ -25,7 +25,7 @@
   
   <!-- 주문자 정보(이메일 등등)  -->
   <select id="getMemberInfo" resultType="com.jopop.model.MemberVO">
-  	select mId, mName, mEmail,mAddr1, mAddr2, mAddr3, membership, money
+  	select mId, mNick, mName, mEmail,mAddr1, mAddr2, mAddr3, membership, money
   	from jp_member
   	where mId = #{mId}
   </select>
