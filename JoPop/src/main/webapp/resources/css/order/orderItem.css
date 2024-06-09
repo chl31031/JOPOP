@@ -1,0 +1,184 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.wrap {
+	width: 900px;
+	margin: auto;
+}
+.orderinfo{
+	width: 100%;
+	height: 800px;
+	margin-left: 60px;
+	padding-top: 40px;
+}
+
+.mynav {
+	width: 100%;
+	height: 50px;
+}
+
+.nav_list {
+	display: block;
+	float: left;
+	list-style: none; /* 리스트 스타일 제거 */
+	text-decoration: none;
+}
+
+.nav_list li {
+	float: left; /* 인라인 요소로 변경하고 옆으로 배치 */
+}
+
+.nav_list li a {
+	text-decoration: none; /* 링크의 밑줄 제거 */
+	color: black; /* 링크의 색상 지정 */
+}
+
+
+.mypage {
+	/* background-color: red; */
+	width: 300px;
+	height: 40px; /* 높이 지정 */
+	display: block;
+	text-align: center;
+	padding-top: 15px;
+}
+
+.cart {
+	/* background-color: yellow; */
+	width: 300px;
+	height: 40px; /* 높이 지정 */
+	display: block;
+	text-align: center;
+	padding-top: 15px;
+}
+
+.booking {
+	/* background-color: pink; */
+	border-bottom: 5px solid #1ed760;
+	width: 300px;
+	height: 40px; /* 높이 지정 */
+	display: block;
+	text-align: center;
+	padding-top: 15px;
+}
+
+.myinfo {
+	width: 100%;
+	height: 1000px;
+	margin-left: 60px;
+
+}
+
+.a {
+	padding-left: 22px;
+	margin-bottom: 10px;
+}
+
+
+.list {
+	width: 450px;
+	display: block;
+	float: left;
+	margin-top: 30px;
+	padding-top: 40px;
+}
+
+.image {
+	display: block;
+	float: left;
+	width: 190px;
+	height: 190px;
+	border: 1px solid red;
+	cursor: pointer;
+}
+
+.totalPrice {
+	float: right;
+	margin-top: 5px;
+}
+.detail div {
+	margin-bottom: 10px; /* 각 div 요소 사이의 간격을 늘립니다. */
+    padding: 10px; /* 내부 여백을 추가합니다. */
+    border-radius: 5px; /* 둥근 모서리를 만듭니다. */
+    background-color: #f5f5f5; /* 배경색을 설정합니다. */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* 그림자 효과를 추가합니다. */
+}
+
+/* 팝업 제목에 상세 페이지 이동 기능 넣었을 때 쓴다.*/
+.detail .title a {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.detail .orderId,
+.detail .orderDate,
+.detail .orderTime,
+.detail .count {
+    font-size: 16px;
+    color: #666;
+}
+
+.detail .price {
+    font-size: 18px;
+    color: #1ed760;
+    font-weight: bold;
+}
+
+.detail {
+    background-color: #DC143C;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #ffffff;
+    text-align: center; /* 텍스트를 가운데로 정렬합니다. */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경합니다. */
+}
+
+.delete_btn{
+	background-color: #DC143C; 
+    border: 1px solid #ffffff; 
+    border-radius: 5px; 
+    padding: 5px 10px; 
+    color: #ffffff; 
+}
+
+/* 페이지 이동 인터페이스 */
+.pageMaker_wrap {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.pageMaker_wrap ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.pageMaker_wrap ul li {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.pageMaker_wrap ul li a {
+	display: inline-block;
+	padding: 8px 10px 5px 10px;
+	border: 1px solid #ccc;
+	text-decoration: none;
+	color: #333;
+	text-align: center;
+}
+
+.pageMaker_wrap ul li a:hover {
+	background-color: #f0f0f0;
+}
+
+.pageMaker_wrap ul li.active a {
+	background-color: #333;
+	color: #fff;
+}

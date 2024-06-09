@@ -70,13 +70,6 @@ private static final Logger logger = LoggerFactory.getLogger(CartController.clas
 		}
 		*/
 		
-		
-		//주문 페이지
-		@GetMapping(value = "/orderItem")
-		public void orderGET(){
-			logger.info("주문 페이지로 이동");
-		}
-		
 		//찜 검색 기능
 		@GetMapping(value="/search")
 		public String searchCartGET(CartVO cart, String keyword, HttpServletRequest request, Model model) {

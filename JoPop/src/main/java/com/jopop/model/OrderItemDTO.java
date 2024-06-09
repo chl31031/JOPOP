@@ -19,6 +19,7 @@ public class OrderItemDTO {
 	
 	//상품 한 개의 가격
 	private int pPrice;
+	private String pName;
 	
 	//DB에 존재하지 않는 데이터
 	private int salePrice;
@@ -142,17 +143,29 @@ public class OrderItemDTO {
 		this.membership = membership;
 	}
 
+	public String getOrderTime() {
+		return orderTime;
+	}
+
 	public void setOrderTime(String orderTime) {
 		this.orderTime = orderTime;
+	}
+
+	public String getpName() {
+		return pName;
+	}
+
+	public void setpName(String pName) {
+		this.pName = pName;
 	}
 
 	@Override
 	public String toString() {
 		return "OrderItemDTO [orderItemId=" + orderItemId + ", mId=" + mId + ", mNick=" + mNick + ", mEmail=" + mEmail
 				+ ", count=" + count + ", orderDate=" + orderDate + ", pId=" + pId + ", orderTime=" + orderTime
-				+ ", membership=" + membership + ", orderId=" + orderId + ", pPrice=" + pPrice + ", salePrice="
-				+ salePrice + ", totalPrice=" + totalPrice + ", finalTotalPrice=" + finalTotalPrice + ", discount="
-				+ discount + "]";
+				+ ", membership=" + membership + ", orderId=" + orderId + ", pPrice=" + pPrice + ", pName=" + pName
+				+ ", salePrice=" + salePrice + ", totalPrice=" + totalPrice + ", finalTotalPrice=" + finalTotalPrice
+				+ ", discount=" + discount + "]";
 	}
 	
 }

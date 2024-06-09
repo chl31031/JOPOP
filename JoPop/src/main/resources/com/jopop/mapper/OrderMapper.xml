@@ -29,4 +29,36 @@
 	<update id="deductMoney">
 		update jp_member set money = #{money} where mId = #{mId}
 	</update>
+	
+	<!-- 예약 조회 리스트 -->
+	<select id="getOrderList" resultType="com.jopop.model.OrderItemDTO">
+		<![CDATA[
+		select * 
+		from(
+		    select rownum rn, orderItemId, orderId, pId, orderdate, orderTime, pPrice, count
+		    from jp_orderItem
+		    where rownum <= #{pageNum} * #{amount} 
+		    and orderId like #{keyword}||'%'
+		]]>    
+		<![CDATA[
+		    
+		    order by orderItemId desc
+		    )
+		where rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+	
+		<!-- 예약 조회 총 개수 -->
+	<select id="getOrderTotal" resultType="int">
+	
+		select count(*) from jp_orderItem
+	    where orderId like #{keyword}||'%'
+	
+	</select>
+	
+	<!-- [예약 조회] 상품명 가져오기 -->
+	<select id="getpName" resultType="String">
+		select pName from jp_pop where pId = #{pId}
+	</select>
+	
   </mapper>

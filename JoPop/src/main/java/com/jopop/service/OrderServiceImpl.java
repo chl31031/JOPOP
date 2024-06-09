@@ -15,6 +15,7 @@ import com.jopop.mapper.MemberMapper;
 import com.jopop.mapper.OrderMapper;
 import com.jopop.mapper.PopMapper;
 import com.jopop.model.CartVO;
+import com.jopop.model.Criteria;
 import com.jopop.model.ImageVO;
 import com.jopop.model.MemberVO;
 import com.jopop.model.OrderDTO;
@@ -103,6 +104,8 @@ public class OrderServiceImpl implements OrderService{
 		ord.setmNick(member.getmNick());
 		ord.setmEmail(member.getmEmail());
 		
+		System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+		System.out.println("mNick() : "+ord.getmNick());
 		System.out.println("OrderDTO : "+ord);
 		
 		//DB넣기
@@ -128,5 +131,18 @@ public class OrderServiceImpl implements OrderService{
 			cartMapper.deleteOrderCart(vo);
 		}
 	}
+
+	//예약 조회 리스트
+	@Override
+	public List<OrderItemDTO> getOrderList(Criteria cri) {
+		return orderMapper.getOrderList(cri);
+	}
+
+	//예약 조회 총 갯수
+	@Override
+	public int getOrderTotal(Criteria cri) {
+		return orderMapper.getOrderTotal(cri);
+	}
+	
 	
 }

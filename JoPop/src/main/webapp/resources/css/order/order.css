@@ -107,17 +107,20 @@ li {
 .list_pop li {
 	display: inline-block;
 	vertical-align: middle;
-	margin-right: 20px;
+	/*margin-right: 20px;*/
 }
 
 .img_wrap {
 	width: 160px;
-	height: 160px;
+	height: 200px;
+	display: flex; 
+    justify-content: center; 
+    align-items: center; 
 }
 
 .img_wrap img {
 	width: 150px;
-	height: 150px;
+	height: 180px;
 	border-radius: 30px;
 	background-color: #ccc;
 }
@@ -129,6 +132,33 @@ li {
 .popup_name, .popup_price, .button_quantity {
 	width: 500px;
 	margin-top: 15px;
+	flex-direction: column;
+}
+
+.totalPrice_span {
+	text-align: right;
+	padding-left: 670px;
+	font-weight: bold;
+	color: #1ed760;
+}
+.totalKind_span{
+	text-align: right;
+	padding-left: 650px;
+	font-weight: bold;
+	color: #1ed760;
+} 
+.totalCount_span{
+	text-align: right;
+	padding-left: 10px;
+	font-weight: bold;
+	color: #1ed760;
+}
+
+.finalTotalPrice_span{
+	text-align: right;
+	padding-left: 700px;
+	font-weight: bold;
+	color: #ffffff;
 }
 
 .popup_name {
@@ -245,4 +275,21 @@ li {
 	padding: 10px 20px; /* 버튼의 패딩을 조절합니다. */
 	line-height: 30px; /* 버튼의 높이와 텍스트의 높이를 일치시킵니다. */
 	margin-bottom: 100px;
+}
+
+.btn_delete {
+    background-color: #DC143C; /* 배경 색상 */
+    border: 1px solid #ffffff; /* 테두리 */
+    border-radius: 5px; /* 둥근 모서리 */
+    padding: 5px 10px; /* 내부 여백 */
+    color: #ffffff; /* 텍스트 색상 */
+}
+
+.popup_details {
+    display: flex;
+    flex-direction: column;
+}
+
+.button_quantity, .popup_orderDate, .popup_orderTime{
+	margin-bottom: 5px;
 }

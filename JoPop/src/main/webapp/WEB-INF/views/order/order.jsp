@@ -65,37 +65,41 @@
 							<img>
 						</div>
 					</li>
-					<li class="popup-name">${ol.pName}</li>
-					<li class="popup-price">${ol.pPrice}</li>
-					<li class="button_quantity">
-						예약 인원
-						<span>
-							<input type="text" class="quantity_input" value="${ol.count}">
-							<button class="plus_btn">+</button>
-							<button class="minus_btn">-</button>
-						</span>
+					<li>
+						<div class="popup_details">
+							<div class="popup_name">${ol.pName}</div>
+							<div class="popup_price">예약금 : ${ol.pPrice}</div>
+							<div class="button_quantity">
+								예약 인원
+								<span>
+									<input type="text" class="quantity_input" value="${ol.count}">
+									<button class="plus_btn">+</button>
+									<button class="minus_btn">-</button>
+								</span>
+							</div>
+							<div class="popup_orderDate">
+								<label>예약 날짜</label>
+								<input name="orderDate" autocomplete="off" readonly="readonly">
+								<span class="ck_warn publeYear_warn"></span>
+							</div>
+							<div class="popup_orderTime">
+								<label>예약 시간</label>
+								<select class="orderTime" name="orderTime" size="1">
+									<option value="선택하세요.">선택하세요.</option>
+									<option value="10:00">10:00</option>
+									<option value="11:00">11:00</option>
+									<option value="12:00">12:00</option>
+									<option value="13:00">13:00</option>
+									<option value="14:00">14:00</option>
+									<option value="15:00">15:00</option>
+									<option value="16:00">16:00</option>
+									<option value="17:00">17:00</option>
+								</select>
+							</div>
+						</div>
 					</li>
-					<li class="popup_orderDate">
-						<label>예약 날짜</label>
-						<input name="orderDate" autocomplete="off" readonly="readonly">
-						<span class="ck_warn publeYear_warn">예약 날짜를 지정해주세요.</span>
-					</li>
-					<li class="popup_orderTime">
-						<label>예약 시간</label>
-						<select class="orderTime" name="orderTime" size="1">
-							<option value="선택하세요.">선택하세요.</option>
-							<option value="10:00">10:00</option>
-							<option value="11:00">11:00</option>
-							<option value="12:00">12:00</option>
-							<option value="13:00">13:00</option>
-							<option value="14:00">14:00</option>
-							<option value="15:00">15:00</option>
-							<option value="16:00">16:00</option>
-							<option value="17:00">17:00</option>
-						</select>
-					</li>
-					<li class="delete_btn">
-						<button>삭제</button>
+					<li>
+						<button class="btn_delete">삭제</button>
 					</li>
 				</ul>
 			</c:forEach>
@@ -218,8 +222,11 @@
 		$(".order_info_li").each(function(index, element){
 			let pId = $(element).find(".individaul_pId_input").val();
 			let count = $(element).find(".individaul_count_input").val();
-			let orderDate = $(element).find(".individaul_orderDate_input").val();
+			let orderDateString = $(element).find(".individaul_orderDate_input").val();
 			let orderTime = $(element).find(".individaul_orderTime_input").val();
+			
+			// 주문 날짜 문자열을 Date 객체로 변환
+		    let orderDate = new Date(orderDateString);
 			
 			let pId_input = "<input name='orders["+index+"].pId' type='hidden' value='"+pId+"'>";
 			form_contents += pId_input;
@@ -352,18 +359,18 @@
 	   $orderInfoLi.find(".individaul_discount_input").val(discount);
 	   $orderInfoLi.find(".individaul_salePrice_input").val(salePrice);
 	   $orderInfoLi.find(".individaul_finalTotalPrice_input").val(finalTotalPrice);
-	
+	   
+		$(".orderTime").on("change", function(){
+			//선택한 시간 값 가져오기
+			var selectedTime = $(this).val();
+			
+			console.log(selectedTime);
+			
+			$orderInfoLi.find(".individaul_orderTime_input").val(selectedTime);
+		});
+		
 	   updateTotalPrice();
 	}
-	
-	$(".orderTime").on("change", function(){
-		//선택한 시간 값 가져오기
-		var selectedTime = $(this).val();
-		
-		console.log(selectedTime);
-		
-		$orderInfoLi.find(".individaul_orderTime_input").val(selectedTime);
-	});
 	
 	// 전체 totalPrice를 업데이트하는 함수
 	function updateTotalPrice() {

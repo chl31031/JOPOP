@@ -1,6 +1,9 @@
 package com.jopop.mapper;
 
+import java.util.List;
+
 import com.jopop.model.CartVO;
+import com.jopop.model.Criteria;
 import com.jopop.model.MemberVO;
 import com.jopop.model.OrderDTO;
 import com.jopop.model.OrderItemDTO;
@@ -22,4 +25,11 @@ public interface OrderMapper {
 	
 	//주문 금액 차감
 	public int deductMoney(MemberVO member);
+	
+	//예약 조회 리스트
+	public List<OrderItemDTO> getOrderList(Criteria cri);
+	
+	//예약 조회 총 갯수
+	public int getOrderTotal(Criteria cri);
+	
 }

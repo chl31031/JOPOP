@@ -17,7 +17,7 @@
          <ul class="nav_list">
             <li class="mypage"><a href="/member/mypage">내 정보</a></li>
             <li class="cart"><a href="/cart/cart/${member.mId}">관심 팝업</a></li>
-            <li class="booking"><a href="/cart/orderItem">사전예약</a></li>
+            <li class="booking"><a href="/order/orderItem">사전예약</a></li>
          </ul>
       </div>
 
