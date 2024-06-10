@@ -19,7 +19,7 @@
 		<div class="wrap">
 
 			<div class="navi_bar_area">
-				<h1>navi area</h1>
+				<h1>6월 진행 중인 팝업!</h1>
 			</div>
 			<div class="content_area">
 				<div class="list_search_result">

@@ -1,0 +1,295 @@
+@charset "UTF-8";
+
+/* header */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	display: flex;
+	justify-content: center; /* 가운데 정렬을 위해 주축을 가운데로 설정합니다. */
+	align-items: center; /* 세로 가운데 정렬을 위해 교차축을 가운데로 설정합니다. */
+	width: 900px;
+	height: 100px;
+	text-align: center; /* 텍스트 중앙 정렬 */
+	margin: 0 auto;
+}
+
+.logo {
+	width: 170px;
+	float: left;
+	margin-top: 10px;
+	margin-right: 170px;
+	margin-left: -230px;
+}
+
+.logo img {
+	height: 80px;
+}
+
+.logo_text {
+	text-align: center; /* 텍스트를 가운데 정렬합니다. */
+	padding: 10px 20px; /* 내부 여백을 추가합니다. */
+	font-size: 12px;
+	width: 200px;
+	text-align: center;
+	float: right;
+	margin-right: 100px;
+}
+
+/* body */
+body {
+	background-color: #f5f5f5;
+}
+
+a {
+	text-decoration: none; /* 링크의 밑줄 제거 */
+	color: black; /* 링크의 색상 지정 */
+}
+
+.wrap {
+	width: 900px;
+	margin: auto;
+	height: 2000px;
+	background-color: #f5f5f5;
+}
+
+h2 {
+	margin-top: 20px;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+h5 {
+	margin-top: 20px;
+	margin-botton: 20px;
+	color: dark-gray;
+}
+
+li {
+	list-style: none;
+}
+
+/*예약자 정보*/
+.resPerson {
+	border: 1px solid #ccc; /* 테두리를 설정합니다. */
+	border-radius: 10px; /* 둥근 네모의 반지름을 설정합니다. */
+	padding: 30px; /* 내부 여백을 설정합니다. */
+	background-color: white;
+}
+
+.resPerson li{
+	padding: 5px;
+	
+}
+
+/*예약 팝업*/
+.orderPop {
+	border: 1px solid #ccc; /* 테두리를 설정합니다. */
+	border-radius: 10px; /* 둥근 네모의 반지름을 설정합니다. */
+	padding: 10px; /* 내부 여백을 설정합니다. */
+	background-color: white;
+}
+
+.list_pop {
+	box-sizing: border-box;
+	padding: 10px;
+	display: flex;
+}
+
+.list_pop ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.list_pop li {
+	display: inline-block;
+	vertical-align: middle;
+	/*margin-right: 20px;*/
+}
+
+.img_wrap {
+	width: 160px;
+	height: 200px;
+	display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.img_wrap img {
+	width: 150px;
+	height: 180px;
+	border-radius: 30px;
+	background-color: #ccc;
+}
+
+.list {
+	width: 600px;
+}
+
+.popup_name, .popup_price, .button_quantity {
+	width: 500px;
+	margin-top: 15px;
+	flex-direction: column;
+}
+
+.totalPrice_span {
+	text-align: right;
+	padding-left: 670px;
+	font-weight: bold;
+	color: #1ed760;
+}
+.totalKind_span{
+	text-align: right;
+	padding-left: 650px;
+	font-weight: bold;
+	color: #1ed760;
+} 
+.totalCount_span{
+	text-align: right;
+	padding-left: 10px;
+	font-weight: bold;
+	color: #1ed760;
+}
+
+.finalTotalPrice_span{
+	text-align: right;
+	padding-left: 700px;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.popup_name {
+	font-weight: 400;
+}
+
+.quantity_input {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding-left: 5px;
+}
+
+.plus_btn, .minus_btn {
+	width: 20px;
+	height: 20px;
+	font-size: 18px;
+	background-color: #eee;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.delete_btn {
+	margin-top: 50px;
+	margin-left: auto;
+	background-color: transparent;
+}
+
+.delete_btn img {
+	width: 22px;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+/*예약 가격*/
+.orderPrice {
+	border: 1px solid #ccc; /* 테두리를 설정합니다. */
+	border-radius: 10px; /* 둥근 네모의 반지름을 설정합니다. */
+	padding: 10px; /* 내부 여백을 설정합니다. */
+	background-color: white;
+}
+
+.totalPrice {
+	border-radius: 10px; /* 둥근 네모의 반지름을 설정합니다. */
+	padding: 10px; /* 내부 여백을 설정합니다. */
+	background-color: #1ed760;
+}
+
+/*카드/머니(충전금)*/
+.money {
+	border: 1px solid #ccc; /* 테두리를 설정합니다. */
+	border-radius: 10px; /* 둥근 네모의 반지름을 설정합니다. */
+	padding: 10px; /* 내부 여백을 설정합니다. */
+	background-color: white;
+}
+
+.order_money_input {
+	padding-left: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.order_money_input_btn {
+	vertical-align: middle;
+	display: inline-block;
+	border: 1px solid #aaa;
+	border-radius: 10px;
+	width: 60px;
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+	color: #555;
+	cursor: pointer;
+	font-size: 12px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.boundary_div li {
+	border-bottom: 1px solid #ccc; /* 각 li 요소에 아래쪽에 회색 선 추가 */
+	margin: 10px;
+	padding-bottom: 7px; /* 각 li 요소 아래 여백 추가 */
+}
+
+.boundary_div input[type="radio"] {
+	transform: scale(1.4);
+}
+
+/* 맨 마지막 li 요소에는 border-bottom을 추가하지 않음 */
+.boundary_div li:last-child {
+	border-bottom: none; /* 맨 마지막 li 요소에는 border-bottom 없음 */
+}
+
+/*예약 버튼*/
+.button_set {
+	align-items: center;
+	justify-content: center; /* 내용을 수평 가운데로 정렬합니다. */
+	margin: 50px;
+	text-align: center;
+}
+
+.button_set h5 {
+	margin-bottom: 20px;
+}
+
+.btn_order {
+	border: 1px solid #ccc; /* 테두리를 설정합니다. */
+	border-radius: 10px; /* 둥근 네모의 반지름을 설정합니다. */
+	background-color: #1ed760;
+	display: inline-block;
+	height: 30px;
+	width: 200px;
+	text-align: center;
+	padding: 10px 20px; /* 버튼의 패딩을 조절합니다. */
+	line-height: 30px; /* 버튼의 높이와 텍스트의 높이를 일치시킵니다. */
+	margin-bottom: 100px;
+}
+
+.btn_delete {
+    background-color: #DC143C; /* 배경 색상 */
+    border: 1px solid #ffffff; /* 테두리 */
+    border-radius: 5px; /* 둥근 모서리 */
+    padding: 5px 10px; /* 내부 여백 */
+    color: #ffffff; /* 텍스트 색상 */
+}
+
+.popup_details {
+    display: flex;
+    flex-direction: column;
+}
+
+.button_quantity, .popup_orderDate, .popup_orderTime{
+	margin-bottom: 5px;
+}

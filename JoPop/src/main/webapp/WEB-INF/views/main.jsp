@@ -12,6 +12,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
 </head>
 <body>
     <%@ include file="includes/header.jsp" %>
@@ -70,12 +71,11 @@
              	
              	
              	
-             	</ul>
             </div>
 
             <!-- Navigation Bar Area -->
             <div class="navi_bar_area">
-                <h1>navi area</h1>
+               <h2>6월 진행중인 팝업</h2>
             </div>
 
         
@@ -135,7 +135,7 @@
                 
                
 <div class="rt_div_subject">
-    <h1>담당자 픽 ! 인기 팝업!</h1>
+    <h2>담당자 PICK! 인기팝업!</h2>
 </div>
 <div class="rt_div">
     <c:forEach items="${rating}" var="rating">
@@ -187,9 +187,9 @@
             slidesToScroll: 1,
             autoplay: true,
             autoplaySpeed: 2000,
-            dots: true,
-            prevArrow : "<button type='button' class='slick-list_div_content_prev'><img src='/resources/img/pre.png'></button>",		// 이전 화살표 모양 설정
-			nextArrow : "<button type='button' class='slick-list_div_content_next'><img src='/resources/img/next.png'></button>"		// 다음 화살표 모양 설정
+            dots: false,
+            prevArrow : "<button type='button' class='slick_list_div_content_prev'><img src='/resources/img/pre.png'></button>",		// 이전 화살표 모양 설정
+			nextArrow : "<button type='button' class='slick_list_div_content_next'><img src='/resources/img/next.png'></button>"		// 다음 화살표 모양 설정
         });
         	
         
@@ -201,8 +201,7 @@
     	autoplay: true,
         autoplaySpeed: 2000,
         dots: false,
-		prevArrow : "<button type='button' class='rt_div_content_prev'><img src='/resources/img/pre.png'></button>",		// 이전 화살표 모양 설정
-		nextArrow : "<button type='button' class='rt_div_content_next'><img src='/resources/img/next.png'></button>"		// 다음 화살표 모양 설정
+		arrows:false,
    	 });
 	});
 
