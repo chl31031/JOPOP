@@ -1,6 +1,8 @@
 package com.jopop.service;
 
 import java.util.List;
+
+import com.jopop.model.CateFilterVO;
 import com.jopop.model.Criteria;
 import com.jopop.model.PopVO;
 import com.jopop.model.RatingDTO;
@@ -20,6 +22,9 @@ public interface PopService {
     
     /* 인기 있는 순 리스트 */
     public List<RatingDTO> rating() throws Exception;
+    
+    /* 검색 결과 카테고리 필터 정보 */
+    public List<CateFilterVO> getCateInfoList(Criteria cri);
 
 
     // 리뷰 및 이미지 추가

@@ -20,6 +20,15 @@
 
 			<div class="navi_bar_area">
 				<h1>navi area</h1>
+				
+                <c:forEach items="${filter_info}" var="filter">
+                    <div class="search_filter">
+                        <button class="filter_button" id="filter_button_${filter.cateCode}">${filter.cateName}</button>
+                    </div>
+                    <div class="filter_contents filter_${filter.cateCode}">
+                        <a href="?cateCode=${filter.cateCode}&keyword=${pageMaker.cri.keyword}">${filter.cateName} (${filter.cateCount})</a>
+                    </div>
+                </c:forEach>
 			</div>
 			<div class="content_area">
 				<div class="list_search_result">
@@ -28,7 +37,8 @@
 							<c:forEach items="${list}" var="list">
 								<tr class="list">
 									<td class="image">
-										<div class="image_wrap" data-pId="${list.imageList[0].pId}"
+										<div class="image_wrap"
+											data-pId="${list.imageList[0].pId}"
 											data-path="${list.imageList[0].uploadPath}"
 											data-uuid="${list.imageList[0].uuid}"
 											data-filename="${list.imageList[0].fileName}">

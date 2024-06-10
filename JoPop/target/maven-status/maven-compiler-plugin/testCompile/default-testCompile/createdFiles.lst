@@ -1,2 +1,4 @@
+com\jopop\service\PopServiceTests.class
+com\jopop\mapper\PopMapperTests.class
 com\jopop\persistence\JDBCTest.class
 com\jopop\persistence\DataSourceTest.class

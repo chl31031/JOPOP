@@ -3,7 +3,7 @@ package com.jopop.model;
 import java.util.Arrays;
 
 public class Criteria {
-	/* 현재 페이지 번호 */
+   /* 현재 페이지 번호 */
     private int pageNum;
     
     /* 페이지 표시 개수 */
@@ -22,22 +22,22 @@ public class Criteria {
     private String cateCode;
     
     public String[] getDateArr() {
-		return dateArr;
-	}
+      return dateArr;
+   }
 
-	public void setDateArr(String[] dateArr) {
-		this.dateArr = dateArr;
-	}
+   public void setDateArr(String[] dateArr) {
+      this.dateArr = dateArr;
+   }
 
-	public String getCateCode() {
-		return cateCode;
-	}
+   public String getCateCode() {
+      return cateCode;
+   }
 
-	public void setCateCode(String cateCode) {
-		this.cateCode = cateCode;
-	}
+   public void setCateCode(String cateCode) {
+      this.cateCode = cateCode;
+   }
 
-	/* Criteria 생성자 */
+   /* Criteria 생성자 */
     public Criteria(int pageNum, int amount) {
         this.pageNum = pageNum;
         this.amount = amount;
@@ -54,42 +54,42 @@ public class Criteria {
         return type == null? new String[] {}:type.split("");
     }
 
-	public int getPageNum() {
-		return pageNum;
-	}
+   public int getPageNum() {
+      return pageNum;
+   }
 
-	public void setPageNum(int pageNum) {
-		this.pageNum = pageNum;
-	}
+   public void setPageNum(int pageNum) {
+      this.pageNum = pageNum;
+   }
 
-	public int getAmount() {
-		return amount;
-	}
+   public int getAmount() {
+      return amount;
+   }
 
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
+   public void setAmount(int amount) {
+      this.amount = amount;
+   }
 
-	public String getType() {
-		return type;
-	}
+   public String getType() {
+      return type;
+   }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+   public void setType(String type) {
+      this.type = type;
+   }
 
-	public String getKeyword() {
-		return keyword;
-	}
+   public String getKeyword() {
+      return keyword;
+   }
 
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
+   public void setKeyword(String keyword) {
+      this.keyword = keyword;
+   }
 
-	@Override
-	public String toString() {
-		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", type=" + type + ", keyword=" + keyword
-				+ ", dateArr=" + Arrays.toString(dateArr) + ", cateCode=" + cateCode + "]";
-	}
+   @Override
+   public String toString() {
+      return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", type=" + type + ", keyword=" + keyword
+            + ", dateArr=" + Arrays.toString(dateArr) + ", cateCode=" + cateCode + "]";
+   }
     
 }

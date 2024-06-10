@@ -72,6 +72,34 @@
     pId >0
   </select>
   
+ <!-- 검색 대상 카테고리 리스트 -->
+<select id="getCateList" resultType="String">
+    SELECT DISTINCT a.cateCode 
+    FROM JP_POP a
+    JOIN JP_CATE b ON a.cateCode = b.cateCode
+    WHERE 
+    a.pName LIKE '%' || #{keyword} || '%'
+    AND a.cateCode = #{cateCode}
+    GROUP BY a.cateCode, b.cateName
+</select>
+
+	<!-- 카테고리 정보(+검색대상 갯수) -->	
+	
+	<select id="getCateInfo" resultType="com.jopop.model.CateFilterVO">
+
+    SELECT DISTINCT COUNT(*) AS cateCount, a.cateCode, b.cateName
+    FROM JP_POP a
+    LEFT JOIN JP_CATE b ON a.cateCode = b.cateCode
+    
+    WHERE a.pName LIKE '%' || #{keyword} || '%'
+    AND a.cateCode = #{cateCode}
+    
+    GROUP BY a.cateCode, b.cateName
+
+</select>
+
+
+  
   
   
   

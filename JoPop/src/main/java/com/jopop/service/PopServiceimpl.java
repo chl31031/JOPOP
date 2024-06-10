@@ -1,14 +1,15 @@
 package com.jopop.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jopop.mapper.AttachMapper;
 import com.jopop.mapper.PopMapper;
+import com.jopop.model.CateFilterVO;
 import com.jopop.model.Criteria;
 import com.jopop.model.ImageVO;
 import com.jopop.model.PopVO;
@@ -124,4 +125,20 @@ public class PopServiceimpl implements PopService {
 		return list;
 	}
 
+	@Override
+    public List<CateFilterVO> getCateInfoList(Criteria cri) {
+        List<CateFilterVO> cateInfoList = new ArrayList<>();
+        if (cri.getCateCode() == null) {
+            cri.setCateCode("");
+        }
+        String[] cateList = popMapper.getCateList(cri);
+        String originalCateCode = cri.getCateCode();
+        for (String cateCode : cateList) {
+            cri.setCateCode(cateCode);
+            CateFilterVO filterInfo = popMapper.getCateInfo(cri);
+            cateInfoList.add(filterInfo);
+        }
+        cri.setCateCode(originalCateCode);
+        return cateInfoList;
+    }
 }

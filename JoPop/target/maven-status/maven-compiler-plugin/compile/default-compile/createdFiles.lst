@@ -14,6 +14,7 @@ com\jopop\service\MemberService.class
 com\jopop\mapper\AttachMapper.class
 com\jopop\service\CartServiceImpl.class
 com\jopop\mapper\CartMapper.class
+com\jopop\model\CateFilterVO.class
 com\jopop\controller\CartController.class
 com\jopop\service\MemberServiceImpl.class
 com\jopop\model\Criteria.class

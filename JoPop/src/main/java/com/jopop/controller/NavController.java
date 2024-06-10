@@ -1,7 +1,5 @@
 package com.jopop.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-
 import java.io.File;
 import java.nio.file.Files;
 import java.util.List;
@@ -23,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jopop.model.CartVO;
+import com.jopop.model.CateFilterVO;
 import com.jopop.model.Criteria;
 import com.jopop.model.MemberVO;
 import com.jopop.model.PageDTO;
@@ -54,11 +53,10 @@ public class NavController {
 
 	/* 검색 페이지로 이동 */
 	@GetMapping("/search")
-	public String searchPageGET(Criteria cri, Model model, HttpSession session)throws Exception{
+	public String searchPageGET(Criteria cri, Model model, HttpSession session) throws Exception {
 	    
 	    logger.info("검색페이지로 이동");
 	   
-	    
 	    MemberVO member = (MemberVO) session.getAttribute("member");
 	    
 	    List<PopVO> list = popService.getGoodsList(cri);
@@ -69,11 +67,19 @@ public class NavController {
 	        model.addAttribute("listcheck", "empty");
 	        return "/nav/search";
 	    }
+	    
 	    /* 페이지 이동 인터페이스 데이터 */
 	    model.addAttribute("pageMaker", new PageDTO(cri, popService.goodsGetTotal(cri)));
-
+	    
+	    // keyword가 null이 아닐 때만 필터 정보를 가져와서 모델에 추가합니다.
+	    if (cri.getKeyword() != null && !cri.getKeyword().isEmpty()) {
+            List<CateFilterVO> cateInfoList = popService.getCateInfoList(cri);
+            model.addAttribute("filter_info", cateInfoList);
+        }
+	    
 	    return "/nav/search";
 	}
+
 	
 	
 	

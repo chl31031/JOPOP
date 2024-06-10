@@ -19,56 +19,57 @@
         <div class="wrap">
             <!-- Main Image Area -->
             <div class="main_slick_area">
-               <div class="mainPrevious"></div>
+               
              	
              	<div class="slick-list">
-             	<!-- 1번 -->
-             	<div class="popupbanner_list">
-             	<div class="slide-contents">
-             	<div class="slide_img_wrap">
-             	<img src="/resources/eximg/hell.png"alt="">
-             	</div>
-             	</div>
-             	</div>
-             	<!-- 2번 -->
-             	<div class="popupbanner_list">
-             	<div class="slide-contents">
-             	<div class="slide_img_wrap">
-             	<img src="/resources/eximg/hello.png"alt="">
-             	</div>
-             	</div>
+                <!-- 1번 -->
+                <div class="popupbanner_list">
+                <div class="slide-contents">
+                <div class="slide_img_wrap">
+                <img src="/resources/eximg/poster1.jpg"alt="">
+                </div>
+                </div>
+                </div>
+                <!-- 2번 -->
+                <div class="popupbanner_list">
+                <div class="slide-contents">
+                <div class="slide_img_wrap">
+                <img src="/resources/eximg/poster2.jpg"alt="">
+                </div>
+                </div>
+                </div>
+                
+                <!-- 3번 -->
+                <div class="popupbanner_list">
+                <div class="slide-contents">
+                <div class="slide_img_wrap">
+                <img src="/resources/eximg/poster3.jpg"alt="">
+                </div>
+                </div>
+                </div>
+                
+                <!-- 4번 -->
+                <div class="popupbanner_list">
+                <div class="slide-contents">
+                <div class="slide_img_wrap">
+                <img src="/resources/eximg/poster4.jpg"alt="">
+                </div>
+                </div>
+                </div>
+                
+                <!-- 5번 -->
+                <div class="popupbanner_list">
+                <div class="slide-contents">
+                <div class="slide_img_wrap">
+                <img src="/resources/eximg/poster5.jpg"alt="">
+                </div>
+                </div>
+                </div>
+             	
              	</div>
              	
-             	<!-- 3번 -->
-             	<div class="popupbanner_list">
-             	<div class="slide-contents">
-             	<div class="slide_img_wrap">
-             	<img src="/resources/eximg/hello1.png"alt="">
-             	</div>
-             	</div>
-             	</div>
              	
-             	<!-- 4번 -->
-             	<div class="popupbanner_list">
-             	<div class="slide-contents">
-             	<div class="slide_img_wrap">
-             	<img src="/resources/eximg/mok.png"alt="">
-             	</div>
-             	</div>
-             	</div>
              	
-             	<!-- 5번 -->
-             	<div class="popupbanner_list">
-             	<div class="slide-contents">
-             	<div class="slide_img_wrap">
-             	<img src="/resources/eximg/mok1.png"alt="">
-             	</div>
-             	</div>
-             	</div>
-             	
-             	</div>
-             	<div class="mainNext"></div>
-             	<ul class="popup-banner-dots" style="display: block;">
              	</ul>
             </div>
 
@@ -138,7 +139,7 @@
 </div>
 <div class="rt_div">
     <c:forEach items="${rating}" var="rating">
-        <a href="/goodsDetail/${rating.pId}">
+        <a href="/pop/popsDetail?pid=${rating.pId}">
             <div class="rt_div_content_wrap">
                 <div class="rt_div_content">
                     <div class="image_wrap2"
@@ -187,8 +188,8 @@
             autoplay: true,
             autoplaySpeed: 2000,
             dots: true,
-            prevArrow : "<button type='button' class='slick-list_div_content_prev'>이전</button>",		// 이전 화살표 모양 설정
-			nextArrow : "<button type='button' class='slick-list_div_content_next'>다음</button>"		// 다음 화살표 모양 설정
+            prevArrow : "<button type='button' class='slick-list_div_content_prev'><img src='/resources/img/pre.png'></button>",		// 이전 화살표 모양 설정
+			nextArrow : "<button type='button' class='slick-list_div_content_next'><img src='/resources/img/next.png'></button>"		// 다음 화살표 모양 설정
         });
         	
         
@@ -200,8 +201,8 @@
     	autoplay: true,
         autoplaySpeed: 2000,
         dots: false,
-		prevArrow : "<button type='button' class='rt_div_content_prev'>이전</button>",		// 이전 화살표 모양 설정
-		nextArrow : "<button type='button' class='rt_div_content_next'>다음</button>"		// 다음 화살표 모양 설정
+		prevArrow : "<button type='button' class='rt_div_content_prev'><img src='/resources/img/pre.png'></button>",		// 이전 화살표 모양 설정
+		nextArrow : "<button type='button' class='rt_div_content_next'><img src='/resources/img/next.png'></button>"		// 다음 화살표 모양 설정
    	 });
 	});
 

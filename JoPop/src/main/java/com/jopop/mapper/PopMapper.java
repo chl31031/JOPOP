@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.jopop.model.CateFilterVO;
 import com.jopop.model.Criteria;
 import com.jopop.model.PopVO;
 import com.jopop.model.RatingDTO;
@@ -22,6 +23,17 @@ public interface PopMapper {
     
     /* 인기 있는 순 리스트 */
     public List<RatingDTO> rating() throws Exception;
+    
+    
+    /* 검색 대상 카테고리 리스트 */
+    public String[] getCateList(Criteria cri);
+    
+    /* 카테고리 정보 (+검색 대상 갯수) */
+    public CateFilterVO getCateInfo(Criteria cri);
+    
+    
+    
+    
 
     // 리뷰 추가
     public void addReview(ReviewVO review) throws Exception;
@@ -43,5 +55,7 @@ public interface PopMapper {
     
     // 리뷰 이미지 삭제
     public int deleteRImage(int pId, int mId);
+    
+    
     
 }

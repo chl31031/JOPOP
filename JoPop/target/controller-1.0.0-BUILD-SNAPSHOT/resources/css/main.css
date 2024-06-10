@@ -7,10 +7,11 @@
 
 .wrapper {
     height: auto;
+    
 }
 
 .wrap {
-    width: 900px;
+    width: 960px;
     margin: auto;
 }
 
@@ -123,20 +124,45 @@
     cursor: pointer;
 }
 
-.image {
-    display: block;
-    float: left;
-    width: 190px;
-    height: 190px;
-    border: 1px solid red;
-    cursor: pointer;
-    overflow: hidden; /* 자식 요소가 부모 요소를 넘지 않도록 설정 */
+/* 리스트 부분*/
+.image_wrap1 {
+    position: relative;
+    display: inline-block;
+  
+    
 }
 
-.image img {
+/* 밑에 부분 */
+.image_wrap2 {
+    position: relative;
+    display: inline-block;
+  
+    
+}
+
+.image_wrap2 img {
+    display: block;
     width: 100%;
-    height: 190px;
-    object-fit: cover; /* 이미지가 부모 요소에 맞게 조절됨 */
+    height: auto;
+    width: 260px;
+    height: 260px;
+    border-radius: 20px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px; /* 내용과 이미지 사이의 간격 */
+    
+    
+}
+
+.overlay div {
+    margin-bottom: 5px;
+  
 }
 
 .detail {
@@ -198,6 +224,40 @@
 	
 }
 
-.rt_div{
-	margin: 50px;
+
+.image {
+    display: block;
+    float: left;
+    width: 190px;
+    height: 190px;
+    border: 1px solid red;
+    cursor: pointer;
+    overflow: hidden; /* 자식 요소가 부모 요소를 넘지 않도록 설정 */
+}
+
+.image img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover; /* 이미지가 부모 요소에 맞게 조절됨 */
+}
+
+.slick-slide, .slick-cloned {
+    outline: none; /* 슬라이드 요소들의 아웃라인 제거 */
+   
+}
+
+.popupbanner_list{
+	width: 480px;
+	height: 480px;
+}
+
+.slide_img_wrap img {
+    display: block;
+    width: 480px;
+    height: 480px;
+}
+
+.slide-contents{
+	 width: 480px;
+    height: 480px;
 }
