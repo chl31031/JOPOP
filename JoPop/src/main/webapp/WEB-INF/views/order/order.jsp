@@ -22,11 +22,12 @@
         </a>
     </div>
     
-    <!-- 사용자 정보 변화 테스트 -->
+    <!-- 사용자 정보 변화 테스트 
     <div>
     	<span>회원 : ${member.mName}</span>
 		<span>충전금액 : <fmt:formatNumber value="${member.money }" pattern="\#,###.##"/></span>
     </div>
+    -->
     
     <!-- 예약하기 -->
     <div class="orderLogo">
