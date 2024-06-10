@@ -1,6 +1,10 @@
 package com.jopop.mapper;
 
+import java.util.List;
+
+import com.jopop.model.Criteria;
 import com.jopop.model.MemberVO;
+import com.jopop.model.OrderDTO;
 
 public interface MemberMapper {
 	
@@ -18,6 +22,5 @@ public interface MemberMapper {
 	
 	//주문자 주소 정보
 	public MemberVO getMemberInfo(int mId);
-
 	
 }

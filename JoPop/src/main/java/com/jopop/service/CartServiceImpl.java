@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jopop.mapper.AttachMapper;
 import com.jopop.mapper.CartMapper;
 import com.jopop.model.CartVO;
 import com.jopop.model.ImageVO;
@@ -15,6 +16,9 @@ public class CartServiceImpl implements CartService{
 	
 	@Autowired
 	CartMapper cartMapper;
+	
+	@Autowired
+	AttachMapper attachMapper;
 	
 	
 	
@@ -51,6 +55,15 @@ public class CartServiceImpl implements CartService{
 	public List<CartVO> getCart(int mId) {
 		
 		List<CartVO> cart = cartMapper.getCart(mId);
+		
+		for(CartVO vo : cart) {
+			//이미지 정보 얻기
+			int pId = vo.getpId();
+			
+			List<ImageVO> imageList = attachMapper.getImageList(pId);
+			
+			vo.setImageList(imageList);
+		}
 		
 		return cart;
 	}

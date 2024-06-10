@@ -22,4 +22,7 @@ public interface CartMapper {
 	//찜 검색
 	public List<CartVO> searchCart(MemberVO cart);
 	
+	//찜 목록에서 제거(주문)
+	public int deleteOrderCart(CartVO dto);
+	
 }

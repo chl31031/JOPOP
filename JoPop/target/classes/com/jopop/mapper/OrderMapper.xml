@@ -8,10 +8,57 @@
 		select pId, pName, pPrice
 		from jp_Pop where pId = #{pId}
 	</select>
+
+	<!-- 주문 상품 정보(주문 구현) -->
+	<select id="getOrderInfo" resultType="com.jopop.model.OrderItemDTO">
+		select pId, pPrice
+		from jp_pop where pId = #{pId}
+	</select>
 	
-	<!-- 카트 수량 수정 -->
-	<update id="modifyCount">
-		update jp_order set count = #{count} where orderId = #{orderId};
+	<!-- 주문 테이블 등록 -->
+	<insert id="enrollOrder">
+		insert into jp_order(orderId, mId, mnick, memail) values(#{orderId}, #{mId}, #{mNick}, #{mEmail})
+	</insert>
+	
+	<!-- 주문 아이템 테이블 등록 -->
+	<insert id="enrollOrderItem">
+		insert into jp_orderItem(orderId, pId, orderDate, orderTime, count, pPrice) values(#{orderId},#{pId},#{orderDate},#{orderTime},#{count},#{pPrice})
+	</insert>
+	
+	<!--  주문 금액 차감 -->
+	<update id="deductMoney">
+		update jp_member set money = #{money} where mId = #{mId}
 	</update>
+	
+	<!-- 예약 조회 리스트 -->
+	<select id="getOrderList" resultType="com.jopop.model.OrderItemDTO">
+		<![CDATA[
+		select * 
+		from(
+		    select rownum rn, orderItemId, orderId, pId, orderdate, orderTime, pPrice, count
+		    from jp_orderItem
+		    where rownum <= #{pageNum} * #{amount} 
+		    and orderId like #{keyword}||'%'
+		]]>    
+		<![CDATA[
+		    
+		    order by orderItemId desc
+		    )
+		where rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+	
+		<!-- 예약 조회 총 개수 -->
+	<select id="getOrderTotal" resultType="int">
+	
+		select count(*) from jp_orderItem
+	    where orderId like #{keyword}||'%'
+	
+	</select>
+	
+	<!-- [예약 조회] 상품명 가져오기 -->
+	<select id="getpName" resultType="String">
+		select pName from jp_pop where pId = #{pId}
+	</select>
 	
   </mapper>

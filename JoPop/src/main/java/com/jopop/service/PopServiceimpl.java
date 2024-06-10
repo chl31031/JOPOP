@@ -89,18 +89,21 @@ public class PopServiceimpl implements PopService {
 
 	// 리뷰 내용 삭제
 	@Override
-	public int deleteReview(int pId, int mId) {
-		System.out.println("실행  pId : "+pId+" , mId: "+mId);
-		return popMapper.deleteReview(pId, mId);
+	public int deleteReview(PopVO pop) {
+		//System.out.println("실행  pId : "+pId+" , mId: "+mId);
+
+		System.out.println("popVO의 값 : "+pop);
+		
+		return popMapper.deleteReview(pop);
 	}
 	
 	
 	//리뷰 이미지 삭제
 	@Override
-	public int deleteRImage(int pId, int mId) {
+	public int deleteRImage(PopVO pop) {
 		System.out.println("PopServiceImpl까지는 옴");
 		
-		return popMapper.deleteReview(pId, mId);
+		return popMapper.deleteRImage(pop);
 	}
 
 	public void addReview(ReviewVO review) {
@@ -124,6 +127,27 @@ public class PopServiceimpl implements PopService {
 		
 		return list;
 	}
+	
+	 //내주변 지도 위치 마커 찍기 
+		@Override
+		public List<PopVO> getAllLocations() throws Exception {
+			
+			return popMapper.getAllLocations();
+		}
+		
+		// [마이페이지 - 리뷰/이미지] 수정
+		@Override
+		public void modifyReviewAndImages(ReviewVO review, List<RimageVO> images) throws Exception {
+	        popMapper.modifyReview(review);
+	        if (images != null && !images.isEmpty()) {
+	            for (RimageVO image : images) {
+	                image.setpId(review.getpId());
+	                image.setmId(review.getmId());
+	                popMapper.modifyImage(image);
+	            }
+	        }
+			
+		}	
 
 	@Override
     public List<CateFilterVO> getCateInfoList(Criteria cri) {

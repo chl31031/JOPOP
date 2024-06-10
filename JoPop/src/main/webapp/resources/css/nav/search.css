@@ -209,9 +209,14 @@
 }
 
 #moveForm input[type="hidden"] {
+<<<<<<< HEAD
     display: none;
 }
 
 tbody {
     width: 1080px;
 }
+=======
+	display: none;
+}
+>>>>>>> branch 'main' of https://github.com/rkawk775/JOPOP-Web.git

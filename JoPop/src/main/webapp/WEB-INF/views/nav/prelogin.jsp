@@ -6,9 +6,8 @@
 <meta charset="UTF-8">
 <title>Prelogin Page</title>
 <style type="text/css">
-* {
-	margin: 0;
-	padding: 0;
+.wrap {
+	margin: 0 auto;
 }
 
 .nav {
@@ -22,20 +21,19 @@
 	text-align: center;
 }
 
-.nav li {
-	display: inline-block;
-	list-style: none;
-	margin: 0 30px;
-}
-
 body {
 	width: 100%;
-	margin: 0 auto;
 	text-align: center;
 }
 
 h1 {
 	padding: 10px;
+}
+
+.nav li {
+	display: inline-block;
+	list-style: none;
+	margin: 0 30px;
 }
 
 .wrap {
@@ -56,16 +54,18 @@ h1 {
 	/* background-color: #e6e6fa; */
 	padding: 70px 0;
 }
-.jBtn{
+
+.jBtn {
 	width: 300px;
 	height: 50px;
 	border-radius: 15px;
-	border-width: thin; 
+	border-width: thin;
 	cursor: pointer;
 	background-color: #1ed760;
-	text: ;
+	text:;
 }
-.lBtn{
+
+.lBtn {
 	width: 300px;
 	height: 50px;
 	border-radius: 15px;
@@ -73,7 +73,8 @@ h1 {
 	cursor: pointer;
 }
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<%@include file="../includes/header.jsp"%>
@@ -84,14 +85,14 @@ h1 {
 
 		<!-- 회원가입 버튼 -->
 		<form action="/member/join" method="get" class="join">
-			<h5>회원이 아니시라면,</h5><br>
-			<input type="submit" value="회원가입" class="jBtn">
+			<h5>회원이 아니시라면,</h5>
+			<br> <input type="submit" value="회원가입" class="jBtn">
 		</form>
 
 		<!-- 로그인 버튼 -->
 		<form action="/member/login" method="get" class="login">
-			<h5>이미 가입한 아이디가 있다면,</h5><br>
-			<input type="submit" value="로그인" class="lBtn">
+			<h5>이미 가입한 아이디가 있다면,</h5>
+			<br> <input type="submit" value="로그인" class="lBtn">
 		</form>
 
 

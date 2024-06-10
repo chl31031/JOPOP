@@ -136,3 +136,7 @@
 	width: 20px; /* 이미지 크기 조절 */
 	height: auto; /* 이미지 비율 유지 */
 }
+
+.order_btn img{
+	cursor: pointer;
+}

@@ -1,3 +1,4 @@
+/* 공통 스타일 */
 body {
     background-color: #f0f0f0; /* 밝은 배경색 */
     color: #1e1e1e; /* 텍스트 색상 */
@@ -6,11 +7,17 @@ body {
     padding: 0;
 }
 
+html, body {
+    height: auto;
+}
+
 .container {
     width: 1060px; /* header와 동일한 너비 설정 */
     margin: auto; /* 중앙 정렬 및 위아래 여백 */
     background-color: #ffffff; /* 내부 컨텐츠 배경색 */
     padding: 20px; /* 내부 여백 */
+    min-height: 100vh; /* 최소 높이를 뷰포트 높이로 설정 */
+    padding-top: 60px; /* 네비게이션 바 높이만큼 위쪽 패딩 추가 */
 }
 
 .banner {
@@ -28,9 +35,8 @@ body {
 
 .slider img {
     width: 100%; /* 이미지를 슬라이더 내에서 가득 채우기 */
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 530px;
+    z-index: 1; /* 이미지를 화살표 아래로 위치시킵니다. */
 }
 
 .custom-prev, .custom-next {
@@ -38,11 +44,10 @@ body {
     top: 50%;
     transform: translateY(-50%);
     background: none; /* 배경 없음 */
-    color: #000; /* 화살표 색상 */
     border: none;
     cursor: pointer;
-    z-index: 2;
-    font-size: 2rem; /* 화살표 크기 */
+    z-index: 3;
+    font-size: 3rem; /* 화살표 크기 */
     outline: none; /* 버튼 선택 시 외곽선 제거 */
 }
 
@@ -54,19 +59,25 @@ body {
     right: 10px; /* 오른쪽 위치 */
 }
 
-.custom-prev:hover, .custom-next:hover {
-    color: #555; /* Hover 시 화살표 색상 변경 */
+.custom-prev img, .custom-next img {
+    width: 30px; /* 화살표 이미지 크기 */
+    height: auto;
+}
+
+.custom-prev:hover img, .custom-next:hover img {
+    transform: scale(1.1); /* Hover 시 크기 확대 */
 }
 
 .content {
     padding: 20px;
+    min-height: calc(100vh - 300px); /* 컨텐츠 최소 높이를 설정 */
 }
 
 .section {
     margin-bottom: 20px;
-    padding: 20px;
+    padding: 20px 50px;
     background-color: #ffffff;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -79,24 +90,16 @@ body {
     border: 1px solid #004225;
 }
 
-.footer {
-    margin-top: 20px;
-    text-align: center;
-    padding: 10px;
-    background-color: #004225;
-    color: #ffffff;
-    border-radius: 8px; /* 모서리 둥글게 */
-}
-
-.review-section {
+.review_section {
     background-color: #ffffff;
-    color: #1e1e1e;
-    padding: 20px;
+    color: #ccc;
+    padding: 20px 50px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative; /* 상대 위치 */
 }
 
-.review-section h2 {
+.review_section h2 {
     color: #00c73c; /* Jopop 색상 */
 }
 
@@ -127,43 +130,51 @@ body {
     color: #ccc; /* 선택된 별보다 오른쪽 별들은 다시 기본 색상으로 */
 }
 
-.review-form {
+.review_form {
     display: flex;
     flex-direction: column;
+    position: relative; /* 상대 위치 설정 */
+    z-index: 1; /* 네비게이션보다 낮은 값으로 설정 */
+    margin-bottom: 60px; /* 추가된 부분: 아래쪽 마진 추가 */
 }
 
-.review-form textarea {
-    width: 100%;
+.review_form textarea {
+    width: 950px;
     height: 100px;
-    background-color: #f0f0f0;
-    color: #1e1e1e;
-    border: 1px solid #004225;
-    border-radius: 4px;
-    padding: 10px;
+    background-color: #ececec;
+    color: #000;
+    font-size: 14px;
+    border: 1px solid #808080;
+    border-radius: 10px;
+    padding: 20px;
     margin-bottom: 10px;
-    resize: none; /* textarea 크기 고정 */
+    resize: none; /* 텍스트 영역 크기 조정 비활성화 */
 }
 
-.review-form .button-group {
+.review_form .button_group {
     display: flex;
     justify-content: space-between;
+    position: relative; /* 상대 위치 설정 */
+    z-index: 1; /* 네비게이션보다 낮은 값으로 설정 */
 }
 
-.review-form .button-group button {
-    background-color: #00c73c; /* Jopop 색상 */
-    color: #ffffff;
+.review_form .button_group button {
+    background-color: #ccc; /* Jopop 색상 */
+    color: #fff;
+    font-size: 14px;
+    width: 140px; 
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
-.review-form .button-group button:hover {
-    background-color: #008f28; /* Hover 색상 */
+.review_form .button_group button:hover {
+    background-color: #00c73c; /* Hover 색상 */
 }
 
-.review-section p {
-    color: #1e1e1e;
+.review_section p {
+    color: #000;
 }
 
 /* 이미지 주석 */
@@ -181,7 +192,7 @@ body {
 }
 
 /* 리뷰 구분선 스타일 */
-.review-divider {
+.review_divider {
     border-top: 1px solid #00c73c; /* 구분선 색을 녹색으로 변경 */
     margin: 20px 0; /* 구분선 위아래 여백 */
 }
@@ -218,8 +229,8 @@ body {
 
 /* 스타일을 적용한 제목 */
 .styled-heading {
-    font-family: 'Arial', sans-serif; /* 원하는 글꼴 */
-    font-size: 2rem; /* 글자 크기 */
+    font-family: 'Arial', sans-serif; /* 원하는 글꼄 */
+    font-size: 25px; /* 글자 크기 */
     color: #00c73c; /* Jopop 색상 */
     border-bottom: 2px solid #00c73c; /* 아래 테두리 */
     padding-bottom: 10px; /* 아래 패딩 */
@@ -227,8 +238,8 @@ body {
 }
 
 /* 추가된 CSS 코드 */
-.popupdetail-banner .slide-img-wrap::after,
-.slide-content .slide-img-wrap::after {
+.popupdetail_banner .slide-img-wrap::after,
+.slide_content .slide-img-wrap::after {
     content: "";
     display: block;
     width: 100%;
@@ -241,22 +252,22 @@ body {
     z-index: 1;
 }
 
-.slide-img-wrap {
+.slide_img_wrap {
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-.slide-content .slide-img-wrap {
+.slide_content .slide-img-wrap {
     position: relative;
     left: 0;
     bottom: 0;
     cursor: pointer;
 }
 
-.slick-slider {
+.slick_slider {
     position: relative;
-    display: block;
+        display: block;
     box-sizing: border-box;
     user-select: none;
     -webkit-user-select: none;
@@ -264,16 +275,78 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* 고정된 하트 아이콘 스타일 */
 .btn_cart {
     background: none; /* 배경 제거 */
     border: none; /* 테두리 제거 */
     position: absolute;
-    top: 540px; /* 원하는 위치로 조정 */
-    right: 10px; /* 원하는 위치로 조정 */
+    top: 700px; /* 원하는 위치로 조정 */
+    right: 70px; /* 찜 버튼의 위치 */
+    z-index: 1; /* 네비게이션보다 낮은 값으로 설정 */
+    cursor: pointer;
 }
 
 .btn_cart img {
-    width: 30px; /* 이미지 크기 조절 */
+    width: 24px; /* 이미지 크기 조절 */
     height: auto; /* 이미지 비율 유지 */
 }
+
+
+
+
+.order_btn {
+    position: absolute;
+    top: 700px; /* 찜 버튼과 동일한 높이로 조정 */
+    right: 110px; /* 찜 버튼 왼쪽에 위치 */
+    background-color: #44c700; /* 배경색 */
+    color: #ffffff; /* 텍스트 색상 */
+    font-size: 14px; /* 텍스트 크기 */
+    padding: 5px 10px; /* 내부 여백 (위아래 크기 줄임) */
+    border-radius: 4px; /* 모서리 둥글게 */
+    text-decoration: none; /* 하이퍼링크 밑줄 제거 */
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* 배경색 및 변형 전환 효과 */
+    border: none; /* 테두리 제거 */
+}
+
+.order_btn:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* 그림자 효과 */
+}
+
+
+
+
+.header_info {
+    background-color: #ffffff;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 60px;
+    transition: all 0.3s ease-in-out;
+}
+
+.header_info h1 {
+    color: #000;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ccc; /* 아래 줄 색상 일치 */
+}
+
+.header_info p.date {
+    color: #000; /* 날짜 색상을 눈에 띄게 변경 */
+    font-size: 18px;;
+    margin: 10px 0 0 0;
+    font-weight: 500;
+}
+
+.header_info p.location {
+    color: #000; /* 위치 색상을 다르게 설정 */
+    font-size: 15px;
+    margin-top: 5px;
+}
+

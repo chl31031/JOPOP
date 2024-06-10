@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,9 +102,18 @@
 
     <!-- 아이콘 -->
     <div class="icon">
-        <a href="/nav/prelogin">
-            <img src="/resources/img/icon.png" alt="Icon">
-        </a>
+        <c:choose>
+            <c:when test="${not empty member}">
+                <a href="/member/logout">
+                    <img src="/resources/img/logout.png" alt="Logout">
+                </a>
+            </c:when>
+            <c:otherwise>
+                <a href="/nav/prelogin">
+                    <img src="/resources/img/login.png" alt="Login">
+                </a>
+            </c:otherwise>
+        </c:choose>
     </div>
 </header>
 
